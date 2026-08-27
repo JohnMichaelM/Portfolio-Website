@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GG-BOX | Personvern og informasjonskapsler</title>
+
+  <link rel="stylesheet" href="gg-box-demo.css">
+  <link rel="stylesheet" href="gg-box-privacy.css">
+</head>
+
+<body>
+  <header class="shop-header">
+    <div class="shop-header-inner">
+      <a class="shop-brand" href="gg-box-demo.html" aria-label="Til GG-BOX">
+        GG-BOX
+      </a>
+
+      <div class="shop-actions">
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-pressed="false"
+        >
+          Mørk modus
+        </button>
+
+        <a class="text-button shop-link" href="gg-box-account.html">
+          Min konto
+        </a>
+
+        <a class="text-button shop-link" href="gg-box-demo.html">
+          Til butikk
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="privacy-nav" aria-label="Personvernmeny">
+    <a href="#personvern">Personvern</a>
+    <a href="#informasjonskapsler">Informasjonskapsler</a>
+    <a href="#rettigheter">Rettigheter</a>
+  </nav>
+
+  <main class="privacy-main">
+    <section id="personvern" class="privacy-intro">
+      <p class="section-label">JURIDISK · DEMONSTRASJON</p>
+      <h1>Personvern og informasjonskapsler</h1>
+
+      <p>
+        Denne siden er en del av en kodet porteføljedemonstrasjon av GG-BOX.
+        Den er ikke en aktiv nettbutikk.
+      </p>
+
+      <div class="demo-disclosure">
+        <strong>Ingen ekte kundedata</strong>
+        <p>
+          Demoen bruker ikke ekte kontoer, betalinger eller adresseinformasjon.
+          Valg på denne siden lagres kun lokalt i nettleseren din.
+        </p>
+      </div>
+    </section>
+
+    <section id="informasjonskapsler" class="privacy-section">
+      <p class="section-label">INFORMASJONSKAPSLER</p>
+      <h2>Velg hvordan demoen husker innstillinger</h2>
+
+      <form id="privacy-form" class="preference-panel">
+        <div class="preference-row">
+          <div>
+            <h3>Nødvendig lokal lagring</h3>
+            <p>
+              Brukes for at demoen kan huske lys/mørk modus, handlekurv og
+              cookie-valget ditt på denne enheten.
+            </p>
+          </div>
+
+          <span class="always-on">Alltid på</span>
+        </div>
+
+        <label class="preference-row optional-row">
+          <span>
+            <span class="preference-title">Valgfrie demopreferanser</span>
+            <span class="preference-description">
+              Viser hvordan et valg for markedsføring eller analyse kunne sett ut.
+              Dette aktiverer ingen sporing i denne demoen.
+            </span>
+          </span>
+
+          <input id="marketing-preference" type="checkbox">
+        </label>
+
+        <div class="preference-actions">
+          <button class="save-preferences" type="submit">
+            Lagre valg
+          </button>
+
+          <button id="reset-preferences" class="reset-preferences" type="button">
+            Tilbakestill
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section id="rettigheter" class="privacy-section">
+      <p class="section-label">RETTIGHETER</p>
+      <h2>Dine personopplysninger</h2>
+
+      <div class="privacy-text">
+        <p>
+          I en faktisk tjeneste kan brukeren blant annet be om informasjon,
+          innsyn, retting eller sletting av personopplysninger.
+        </p>
+
+        <p>
+          GG-BOX-demoen har ingen database og lagrer ingen personlig
+          informasjon. Det finnes derfor ingen data å få tilsendt eller slette.
+        </p>
+      </div>
+    </section>
+
+    <section class="privacy-section">
+      <p class="section-label">VILKÅR</p>
+      <h2>Bruk av demonstrasjonen</h2>
+
+      <div class="privacy-text">
+        <p>
+          GG-BOX er et studentkonsept som er videreutviklet som en kodet
+          porteføljedemonstrasjon. Produkter, konto, betaling og levering er
+          fiktive.
+        </p>
+      </div>
+    </section>
+
+    <p class="back-to-account">
+      <a href="gg-box-account.html">← Tilbake til min konto</a>
+    </p>
+  </main>
+
+  <p id="site-notice" class="site-notice" role="status" aria-live="polite"></p>
+
+  <script src="script.js"></script>
+  <script src="gg-box-privacy.js"></script>
+</body>
+</html>

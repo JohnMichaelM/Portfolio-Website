@@ -94,7 +94,8 @@
   padding: 4px 0 18px 24px;
 }
 
-.legal-links button {
+.legal-links button,
+.legal-links a {
   width: fit-content;
   border: 0;
   background: transparent;
@@ -124,7 +125,8 @@ body.dark-mode .legal-details {
 }
 
 body.dark-mode .account-nav a,
-body.dark-mode .legal-links button {
+body.dark-mode .legal-links button,
+body.dark-mode .legal-links a {
   color: var(--dark-text);
 }
 

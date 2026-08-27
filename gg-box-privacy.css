@@ -1,0 +1,224 @@
+.privacy-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.privacy-nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.privacy-nav a:hover {
+  color: var(--orange-dark);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.privacy-main {
+  width: min(760px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 54px 0 80px;
+}
+
+.privacy-intro {
+  margin-bottom: 64px;
+}
+
+.privacy-intro h1,
+.privacy-section h2 {
+  margin: 8px 0 14px;
+  line-height: 1.05;
+}
+
+.privacy-intro h1 {
+  max-width: 680px;
+  font-size: clamp(36px, 6vw, 58px);
+}
+
+.privacy-intro > p:not(.section-label) {
+  max-width: 620px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.demo-disclosure {
+  margin-top: 28px;
+  padding: 20px;
+  border-left: 4px solid var(--orange);
+  background: var(--surface-soft);
+}
+
+.demo-disclosure p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.privacy-section {
+  margin-bottom: 64px;
+}
+
+.privacy-section h2 {
+  font-size: clamp(28px, 4vw, 38px);
+}
+
+.preference-panel {
+  margin-top: 24px;
+  border: 1px solid var(--line);
+}
+
+.preference-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.preference-row h3,
+.preference-row p {
+  margin: 0;
+}
+
+.preference-row h3,
+.preference-title {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.preference-row p,
+.preference-description {
+  display: block;
+  max-width: 540px;
+  margin-top: 7px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.always-on {
+  flex-shrink: 0;
+  border: 1px solid var(--orange-dark);
+  color: var(--orange-dark);
+  padding: 7px 10px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.optional-row {
+  cursor: pointer;
+}
+
+.optional-row input {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  accent-color: var(--orange);
+}
+
+.preference-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 22px;
+}
+
+.save-preferences,
+.reset-preferences {
+  padding: 11px 16px;
+  font-weight: bold;
+}
+
+.save-preferences {
+  border: 1px solid var(--orange-dark);
+  background: var(--orange);
+  color: white;
+}
+
+.reset-preferences {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+}
+
+.privacy-text {
+  max-width: 620px;
+}
+
+.privacy-text p {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.back-to-account {
+  margin: 0;
+}
+
+.back-to-account a {
+  color: var(--orange-dark);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.back-to-account a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+body.dark-mode .privacy-nav,
+body.dark-mode .preference-panel,
+body.dark-mode .preference-row,
+body.dark-mode .reset-preferences {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .privacy-nav,
+body.dark-mode .preference-panel,
+body.dark-mode .preference-row,
+body.dark-mode .reset-preferences {
+  border-color: var(--dark-line);
+}
+
+body.dark-mode .privacy-nav a,
+body.dark-mode .reset-preferences {
+  color: var(--dark-text);
+}
+
+body.dark-mode .privacy-intro > p:not(.section-label),
+body.dark-mode .preference-row p,
+body.dark-mode .preference-description,
+body.dark-mode .privacy-text p {
+  color: #d7c5bc;
+}
+
+body.dark-mode .demo-disclosure {
+  background: var(--dark-soft);
+}
+
+@media (max-width: 700px) {
+  .privacy-main {
+    width: min(100% - 32px, 760px);
+    padding: 38px 0 56px;
+  }
+
+  .preference-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .optional-row {
+    flex-direction: row;
+    align-items: center;
+  }
+}
