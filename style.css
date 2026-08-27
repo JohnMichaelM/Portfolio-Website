@@ -431,3 +431,8 @@ section {
   font-weight: bold;
   line-height: 1.4;
 }
+@media (max-width: 850px) {
+  .prototype-gallery {
+    grid-template-columns: 1fr;
+  }
+}
