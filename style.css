@@ -389,3 +389,18 @@ section {
     margin-top: 64px;
   }
 }
+.project-link {
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-link:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.project-link:focus-visible {
+  outline: 3px solid #e9784a;
+  outline-offset: 4px;
+}
