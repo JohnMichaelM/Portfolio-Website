@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Fiktiv GG-BOX-konto i en porteføljedemonstrasjon."
+  >
+  <title>GG-BOX | Min konto</title>
+
+  <link rel="stylesheet" href="gg-box-demo.css">
+  <link rel="stylesheet" href="gg-box-account.css">
+</head>
+
+<body>
+  <header class="shop-header">
+    <div class="shop-header-inner">
+      <a class="shop-brand" href="gg-box-demo.html" aria-label="Til GG-BOX">
+        GG-BOX
+      </a>
+
+      <div class="shop-actions">
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-pressed="false"
+        >
+          Mørk modus
+        </button>
+
+        <a class="text-button shop-link" href="gg-box-demo.html">
+          Til butikk
+        </a>
+
+        <a class="text-button shop-link" href="gg-box-demo.html">
+          Logg ut
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="account-nav" aria-label="Kontonavigasjon">
+    <a href="#konto">Konto</a>
+    <a href="#juridisk">Juridisk</a>
+  </nav>
+
+  <main id="konto" class="account-main">
+    <section class="account-intro">
+      <p class="section-label">DEMO-KONTO</p>
+      <h1>Hei, Ola Nordmann!</h1>
+      <p>
+        Dette er en fiktiv konto i GG-BOX-demonstrasjonen. Ingen ekte
+        personopplysninger, bestillinger eller innlogginger lagres.
+      </p>
+    </section>
+
+    <section class="account-menu" aria-label="Kontoalternativer">
+      <button
+        class="account-row"
+        type="button"
+        data-coming-soon="Bestillingsoversikt kommer i en senere demonstrasjonsversjon."
+      >
+        <span>Dine bestillinger</span>
+        <span aria-hidden="true">›</span>
+      </button>
+
+      <button
+        class="account-row"
+        type="button"
+        data-coming-soon="Favoritter kommer i en senere demonstrasjonsversjon."
+      >
+        <span>Dine favoritter</span>
+        <span aria-hidden="true">›</span>
+      </button>
+
+      <button
+        class="account-row"
+        type="button"
+        data-coming-soon="Innstillinger kommer i en senere demonstrasjonsversjon."
+      >
+        <span>Innstillinger</span>
+        <span aria-hidden="true">›</span>
+      </button>
+
+      <button
+        class="account-row"
+        type="button"
+        data-coming-soon="Hjelpesenter kommer i en senere demonstrasjonsversjon."
+      >
+        <span>Hjelpesenter</span>
+        <span aria-hidden="true">›</span>
+      </button>
+
+      <details id="juridisk" class="legal-details">
+        <summary>
+          <span>Juridisk</span>
+          <span class="legal-arrow" aria-hidden="true">⌄</span>
+        </summary>
+
+        <div class="legal-links">
+          <button
+            type="button"
+            data-coming-soon="Vilkår og betingelser bygges sammen med personvernsiden."
+          >
+            Vilkår og betingelser
+          </button>
+
+          <button
+            type="button"
+            data-coming-soon="Personvernerklæringen bygges i neste steg."
+          >
+            Personvernerklæring
+          </button>
+
+          <button
+            type="button"
+            data-coming-soon="Innstillinger for informasjonskapsler bygges i neste steg."
+          >
+            Informasjonskapsler og data
+          </button>
+
+          <button
+            type="button"
+            data-coming-soon="Forespørsel om personopplysninger er kun en framtidig demofunksjon."
+          >
+            Få tilsendt dine personopplysninger
+          </button>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <p id="site-notice" class="site-notice" role="status" aria-live="polite"></p>
+
+  <script src="script.js"></script>
+  <script src="gg-box-account.js"></script>
+</body>
+</html>

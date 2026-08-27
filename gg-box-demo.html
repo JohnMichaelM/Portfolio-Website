@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="GG-BOX – kodet e-handelsdemonstrasjon."
+  >
+  <title>GG-BOX | Kodet demonstrasjon</title>
+
+  <link rel="stylesheet" href="gg-box-demo.css">
+</head>
+
+<body>
+  <header class="shop-header">
+    <div class="shop-header-inner">
+      <a class="shop-brand" href="gg-box-demo.html" aria-label="GG-BOX forside">
+        GG-BOX
+      </a>
+
+      <div class="shop-actions">
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-pressed="false"
+        >
+          Mørk modus
+        </button>
+
+        <a class="text-button shop-link" href="gg-box-account.html">
+  Logg inn
+</a>
+
+        <button
+          id="cart-toggle"
+          class="cart-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="cart-drawer"
+        >
+          Kurv <span id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="country-nav" aria-label="Landutvalg">
+    <button type="button" data-coming-soon="Japan-utvalg kommer snart.">Japan</button>
+    <button type="button" data-coming-soon="Kina-utvalg kommer snart.">Kina</button>
+    <button type="button" data-coming-soon="Italia-utvalg kommer snart.">Italia</button>
+    <button type="button" data-coming-soon="USA-utvalg kommer snart.">USA</button>
+    <button type="button" data-coming-soon="Flere land kommer snart.">Flere land</button>
+  </nav>
+
+  <main class="gg-demo">
+    <section class="products-section" aria-labelledby="products-heading">
+      <p class="section-label">UTVALG</p>
+      <h1 id="products-heading">GG-BOXer</h1>
+
+      <div class="product-grid">
+        <article class="product-card">
+          <div class="product-media">
+            <img
+              src="images/gg-box/products/favorites-mix.png"
+              alt="Favorittene-mix fra GG-BOX"
+            >
+          </div>
+
+          <div class="product-details">
+            <p class="product-tag">Blandet utvalg</p>
+            <h2>Favorittene-mix</h2>
+            <p>Et variert utvalg av populære snacks.</p>
+
+            <div class="product-bottom">
+              <strong>199 kr</strong>
+
+              <button class="add-to-cart" type="button" data-product="favorites">
+                Legg i kurv
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-media">
+            <img
+              src="images/gg-box/products/japan-box.png"
+              alt="En reise til Japan fra GG-BOX"
+            >
+          </div>
+
+          <div class="product-details">
+            <p class="product-tag">Landboks</p>
+            <h2>En reise til Japan</h2>
+            <p>Internasjonale smaker med Japan som tema.</p>
+
+            <div class="product-bottom">
+              <strong>249 kr</strong>
+
+              <button class="add-to-cart" type="button" data-product="japan">
+                Legg i kurv
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-media">
+            <img
+              src="images/gg-box/products/mystery-box.png"
+              alt="Mystery Box fra GG-BOX"
+            >
+          </div>
+
+          <div class="product-details">
+            <p class="product-tag">Overraskelse</p>
+            <h2>Mystery Box</h2>
+            <p>En uforutsigbar boks med nye smaksopplevelser.</p>
+
+            <div class="product-bottom">
+              <strong>249 kr</strong>
+
+              <button class="add-to-cart" type="button" data-product="mystery">
+                Legg i kurv
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div id="cart-backdrop" class="cart-backdrop" aria-hidden="true"></div>
+
+  <aside
+    id="cart-drawer"
+    class="cart-drawer"
+    aria-label="Handlekurv"
+    aria-hidden="true"
+  >
+    <div class="cart-header">
+      <h2>Handlekurv</h2>
+
+      <button
+        id="cart-close"
+        class="cart-close"
+        type="button"
+        aria-label="Lukk handlekurv"
+      >
+        ×
+      </button>
+    </div>
+
+    <div id="cart-items" class="cart-items">
+      <p class="empty-cart">Handlekurven din er tom.</p>
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Sum</span>
+        <strong id="cart-total">0 kr</strong>
+      </div>
+
+      <button id="checkout-button" class="checkout-button" type="button">
+        Gå til betaling
+      </button>
+    </div>
+  </aside>
+
+  <p id="site-notice" class="site-notice" role="status" aria-live="polite"></p>
+
+  <script src="script.js"></script>
+  <script src="gg-box-demo.js"></script>
+</body>
+</html>

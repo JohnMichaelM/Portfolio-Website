@@ -1,0 +1,145 @@
+.account-nav {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.account-nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.account-nav a:hover {
+  color: var(--orange-dark);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.account-main {
+  width: min(760px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 54px 0 80px;
+}
+
+.account-intro {
+  margin-bottom: 32px;
+}
+
+.account-intro h1 {
+  margin: 8px 0 14px;
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1;
+}
+
+.account-intro > p:not(.section-label) {
+  max-width: 560px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.account-menu {
+  border-top: 1px solid var(--line);
+}
+
+.account-row,
+.legal-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  padding: 22px 0;
+  font-size: 20px;
+  text-align: left;
+}
+
+.account-row:hover,
+.legal-details summary:hover {
+  color: var(--orange-dark);
+}
+
+.legal-details {
+  border-bottom: 1px solid var(--line);
+}
+
+.legal-details summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.legal-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.legal-details[open] .legal-arrow {
+  transform: rotate(180deg);
+}
+
+.legal-arrow {
+  transition: transform 160ms ease;
+}
+
+.legal-links {
+  display: grid;
+  gap: 4px;
+  padding: 4px 0 18px 24px;
+}
+
+.legal-links button {
+  width: fit-content;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  padding: 10px 0;
+  text-align: left;
+}
+
+.legal-links button:hover {
+  color: var(--orange-dark);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+body.dark-mode .account-nav,
+body.dark-mode .account-row,
+body.dark-mode .legal-details summary {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+body.dark-mode .account-nav,
+body.dark-mode .account-menu,
+body.dark-mode .account-row,
+body.dark-mode .legal-details {
+  border-color: var(--dark-line);
+}
+
+body.dark-mode .account-nav a,
+body.dark-mode .legal-links button {
+  color: var(--dark-text);
+}
+
+body.dark-mode .account-intro > p:not(.section-label) {
+  color: #d7c5bc;
+}
+
+@media (max-width: 700px) {
+  .account-main {
+    width: min(100% - 32px, 760px);
+    padding: 38px 0 56px;
+  }
+
+  .account-row,
+  .legal-details summary {
+    font-size: 18px;
+  }
+}
