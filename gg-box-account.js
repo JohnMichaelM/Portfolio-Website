@@ -8,6 +8,13 @@ const helpPanel = document.getElementById("help-panel");
 const helpMessages = document.getElementById("help-messages");
 const helpReset = document.getElementById("help-reset");
 const helpQuestionButtons = document.querySelectorAll("[data-help-question]");
+const dataRequestToggle = document.getElementById("data-request-toggle");
+const dataRequestPanel = document.getElementById("data-request-panel");
+const dataRequestButton = document.getElementById("data-request-button");
+const dataRequestStatus = document.getElementById("data-request-status");
+const dataCartCount = document.getElementById("data-cart-count");
+const dataFavoriteCount = document.getElementById("data-favorite-count");
+const dataOrderCount = document.getElementById("data-order-count");
 const currentTheme = document.getElementById("current-theme");
 const accountThemeToggle = document.getElementById("theme-toggle");
 const clearSettingButtons = document.querySelectorAll("[data-clear-setting]");
@@ -253,6 +260,45 @@ helpQuestionButtons.forEach((button) => {
 });
 
 helpReset.addEventListener("click", resetHelpMessages);
+
+function loadLocalList(storageKey) {
+  try {
+    const savedValue = JSON.parse(localStorage.getItem(storageKey));
+    return Array.isArray(savedValue) ? savedValue : [];
+  } catch {
+    return [];
+  }
+}
+
+function updateDataSummary() {
+  const cartItems = loadLocalList(cartStorageKey);
+  const favorites = loadLocalList(favoriteStorageKey);
+  const orders = loadOrders();
+
+  dataCartCount.textContent = cartItems.reduce((sum, item) => {
+    return sum + Number(item.quantity || 0);
+  }, 0);
+  dataFavoriteCount.textContent = favorites.length;
+  dataOrderCount.textContent = orders.length;
+}
+
+dataRequestToggle.addEventListener("click", () => {
+  const isOpen = dataRequestToggle.getAttribute("aria-expanded") === "true";
+
+  dataRequestToggle.setAttribute("aria-expanded", String(!isOpen));
+  dataRequestPanel.hidden = isOpen;
+
+  if (!isOpen) {
+    dataRequestStatus.textContent = "";
+    updateDataSummary();
+  }
+});
+
+dataRequestButton.addEventListener("click", () => {
+  updateDataSummary();
+  dataRequestStatus.textContent =
+    "Forespørselen er simulert. Ingen epost er sendt, og ingen data har forlatt nettleseren.";
+});
 
 accountThemeToggle.addEventListener("click", () => {
   window.requestAnimationFrame(updateCurrentTheme);

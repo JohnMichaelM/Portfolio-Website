@@ -381,6 +381,92 @@
   text-underline-offset: 4px;
 }
 
+.data-request-panel {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 24px;
+  margin: 4px 0 24px;
+  padding: 26px;
+  background: var(--surface-soft);
+}
+
+.data-request-panel[hidden] {
+  display: none;
+}
+
+.data-request-icon {
+  display: grid;
+  width: 96px;
+  height: 96px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--surface);
+}
+
+.data-request-icon svg {
+  width: 58px;
+  height: 58px;
+  fill: none;
+  stroke: var(--orange-dark);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.data-request-content h2 {
+  margin: 5px 0 10px;
+  font-size: 24px;
+}
+
+.data-request-content > p:not(.section-label, .data-request-status) {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.data-summary {
+  margin: 22px 0;
+  border-top: 1px solid var(--line);
+}
+
+.data-summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.data-summary dt,
+.data-summary dd {
+  margin: 0;
+}
+
+.data-summary dd {
+  font-weight: bold;
+}
+
+.data-request-button {
+  border: 1px solid var(--orange-dark);
+  padding: 12px 16px;
+  background: var(--orange);
+  color: #fff;
+  font: inherit;
+  font-weight: bold;
+}
+
+.data-request-button:hover,
+.data-request-button:focus-visible {
+  background: var(--orange-dark);
+}
+
+.data-request-status {
+  min-height: 1.5em;
+  margin: 14px 0 0;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
 body.dark-mode .account-nav,
 body.dark-mode .account-row,
 body.dark-mode .legal-details summary {
@@ -401,8 +487,22 @@ body.dark-mode .orders-summary-footer {
 body.dark-mode .orders-empty,
 body.dark-mode .orders-summary,
 body.dark-mode .settings-panel,
-body.dark-mode .help-panel {
+body.dark-mode .help-panel,
+body.dark-mode .data-request-panel {
   background: var(--dark-soft);
+}
+
+body.dark-mode .data-request-icon {
+  background: var(--dark-surface);
+}
+
+body.dark-mode .data-request-content > p:not(.section-label, .data-request-status) {
+  color: #d7c5bc;
+}
+
+body.dark-mode .data-summary,
+body.dark-mode .data-summary div {
+  border-color: var(--dark-line);
 }
 
 body.dark-mode .settings-panel,
@@ -496,5 +596,14 @@ body.dark-mode .account-intro > p:not(.section-label) {
     align-items: flex-start;
     flex-direction: column;
     gap: 12px;
+  }
+
+  .data-request-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .data-request-icon {
+    width: 76px;
+    height: 76px;
   }
 }
