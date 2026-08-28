@@ -140,7 +140,7 @@ Den tekniske videreutviklingen er ment å demonstrere frontend-logikk, UX, kunde
 
 GG-BOX – presentasjon i porteføljen
 
-GG-BOX presenteres direkte på forsiden. Den tidligere separate case-siden ble fjernet fordi den gjentok det samme innholdet. Forsiden inneholder:
+GG-BOX presenteres på en dedikert caseside som åpnes fra den nummererte prosjektoversikten på forsiden. Casesiden inneholder:
 
 bakgrunn og målgruppe
 
@@ -158,7 +158,7 @@ lenke til den opprinnelige prototypen
 
 tydelig skille mellom studentprosjektet og den senere kodede videreutviklingen
 
-Forsiden gir tilgang til både den fungerende demoen og den opprinnelige Figma-prototypen.
+Casesiden gir tilgang til både den fungerende demoen og den opprinnelige Figma-prototypen.
 
 GG-BOX – nåværende demo
 
