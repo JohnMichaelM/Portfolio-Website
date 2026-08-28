@@ -185,6 +185,14 @@ button {
   width: min(100%, var(--product-image-size));
   max-height: 235px;
   object-fit: contain;
+  transform-origin: center;
+  transition: filter 220ms ease, transform 220ms ease;
+}
+
+.product-card:hover .product-media img,
+.product-card:focus-within .product-media img {
+  filter: drop-shadow(0 14px 10px rgb(31 26 24 / 20%));
+  transform: translateY(-8px) scale(1.05);
 }
 
 .product-details {
@@ -733,5 +741,17 @@ body.dark-mode .newsletter-status.is-error {
     align-items: flex-start;
     flex-direction: column;
     width: min(100% - 32px, 1120px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-media img {
+    transition: none;
+  }
+
+  .product-card:hover .product-media img,
+  .product-card:focus-within .product-media img {
+    filter: none;
+    transform: none;
   }
 }
