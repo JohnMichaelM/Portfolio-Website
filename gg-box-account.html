@@ -53,13 +53,22 @@
 
     <section class="account-menu" aria-label="Kontoalternativer">
       <button
+        id="orders-toggle"
         class="account-row"
         type="button"
-        data-coming-soon="Bestillingsoversikt kommer i en senere demonstrasjonsversjon."
+        aria-expanded="false"
+        aria-controls="orders-panel"
       >
         <span>Dine bestillinger</span>
-        <span aria-hidden="true">›</span>
+        <span class="account-arrow" aria-hidden="true">⌄</span>
       </button>
+
+      <div
+        id="orders-panel"
+        class="orders-panel"
+        aria-live="polite"
+        hidden
+      ></div>
 
       <a class="account-row" href="gg-box-favorites.html">
   <span>Dine favoritter</span>

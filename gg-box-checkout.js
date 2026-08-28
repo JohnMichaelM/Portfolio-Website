@@ -95,34 +95,6 @@ function createDemoOrder() {
 
   window.location.href = "gg-box-order.html";
 }
-  const selectedPayment = document.querySelector(
-    'input[name="payment"]:checked'
-  );
-
-  const order = {
-    number: `GG-${Math.floor(1000 + Math.random() * 9000)}`,
-    createdAt: new Date().toISOString(),
-    paymentMethod: selectedPayment.value,
-    customer: {
-      name: "Ola Nordmann",
-      address: "Storgata 12, 0184 Oslo"
-    },
-    items: cart,
-    total: getTotal(),
-    status: "Bekreftet"
-  };
-
-  localStorage.setItem(orderStorageKey, JSON.stringify(order));
-  localStorage.removeItem(cartStorageKey);
-
-  showNotice(
-    `Demobestilling ${order.number} er registrert. Ordrestatus bygges som neste steg.`
-  );
-
-  confirmOrderButton.disabled = true;
-  confirmOrderButton.textContent = "Demobestilling bekreftet";
-
-  renderCheckout();
 
 document.querySelectorAll("[data-coming-soon]").forEach((button) => {
   button.addEventListener("click", () => {

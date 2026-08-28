@@ -67,6 +67,90 @@
   color: var(--orange-dark);
 }
 
+.account-arrow {
+  transition: transform 160ms ease;
+}
+
+#orders-toggle[aria-expanded="true"] .account-arrow {
+  transform: rotate(180deg);
+}
+
+.orders-panel {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.orders-panel[hidden] {
+  display: none;
+}
+
+.orders-empty,
+.orders-summary {
+  padding: 22px;
+  background: var(--surface-soft);
+}
+
+.orders-empty p,
+.orders-summary p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.orders-summary-header,
+.orders-summary-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.orders-summary-header {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.orders-summary-header h2 {
+  margin: 4px 0 0;
+  font-size: 22px;
+}
+
+.orders-summary-status {
+  color: var(--orange-dark);
+  font-weight: bold;
+}
+
+.orders-summary-details {
+  display: grid;
+  gap: 10px;
+  padding: 18px 0;
+}
+
+.orders-summary-details p {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.orders-summary-details span {
+  color: var(--muted);
+}
+
+.orders-summary-footer {
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.orders-link {
+  color: var(--text);
+  font-weight: bold;
+  text-underline-offset: 4px;
+}
+
+.orders-empty .orders-link {
+  display: inline-block;
+  margin-top: 14px;
+}
+
 .legal-details {
   border-bottom: 1px solid var(--line);
 }
@@ -120,8 +204,24 @@ body.dark-mode .legal-details summary {
 body.dark-mode .account-nav,
 body.dark-mode .account-menu,
 body.dark-mode .account-row,
-body.dark-mode .legal-details {
+body.dark-mode .legal-details,
+body.dark-mode .orders-panel,
+body.dark-mode .orders-summary-header,
+body.dark-mode .orders-summary-footer {
   border-color: var(--dark-line);
+}
+
+body.dark-mode .orders-empty,
+body.dark-mode .orders-summary {
+  background: var(--dark-soft);
+}
+
+body.dark-mode .orders-link {
+  color: var(--dark-text);
+}
+
+body.dark-mode .orders-summary-details span {
+  color: #d7c5bc;
 }
 
 body.dark-mode .account-nav a,
@@ -143,5 +243,13 @@ body.dark-mode .account-intro > p:not(.section-label) {
   .account-row,
   .legal-details summary {
     font-size: 18px;
+  }
+
+  .orders-summary-header,
+  .orders-summary-footer,
+  .orders-summary-details p {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
   }
 }
