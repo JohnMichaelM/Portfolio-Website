@@ -92,9 +92,7 @@ lys og mørk modus
 
 mobiltilpasning
 
-GG-BOX som klikkbar hovedcase
-
-egen GG-BOX-case-side
+GG-BOX som hovedcase på forsiden med lenker til demo og Figma-prototype
 
 prosjektbilder lagret inne i prosjektmappen
 
@@ -140,9 +138,9 @@ et system som behandler ekte kundedata
 
 Den tekniske videreutviklingen er ment å demonstrere frontend-logikk, UX, kundereise og teknisk forståelse.
 
-GG-BOX – case-side
+GG-BOX – presentasjon i porteføljen
 
-Case-siden er etablert og inneholder/har inneholdt retning for:
+GG-BOX presenteres direkte på forsiden. Den tidligere separate case-siden ble fjernet fordi den gjentok det samme innholdet. Forsiden inneholder:
 
 bakgrunn og målgruppe
 
@@ -160,7 +158,7 @@ lenke til den opprinnelige prototypen
 
 tydelig skille mellom studentprosjektet og den senere kodede videreutviklingen
 
-På sikt skal case-siden tydelig kunne gi tilgang til både case-studien og den fungerende demoen.
+Forsiden gir tilgang til både den fungerende demoen og den opprinnelige Figma-prototypen.
 
 GG-BOX – nåværende demo
 
@@ -242,7 +240,7 @@ navigasjon og tilbake-lenker
 
 at alle relevante sider tydelig er merket som demo
 
-Koble GG-BOX-demoen tydeligere til porteføljens case-side.
+Koble GG-BOX-demoen tydelig til prosjektpresentasjonen på forsiden.
 
 CommuniGreen
 

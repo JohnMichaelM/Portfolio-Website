@@ -16,7 +16,9 @@
 <body>
   <header class="shop-header">
     <div class="shop-header-inner">
-      <a class="shop-brand" href="gg-box-demo.html" aria-label="GG-BOX forside">
+      <a class="portfolio-link" href="index.html#topp">John Michael Mauseth</a>
+
+      <a class="shop-logo" href="gg-box-demo.html" aria-label="GG-BOX forside">
         GG-BOX
       </a>
 
@@ -26,8 +28,10 @@
           class="theme-toggle"
           type="button"
           aria-pressed="false"
+          aria-label="Bytt til mørk modus"
         >
-          Mørk modus
+          <span class="theme-icon" aria-hidden="true"></span>
+          <span data-theme-label>Mørk</span>
         </button>
 
         <a
@@ -35,7 +39,14 @@
           href="gg-box-account.html"
           aria-label="Åpne konto"
           title="Konto"
-        >Konto</a>
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9.25"></circle>
+            <circle cx="12" cy="9" r="3"></circle>
+            <path d="M6.8 18.3c.8-3 2.6-4.6 5.2-4.6s4.4 1.6 5.2 4.6"></path>
+          </svg>
+          <span class="visually-hidden">Konto</span>
+        </a>
 
         <button
           id="cart-toggle"
@@ -46,6 +57,10 @@
           aria-label="Åpne handlekurv"
           title="Handlekurv"
         >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5.5 8.5h13l-1 10.5h-11z"></path>
+            <path d="M9 8.5V6.8a3 3 0 0 1 6 0v1.7"></path>
+          </svg>
           <span id="cart-count">0</span>
         </button>
       </div>
