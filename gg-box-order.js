@@ -15,7 +15,7 @@ const clearOrderButton = document.getElementById("clear-order");
 const statuses = [
   {
     title: "Bestillingen er bekreftet",
-    description: "Vi har mottatt demo-bestillingen din og gjør den klar."
+    description: "Vi har mottatt demobestillingen din og gjør den klar."
   },
   {
     title: "Bestillingen pakkes",
@@ -27,7 +27,7 @@ const statuses = [
   },
   {
     title: "Bestillingen er levert",
-    description: "Demo-bestillingen er markert som levert."
+    description: "Demobestillingen er markert som levert."
   }
 ];
 
@@ -91,7 +91,7 @@ function renderOrder() {
 
   if (statusIndex === statuses.length - 1) {
     nextStatusButton.disabled = true;
-    nextStatusButton.textContent = "Demo-bestillingen er levert";
+    nextStatusButton.textContent = "Demobestillingen er levert";
   } else {
     nextStatusButton.disabled = false;
     nextStatusButton.textContent = "Simuler neste status";

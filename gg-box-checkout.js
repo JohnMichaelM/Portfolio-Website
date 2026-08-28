@@ -116,11 +116,11 @@ function createDemoOrder() {
   localStorage.removeItem(cartStorageKey);
 
   showNotice(
-    `Demo-bestilling ${order.number} er registrert. Ordrestatus bygges som neste steg.`
+    `Demobestilling ${order.number} er registrert. Ordrestatus bygges som neste steg.`
   );
 
   confirmOrderButton.disabled = true;
-  confirmOrderButton.textContent = "Demo-bestilling bekreftet";
+  confirmOrderButton.textContent = "Demobestilling bekreftet";
 
   renderCheckout();
 

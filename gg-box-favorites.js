@@ -1,6 +1,6 @@
 const products = {
   favorites: {
-    name: "Favorittene-mix",
+    name: "Favorittmiks",
     price: 199,
     image: "images/gg-box/products/favorites-mix.png"
   },
@@ -113,7 +113,7 @@ function renderFavorites() {
           <img src="${product.image}" alt="${product.name}">
           <div class="favorite-card-content">
             <h2>${product.name}</h2>
-            <p>Lagret favoritt i GG-BOX-demonstrasjonen.</p>
+            <p>Lagret favoritt i demonstrasjonen av GG-BOX.</p>
 
             <div class="favorite-card-footer">
               <strong>${formatPrice(product.price)}</strong>

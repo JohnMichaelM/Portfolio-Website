@@ -1,6 +1,6 @@
 const products = {
   favorites: {
-    name: "Favorittene-mix",
+    name: "Favorittmiks",
     price: 199
   },
   japan: {
