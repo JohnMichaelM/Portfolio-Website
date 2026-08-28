@@ -1,5 +1,6 @@
 const cartStorageKey = "ggbox-demo-cart";
-const orderStorageKey = "ggbox-demo-order";
+const legacyOrderStorageKey = "ggbox-demo-order";
+const orderHistoryStorageKey = "ggbox-demo-orders";
 
 const checkoutItems = document.getElementById("checkout-items");
 const checkoutTotal = document.getElementById("checkout-total");
@@ -13,6 +14,35 @@ function loadCart() {
   } catch {
     return [];
   }
+}
+
+function loadOrderHistory() {
+  let orders = [];
+
+  try {
+    const savedOrders = localStorage.getItem(orderHistoryStorageKey);
+    const parsedOrders = savedOrders ? JSON.parse(savedOrders) : [];
+    orders = Array.isArray(parsedOrders) ? parsedOrders : [];
+  } catch {
+    orders = [];
+  }
+
+  try {
+    const savedLegacyOrder = localStorage.getItem(legacyOrderStorageKey);
+    const legacyOrder = savedLegacyOrder ? JSON.parse(savedLegacyOrder) : null;
+
+    if (
+      legacyOrder &&
+      legacyOrder.number &&
+      !orders.some((order) => order.number === legacyOrder.number)
+    ) {
+      orders.unshift(legacyOrder);
+    }
+  } catch {
+    return orders;
+  }
+
+  return orders;
 }
 
 const cart = loadCart();
@@ -36,6 +66,16 @@ function getTotal() {
   return cart.reduce((sum, item) => {
     return sum + item.price * item.quantity;
   }, 0);
+}
+
+function createOrderNumber(orders) {
+  let orderNumber;
+
+  do {
+    orderNumber = `GG-${Math.floor(1000 + Math.random() * 9000)}`;
+  } while (orders.some((order) => order.number === orderNumber));
+
+  return orderNumber;
 }
 
 function renderCheckout() {
@@ -76,9 +116,10 @@ function createDemoOrder() {
   const selectedPayment = document.querySelector(
     'input[name="payment"]:checked'
   );
+  const orders = loadOrderHistory();
 
   const order = {
-    number: `GG-${Math.floor(1000 + Math.random() * 9000)}`,
+    number: createOrderNumber(orders),
     createdAt: new Date().toISOString(),
     paymentMethod: selectedPayment.value,
     customer: {
@@ -90,10 +131,13 @@ function createDemoOrder() {
     statusIndex: 0
   };
 
-  localStorage.setItem(orderStorageKey, JSON.stringify(order));
+  orders.unshift(order);
+
+  localStorage.setItem(orderHistoryStorageKey, JSON.stringify(orders));
+  localStorage.setItem(legacyOrderStorageKey, JSON.stringify(order));
   localStorage.removeItem(cartStorageKey);
 
-  window.location.href = "gg-box-order.html";
+  window.location.href = `gg-box-order.html?order=${encodeURIComponent(order.number)}`;
 }
 
 document.querySelectorAll("[data-coming-soon]").forEach((button) => {

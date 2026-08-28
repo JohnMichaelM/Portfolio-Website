@@ -90,6 +90,26 @@
   background: var(--surface-soft);
 }
 
+.orders-group + .orders-group {
+  margin-top: 30px;
+}
+
+.orders-group > h2 {
+  margin: 0 0 14px;
+  font-size: 20px;
+}
+
+.orders-list {
+  display: grid;
+  gap: 14px;
+}
+
+.orders-group-empty {
+  margin: 0;
+  padding: 18px 0;
+  color: var(--muted);
+}
+
 .orders-empty p,
 .orders-summary p {
   margin: 0;
@@ -109,7 +129,7 @@
   border-bottom: 1px solid var(--line);
 }
 
-.orders-summary-header h2 {
+.orders-summary-header h3 {
   margin: 4px 0 0;
   font-size: 22px;
 }
@@ -221,6 +241,10 @@ body.dark-mode .orders-link {
 }
 
 body.dark-mode .orders-summary-details span {
+  color: #d7c5bc;
+}
+
+body.dark-mode .orders-group-empty {
   color: #d7c5bc;
 }
 
