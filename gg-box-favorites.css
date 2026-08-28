@@ -1,12 +1,80 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fffdfb;
+  color: #1f1a18;
+  font-family: Arial, sans-serif;
+}
+
+.gg-demo {
+  min-height: 100vh;
+}
+
+.shop-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 102px;
+  padding: 0 8%;
+  background: #e9784a;
+  color: #ffffff;
+}
+
+.shop-logo {
+  color: #ffffff;
+  font-size: 44px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.shop-actions {
+  position: absolute;
+  right: 8%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.shop-actions a,
+.shop-actions button {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: transparent;
+  color: #ffffff;
+  padding: 11px 14px;
+  font: inherit;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .favorites-page {
   width: min(100% - 40px, 960px);
   margin: 0 auto;
   padding: 80px 0;
 }
 
+.demo-eyebrow {
+  margin: 0 0 10px;
+  color: #c95c31;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.favorites-page h1 {
+  margin: 0 0 12px;
+  font-size: 48px;
+}
+
 .favorites-intro {
   max-width: 560px;
-  margin-bottom: 36px;
+  margin: 0 0 36px;
+  line-height: 1.5;
 }
 
 .favorites-list {
@@ -19,17 +87,17 @@
 .favorite-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--demo-line);
-  background: var(--demo-surface);
   overflow: hidden;
+  border: 1px solid #eadbd4;
+  background: #ffffff;
 }
 
 .favorite-card img {
   width: 100%;
-  height: 200px;
+  height: 220px;
+  padding: 22px;
   object-fit: contain;
-  padding: 20px;
-  background: var(--demo-soft);
+  background: #fff3ed;
 }
 
 .favorite-card-content {
@@ -46,7 +114,8 @@
 
 .favorite-card p {
   margin: 0 0 20px;
-  color: var(--demo-muted);
+  color: #665b56;
+  line-height: 1.5;
 }
 
 .favorite-card-footer {
@@ -57,45 +126,130 @@
   margin-top: auto;
 }
 
-.favorite-card-footer strong {
-  font-size: 18px;
-}
-
 .favorite-actions {
   display: flex;
   gap: 8px;
 }
 
-.favorite-actions button {
+.primary-button,
+.remove-favorite {
+  padding: 10px 12px;
+  font: inherit;
+  font-weight: bold;
   cursor: pointer;
 }
 
+.primary-button {
+  border: 1px solid #e9784a;
+  background: #e9784a;
+  color: #ffffff;
+}
+
 .remove-favorite {
-  border: 1px solid var(--demo-line);
+  border: 1px solid #1f1a18;
   background: transparent;
-  color: var(--demo-text);
-  padding: 10px 12px;
-  font-weight: bold;
+  color: #1f1a18;
 }
 
 .empty-favorites {
   grid-column: 1 / -1;
   padding: 40px;
-  border: 1px solid var(--demo-line);
-  background: var(--demo-soft);
+  border: 1px solid #eadbd4;
+  background: #fff3ed;
 }
 
-.empty-favorites h2 {
-  margin-top: 0;
+.back-link {
+  color: #1f1a18;
+  font-weight: bold;
 }
+
+/* Mørk modus */
+
+body.dark-mode {
+  background: #171515;
+  color: #f7f0ed;
+}
+
+body.dark-mode .shop-header {
+  background: #e9784a;
+}
+
+body.dark-mode .favorite-card {
+  border-color: #4b4541;
+  background: #211d1b;
+}
+
+body.dark-mode .favorite-card img {
+  background: #2b2421;
+}
+
+body.dark-mode .favorite-card p {
+  color: #d7c5bb;
+}
+
+body.dark-mode .remove-favorite {
+  border-color: #f7f0ed;
+  color: #f7f0ed;
+}
+
+body.dark-mode .empty-favorites {
+  border-color: #4b4541;
+  background: #38271f;
+}
+
+body.dark-mode .back-link {
+  color: #f7f0ed;
+}
+
+/* Mobil */
 
 @media (max-width: 760px) {
+  .shop-header {
+    min-height: auto;
+    padding: 20px;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .shop-logo {
+    font-size: 34px;
+  }
+
+  .shop-actions {
+    position: static;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   .favorites-page {
     width: min(100% - 32px, 960px);
     padding: 48px 0;
   }
 
+  .favorites-page h1 {
+    font-size: 38px;
+  }
+
   .favorites-list {
     grid-template-columns: 1fr;
   }
+}
+/* Favorittsiden skal bruke hele nettleserbredden i toppbanneret */
+
+.gg-demo {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.shop-header {
+  width: 100vw;
+  min-height: 102px;
+  margin-left: calc(50% - 50vw);
+  padding: 0 8vw;
+}
+
+.shop-actions {
+  right: 8vw;
 }
