@@ -77,6 +77,18 @@
   transform: rotate(180deg);
 }
 
+#orders-toggle > span:first-child,
+#settings-toggle > span:first-child,
+#help-toggle > span:first-child {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.legal-details summary > span:first-child {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .help-panel {
   padding: 22px;
   border-bottom: 1px solid var(--line);
@@ -373,6 +385,11 @@
   color: var(--text);
   padding: 10px 0;
   text-align: left;
+}
+
+#data-request-toggle {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .legal-links button:hover {

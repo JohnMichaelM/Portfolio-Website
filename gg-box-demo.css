@@ -410,6 +410,13 @@ button {
   transform: translateY(0);
 }
 
+.cart-drawer.is-open ~ .site-notice {
+  top: 110px;
+  right: auto;
+  bottom: auto;
+  left: 20px;
+}
+
 /* Mørk modus */
 
 body.dark-mode {

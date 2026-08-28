@@ -25,6 +25,8 @@
 }
 
 .shop-actions {
+  position: static;
+  right: auto;
   grid-column: 3;
   display: flex;
   justify-content: flex-end;
