@@ -212,3 +212,52 @@ document.addEventListener("keydown", (event) => {
 });
 
 renderCart();
+const favoriteStorageKey = "ggbox-demo-favorites";
+
+function loadFavorites() {
+  try {
+    return JSON.parse(localStorage.getItem(favoriteStorageKey)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function saveFavorites(favorites) {
+  localStorage.setItem(favoriteStorageKey, JSON.stringify(favorites));
+}
+
+function updateFavoriteButtons() {
+  const favorites = loadFavorites();
+
+  document.querySelectorAll(".favorite-toggle").forEach((button) => {
+    const isFavorite = favorites.includes(button.dataset.product);
+
+    button.classList.toggle("is-favorite", isFavorite);
+    button.textContent = isFavorite ? "♥" : "♡";
+    button.setAttribute(
+      "aria-label",
+      isFavorite ? "Fjern fra favoritter" : "Lagre som favoritt"
+    );
+  });
+}
+
+document.querySelectorAll(".favorite-toggle").forEach((button) => {
+  button.addEventListener("click", () => {
+    const productId = button.dataset.product;
+    const favorites = loadFavorites();
+    const index = favorites.indexOf(productId);
+
+    if (index === -1) {
+      favorites.push(productId);
+      showNotice("Lagt til i favoritter.");
+    } else {
+      favorites.splice(index, 1);
+      showNotice("Fjernet fra favoritter.");
+    }
+
+    saveFavorites(favorites);
+    updateFavoriteButtons();
+  });
+});
+
+updateFavoriteButtons();

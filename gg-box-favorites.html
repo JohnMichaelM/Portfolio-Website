@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dine favoritter | GG-BOX</title>
+
+  <link rel="stylesheet" href="gg-box-demo.css">
+  <link rel="stylesheet" href="gg-box-favorites.css">
+</head>
+
+<body>
+  <header class="shop-header">
+    <a class="shop-logo" href="gg-box-demo.html">GG-BOX</a>
+
+    <div class="shop-actions">
+      <button id="theme-toggle" type="button">Mørk modus</button>
+      <a class="text-button" href="gg-box-demo.html">Til butikk</a>
+      <a class="text-button" href="gg-box-account.html">Konto</a>
+    </div>
+  </header>
+
+  <main class="favorites-page">
+    <p class="demo-eyebrow">Demo-konto</p>
+    <h1>Dine favoritter</h1>
+    <p class="favorites-intro">
+      Lagre GG-BOXer du vil komme tilbake til senere.
+    </p>
+
+    <section id="favorites-list" class="favorites-list" aria-live="polite"></section>
+
+    <a class="back-link" href="gg-box-demo.html">← Tilbake til butikken</a>
+  </main>
+
+  <p id="site-notice" class="site-notice" role="status" aria-live="polite"></p>
+
+  <script src="script.js"></script>
+  <script src="gg-box-favorites.js"></script>
+</body>
+</html>

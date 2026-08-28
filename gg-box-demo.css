@@ -496,3 +496,28 @@ body.dark-mode .quantity-button {
   display: inline-block;
   text-decoration: none;
 }
+.product-card {
+  position: relative;
+}
+
+.favorite-toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--demo-line);
+  border-radius: 50%;
+  background: var(--demo-surface);
+  color: var(--demo-text);
+  font-size: 25px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.favorite-toggle.is-favorite {
+  border-color: var(--demo-orange);
+  background: var(--demo-orange);
+  color: white;
+}
