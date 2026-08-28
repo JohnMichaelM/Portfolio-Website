@@ -1,4 +1,7 @@
 .shop-header {
+  width: 100%;
+  min-height: 0;
+  margin-left: 0;
   padding: 0;
 }
 
@@ -88,7 +91,7 @@
   flex: 0 0 auto;
   border-radius: 50%;
   background: currentColor;
-  box-shadow: 6px 0 0 rgb(235 117 72);
+  box-shadow: 6px 0 0 var(--orange, #e9784a);
 }
 
 .shop-actions .header-icon {
@@ -158,6 +161,7 @@
   border-radius: 999px;
   background: #171310;
   color: #fff;
+  margin: 0;
   padding: 0 4px;
   font-size: 10px;
   line-height: 1;

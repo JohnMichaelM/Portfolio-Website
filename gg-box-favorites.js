@@ -20,7 +20,6 @@ const favoriteStorageKey = "ggbox-demo-favorites";
 const cartStorageKey = "ggbox-demo-cart";
 
 const favoritesList = document.getElementById("favorites-list");
-const themeToggle = document.getElementById("theme-toggle");
 const siteNotice = document.getElementById("site-notice");
 
 function loadFavorites() {
@@ -154,28 +153,5 @@ function renderFavorites() {
     });
   });
 }
-
-function setFavoritesTheme(isDarkMode) {
-  document.body.classList.toggle("dark-mode", isDarkMode);
-  themeToggle.textContent = isDarkMode ? "Lys modus" : "Mørk modus";
-  themeToggle.setAttribute("aria-pressed", String(isDarkMode));
-  themeToggle.setAttribute(
-    "aria-label",
-    isDarkMode ? "Bytt til lys modus" : "Bytt til mørk modus"
-  );
-}
-
-const savedTheme = localStorage.getItem("portfolio-theme");
-setFavoritesTheme(
-  savedTheme
-    ? savedTheme === "dark"
-    : window.matchMedia("(prefers-color-scheme: dark)").matches
-);
-
-themeToggle.addEventListener("click", () => {
-  const isDarkMode = !document.body.classList.contains("dark-mode");
-  setFavoritesTheme(isDarkMode);
-  localStorage.setItem("portfolio-theme", isDarkMode ? "dark" : "light");
-});
 
 renderFavorites();
