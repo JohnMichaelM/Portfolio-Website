@@ -13,7 +13,18 @@ const products = {
   }
 };
 
-const cart = [];
+const cartStorageKey = "ggbox-demo-cart";
+
+function loadCart() {
+  try {
+    const savedCart = localStorage.getItem(cartStorageKey);
+    return savedCart ? JSON.parse(savedCart) : [];
+  } catch {
+    return [];
+  }
+}
+
+const cart = loadCart();
 
 const cartToggle = document.getElementById("cart-toggle");
 const cartClose = document.getElementById("cart-close");
@@ -27,6 +38,10 @@ const siteNotice = document.getElementById("site-notice");
 
 function formatPrice(price) {
   return `${price} kr`;
+}
+
+function saveCart() {
+  localStorage.setItem(cartStorageKey, JSON.stringify(cart));
 }
 
 function showNotice(message) {
@@ -143,6 +158,7 @@ function addToCart(productId) {
     });
   }
 
+  saveCart();
   renderCart();
   showNotice(`${selectedProduct.name} ble lagt i handlekurven.`);
 }
@@ -160,6 +176,7 @@ function changeQuantity(productId, change) {
     cart.splice(itemIndex, 1);
   }
 
+  saveCart();
   renderCart();
 }
 
@@ -185,7 +202,7 @@ checkoutButton.addEventListener("click", () => {
     return;
   }
 
-  showNotice("Betaling er ikke aktivert i denne demonstrasjonen.");
+  window.location.href = "gg-box-checkout.html";
 });
 
 document.addEventListener("keydown", (event) => {

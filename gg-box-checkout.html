@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Fiktiv betalingsside for GG-BOX-demonstrasjonen."
+  >
+  <title>Betaling | GG-BOX</title>
+  <link rel="stylesheet" href="gg-box-checkout.css">
+</head>
+
+<body>
+  <header class="shop-header">
+    <a class="shop-logo" href="gg-box-demo.html">GG-BOX</a>
+
+    <div class="shop-actions">
+      <button
+        id="theme-toggle"
+        class="text-button"
+        type="button"
+        aria-pressed="false"
+        aria-label="Bytt til mørk modus"
+      >
+        Mørk modus
+      </button>
+
+      <a class="text-button" href="gg-box-demo.html">Til butikk</a>
+    </div>
+  </header>
+
+  <main class="checkout-page">
+    <div class="page-intro">
+      <p class="eyebrow">Demo-betaling</p>
+      <h1>Fullfør bestillingen.</h1>
+      <p>
+        Dette er en demonstrasjon. Ingen betaling, adresse eller
+        personopplysninger sendes eller lagres.
+      </p>
+    </div>
+
+    <div class="checkout-layout">
+      <section class="checkout-panel" aria-labelledby="delivery-title">
+        <h2 id="delivery-title">Levering</h2>
+
+        <div class="delivery-card">
+          <p class="delivery-label">Leveres til</p>
+          <p class="delivery-name">Ola Nordmann</p>
+          <p>Storgata 12<br>0184 Oslo</p>
+
+          <button
+            class="secondary-button"
+            type="button"
+            data-coming-soon="Endring av adresse er ikke aktivert i denne demonstrasjonen."
+          >
+            Endre leveringsadresse
+          </button>
+        </div>
+
+        <h2>Betalingsmetode</h2>
+
+        <fieldset class="payment-options">
+          <legend>Velg en fiktiv betalingsmetode</legend>
+
+          <label class="payment-option">
+            <input type="radio" name="payment" value="Visa" checked>
+            <span>
+              <strong>Kort</strong>
+              <small>Visa •••• 4242</small>
+            </span>
+          </label>
+
+          <label class="payment-option">
+            <input type="radio" name="payment" value="Vipps">
+            <span>
+              <strong>Vipps</strong>
+              <small>Fiktiv demo-betaling</small>
+            </span>
+          </label>
+
+          <label class="payment-option">
+            <input type="radio" name="payment" value="PayPal">
+            <span>
+              <strong>PayPal</strong>
+              <small>Fiktiv demo-betaling</small>
+            </span>
+          </label>
+        </fieldset>
+      </section>
+
+      <aside class="order-summary" aria-labelledby="summary-title">
+        <p class="eyebrow">Din bestilling</p>
+        <h2 id="summary-title">Ordreoversikt</h2>
+
+        <div id="checkout-items"></div>
+
+        <div class="summary-total">
+          <span>Sum</span>
+          <strong id="checkout-total">0 kr</strong>
+        </div>
+
+        <button id="confirm-order" class="primary-button" type="button">
+          Bekreft demo-bestilling
+        </button>
+
+        <a class="back-link" href="gg-box-demo.html">
+          ← Tilbake til butikken
+        </a>
+      </aside>
+    </div>
+  </main>
+
+  <p
+    id="site-notice"
+    class="site-notice"
+    role="status"
+    aria-live="polite"
+  ></p>
+
+  <script src="script.js"></script>
+  <script src="gg-box-checkout.js"></script>
+</body>
+</html>
