@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Fiktiv ordrestatus for GG-BOX-demonstrasjonen."
+  >
+  <title>Ordrestatus | GG-BOX</title>
+  <link rel="stylesheet" href="gg-box-order.css">
+</head>
+
+<body>
+  <header class="shop-header">
+    <a class="shop-logo" href="gg-box-demo.html">GG-BOX</a>
+
+    <div class="shop-actions">
+      <button
+        id="theme-toggle"
+        class="text-button"
+        type="button"
+        aria-pressed="false"
+        aria-label="Bytt til mørk modus"
+      >
+        Mørk modus
+      </button>
+
+      <a class="text-button" href="gg-box-demo.html">Til butikk</a>
+    </div>
+  </header>
+
+  <main class="order-page">
+    <section id="order-content">
+      <div class="page-intro">
+        <p class="eyebrow">Demo-bestilling</p>
+        <h1>Takk for bestillingen.</h1>
+        <p id="order-intro">
+          Vi klargjør din fiktive GG-BOX-bestilling.
+        </p>
+      </div>
+
+      <div class="order-layout">
+        <section class="status-panel" aria-labelledby="status-heading">
+          <p class="eyebrow">Leveringsstatus</p>
+          <h2 id="status-heading">Bestillingen er bekreftet</h2>
+          <p id="status-description"></p>
+
+          <ol class="status-timeline">
+            <li class="status-step" data-status-step="0">
+              <span class="status-marker">1</span>
+              <div>
+                <strong>Bekreftet</strong>
+                <p>Vi har mottatt demo-bestillingen din.</p>
+              </div>
+            </li>
+
+            <li class="status-step" data-status-step="1">
+              <span class="status-marker">2</span>
+              <div>
+                <strong>Pakkes</strong>
+                <p>GG-BOXen blir gjort klar for levering.</p>
+              </div>
+            </li>
+
+            <li class="status-step" data-status-step="2">
+              <span class="status-marker">3</span>
+              <div>
+                <strong>På vei</strong>
+                <p>Bestillingen er på vei til Ola Nordmann.</p>
+              </div>
+            </li>
+
+            <li class="status-step" data-status-step="3">
+              <span class="status-marker">4</span>
+              <div>
+                <strong>Levert</strong>
+                <p>Demo-bestillingen er markert som levert.</p>
+              </div>
+            </li>
+          </ol>
+
+          <button id="next-status" class="primary-button" type="button">
+            Simuler neste status
+          </button>
+        </section>
+
+        <aside class="order-summary" aria-labelledby="summary-title">
+          <p class="eyebrow">Ordredetaljer</p>
+          <h2 id="summary-title">Ordre <span id="order-number"></span></h2>
+
+          <div class="order-meta">
+            <div>
+              <span>Betaling</span>
+              <strong id="payment-method"></strong>
+            </div>
+
+            <div>
+              <span>Leveres til</span>
+              <strong id="delivery-address"></strong>
+            </div>
+          </div>
+
+          <div id="order-items"></div>
+
+          <div class="summary-total">
+            <span>Sum</span>
+            <strong id="order-total">0 kr</strong>
+          </div>
+        </aside>
+      </div>
+
+      <div class="order-actions">
+        <a class="secondary-button" href="gg-box-demo.html">
+          Se flere GG-BOXer
+        </a>
+
+        <button id="clear-order" class="text-link" type="button">
+          Start en ny demo-bestilling
+        </button>
+      </div>
+    </section>
+
+    <section id="no-order" class="no-order" hidden>
+      <p class="eyebrow">Ingen aktiv bestilling</p>
+      <h1>Her kommer ordrestatusen din.</h1>
+      <p>
+        Legg en GG-BOX i kurven og fullfør demo-betalingen for å se denne
+        siden i bruk.
+      </p>
+      <a class="primary-link" href="gg-box-demo.html">Gå til butikken</a>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="gg-box-order.js"></script>
+</body>
+</html>
