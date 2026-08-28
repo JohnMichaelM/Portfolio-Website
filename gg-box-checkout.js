@@ -123,7 +123,6 @@ function createDemoOrder() {
   confirmOrderButton.textContent = "Demo-bestilling bekreftet";
 
   renderCheckout();
-}
 
 document.querySelectorAll("[data-coming-soon]").forEach((button) => {
   button.addEventListener("click", () => {
