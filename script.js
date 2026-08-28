@@ -4,7 +4,13 @@ const savedTheme = localStorage.getItem("portfolio-theme");
 function setTheme(isDark) {
   document.body.classList.toggle("dark-mode", isDark);
 
-  themeToggle.textContent = isDark ? "Lys modus" : "Mørk modus";
+  const themeLabel = themeToggle.querySelector("[data-theme-label]");
+
+  if (themeLabel) {
+    themeLabel.textContent = isDark ? "Lys" : "Mørk";
+  } else {
+    themeToggle.textContent = isDark ? "Lys modus" : "Mørk modus";
+  }
   themeToggle.setAttribute("aria-pressed", String(isDark));
 
   themeToggle.setAttribute(
