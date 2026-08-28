@@ -261,3 +261,25 @@ document.querySelectorAll(".favorite-toggle").forEach((button) => {
 });
 
 updateFavoriteButtons();
+
+const newsletterForm = document.getElementById("newsletter-form");
+const newsletterEmail = document.getElementById("newsletter-email");
+const newsletterStatus = document.getElementById("newsletter-status");
+
+newsletterForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (!newsletterEmail.validity.valid) {
+    newsletterStatus.textContent = "Skriv inn en gyldig epostadresse.";
+    newsletterStatus.classList.add("is-error");
+    newsletterStatus.setAttribute("role", "alert");
+    newsletterEmail.focus();
+    return;
+  }
+
+  newsletterStatus.textContent =
+    "Takk! Dette er en demo, så epostadressen ble ikke lagret.";
+  newsletterStatus.classList.remove("is-error");
+  newsletterStatus.setAttribute("role", "status");
+  newsletterForm.reset();
+});
