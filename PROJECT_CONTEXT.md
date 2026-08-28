@@ -244,7 +244,9 @@ Koble GG-BOX-demoen tydelig til prosjektpresentasjonen på forsiden.
 
 CommuniGreen
 
-CommuniGreen er et tidligere student-/Figma-konsept fra 2023/24.
+CommuniGreen er et student-/Figma-konsept fra 2023.
+
+Brukeren hadde ansvar for planlegging, brukertesting og det skriftlige arbeidet utenfor Figma. Den opprinnelige Figma-prototypen ble utformet av en medstudent, og brukeren har fått tillatelse til å videreutvikle konseptet.
 
 Den tekniske videreutviklingen er planlagt etter at GG-BOX er på et godt ferdighetsnivå.
 
