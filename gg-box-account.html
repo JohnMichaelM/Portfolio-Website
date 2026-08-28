@@ -11,6 +11,7 @@
 
   <link rel="stylesheet" href="gg-box-demo.css">
   <link rel="stylesheet" href="gg-box-account.css">
+  <link rel="stylesheet" href="gg-box-header.css">
 </head>
 
 <body>
@@ -30,13 +31,13 @@
           Mørk modus
         </button>
 
-        <a class="text-button shop-link" href="gg-box-demo.html">
-          Til butikk
-        </a>
+        <a
+          class="header-icon icon-shop"
+          href="gg-box-demo.html"
+          aria-label="Til butikk"
+          title="Til butikk"
+        >Til butikk</a>
 
-        <a class="text-button shop-link" href="gg-box-demo.html">
-          Logg ut
-        </a>
       </div>
     </div>
   </header>
@@ -77,21 +78,94 @@
 
       <button
         class="account-row"
+        id="settings-toggle"
         type="button"
-        data-coming-soon="Innstillinger kommer i en senere demonstrasjonsversjon."
+        aria-expanded="false"
+        aria-controls="settings-panel"
       >
         <span>Innstillinger</span>
-        <span aria-hidden="true">›</span>
+        <span class="account-arrow" aria-hidden="true">⌄</span>
       </button>
+
+      <section class="settings-panel" id="settings-panel" aria-label="Innstillinger" hidden>
+        <div class="settings-theme">
+          <div>
+            <strong>Aktivt fargetema</strong>
+            <p>Endres med knappen øverst på siden.</p>
+          </div>
+          <strong id="current-theme">Lys modus</strong>
+        </div>
+
+        <div class="settings-action">
+          <div class="settings-action-copy">
+            <strong>Handlekurv</strong>
+            <p>Fjern alle varer som er lagret i handlekurven.</p>
+          </div>
+          <button type="button" data-clear-setting="cart">Tøm handlekurv</button>
+        </div>
+
+        <div class="settings-action">
+          <div class="settings-action-copy">
+            <strong>Favoritter</strong>
+            <p>Fjern alle GG-BOXer du har lagret som favoritter.</p>
+          </div>
+          <button type="button" data-clear-setting="favorites">Fjern favoritter</button>
+        </div>
+
+        <div class="settings-action">
+          <div class="settings-action-copy">
+            <strong>Bestillingshistorikk</strong>
+            <p>Fjern både pågående og tidligere demobestillinger.</p>
+          </div>
+          <button type="button" data-clear-setting="orders">Fjern historikk</button>
+        </div>
+
+        <p class="settings-note">
+          Disse valgene påvirker bare demodata som er lagret lokalt i nettleseren.
+        </p>
+      </section>
 
       <button
         class="account-row"
+        id="help-toggle"
         type="button"
-        data-coming-soon="Hjelpesenter kommer i en senere demonstrasjonsversjon."
+        aria-expanded="false"
+        aria-controls="help-panel"
       >
         <span>Hjelpesenter</span>
-        <span aria-hidden="true">›</span>
+        <span class="account-arrow" aria-hidden="true">⌄</span>
       </button>
+
+      <section class="help-panel" id="help-panel" aria-label="Simulert hjelpechat" hidden>
+        <div class="help-header">
+          <span class="help-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img">
+              <path d="M6.5 5.5h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-5l-3.6 2.7c-.5.4-1.2 0-1.2-.6v-2.1H6.5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z" />
+              <path d="M8.5 9.5h7M8.5 12.5h4.5" />
+            </svg>
+          </span>
+          <div>
+            <strong>GG-BOX hjelp</strong>
+            <p>Simulert veiledning med ferdige svar.</p>
+          </div>
+        </div>
+
+        <div class="help-messages" id="help-messages" aria-live="polite">
+          <div class="help-message help-message-bot">
+            Hei! Velg et spørsmål, så viser jeg et kort svar om demoen.
+          </div>
+        </div>
+
+        <div class="help-questions" aria-label="Velg et spørsmål">
+          <button type="button" data-help-question="about">Hva er GG-BOX?</button>
+          <button type="button" data-help-question="orders">Hvordan fungerer demobestillinger?</button>
+          <button type="button" data-help-question="storage">Hvor lagres handlekurven?</button>
+          <button type="button" data-help-question="delete">Hvordan fjerner jeg lagrede data?</button>
+          <button type="button" data-help-question="payment">Kan jeg betale på ekte?</button>
+        </div>
+
+        <button class="help-reset" id="help-reset" type="button">Start samtalen på nytt</button>
+      </section>
 
       <details id="juridisk" class="legal-details">
         <summary>
@@ -125,7 +199,7 @@
       </details>
     </section>
   </main>
-+
+
   <footer class="demo-footer">
     <div class="footer-main">
       <div class="footer-about">

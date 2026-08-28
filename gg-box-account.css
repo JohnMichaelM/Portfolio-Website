@@ -71,8 +71,175 @@
   transition: transform 160ms ease;
 }
 
-#orders-toggle[aria-expanded="true"] .account-arrow {
+#orders-toggle[aria-expanded="true"] .account-arrow,
+#settings-toggle[aria-expanded="true"] .account-arrow,
+#help-toggle[aria-expanded="true"] .account-arrow {
   transform: rotate(180deg);
+}
+
+.help-panel {
+  padding: 22px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-soft);
+}
+
+.help-panel[hidden] {
+  display: none;
+}
+
+.help-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.help-header p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.help-icon {
+  display: grid;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 50%;
+  background: #202126;
+  box-shadow: 0 7px 18px rgb(0 0 0 / 18%);
+}
+
+.help-icon svg {
+  width: 25px;
+  height: 25px;
+  fill: #fff;
+}
+
+.help-icon svg path + path {
+  fill: none;
+  stroke: #202126;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.help-messages {
+  display: grid;
+  gap: 10px;
+  max-height: 300px;
+  padding: 18px 0;
+  overflow-y: auto;
+}
+
+.help-message {
+  width: fit-content;
+  max-width: min(88%, 520px);
+  padding: 12px 14px;
+  line-height: 1.5;
+}
+
+.help-message-bot {
+  background: var(--surface);
+}
+
+.help-message-user {
+  justify-self: end;
+  background: var(--orange);
+  color: #171310;
+  font-weight: bold;
+}
+
+.help-questions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.help-questions button,
+.help-reset {
+  border: 1px solid var(--text);
+  background: transparent;
+  color: var(--text);
+  padding: 10px 12px;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.help-questions button:hover,
+.help-questions button:focus-visible {
+  border-color: var(--orange-dark);
+  color: var(--orange-dark);
+}
+
+.help-reset {
+  margin-top: 16px;
+  border: 0;
+  padding: 4px 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.settings-panel {
+  padding: 22px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-soft);
+}
+
+.settings-panel[hidden] {
+  display: none;
+}
+
+.settings-theme,
+.settings-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.settings-theme:first-child {
+  padding-top: 0;
+}
+
+.settings-theme p,
+.settings-action p,
+.settings-note {
+  margin: 5px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.settings-theme > strong {
+  white-space: nowrap;
+}
+
+.settings-action-copy {
+  max-width: 520px;
+}
+
+.settings-action button {
+  flex: 0 0 auto;
+  border: 1px solid var(--text);
+  padding: 11px 14px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.settings-action button:hover,
+.settings-action button:focus-visible {
+  background: var(--text);
+  color: var(--surface);
+}
+
+.settings-note {
+  font-size: 14px;
 }
 
 .orders-panel {
@@ -232,8 +399,55 @@ body.dark-mode .orders-summary-footer {
 }
 
 body.dark-mode .orders-empty,
-body.dark-mode .orders-summary {
+body.dark-mode .orders-summary,
+body.dark-mode .settings-panel,
+body.dark-mode .help-panel {
   background: var(--dark-soft);
+}
+
+body.dark-mode .settings-panel,
+body.dark-mode .settings-theme,
+body.dark-mode .settings-action,
+body.dark-mode .help-panel,
+body.dark-mode .help-header {
+  border-color: var(--dark-line);
+}
+
+body.dark-mode .help-header p {
+  color: #d7c5bc;
+}
+
+body.dark-mode .help-message-bot {
+  background: var(--dark-surface);
+}
+
+body.dark-mode .help-questions button,
+body.dark-mode .help-reset {
+  border-color: var(--dark-text);
+  color: var(--dark-text);
+}
+
+body.dark-mode .help-questions button:hover,
+body.dark-mode .help-questions button:focus-visible {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+body.dark-mode .settings-theme p,
+body.dark-mode .settings-action p,
+body.dark-mode .settings-note {
+  color: #d7c5bc;
+}
+
+body.dark-mode .settings-action button {
+  border-color: var(--dark-text);
+  color: var(--dark-text);
+}
+
+body.dark-mode .settings-action button:hover,
+body.dark-mode .settings-action button:focus-visible {
+  background: var(--dark-text);
+  color: var(--dark-surface);
 }
 
 body.dark-mode .orders-link {
@@ -275,5 +489,12 @@ body.dark-mode .account-intro > p:not(.section-label) {
     align-items: flex-start;
     flex-direction: column;
     gap: 6px;
+  }
+
+  .settings-theme,
+  .settings-action {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
   }
 }

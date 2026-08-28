@@ -1,6 +1,18 @@
 const siteNotice = document.getElementById("site-notice");
 const ordersToggle = document.getElementById("orders-toggle");
 const ordersPanel = document.getElementById("orders-panel");
+const settingsToggle = document.getElementById("settings-toggle");
+const settingsPanel = document.getElementById("settings-panel");
+const helpToggle = document.getElementById("help-toggle");
+const helpPanel = document.getElementById("help-panel");
+const helpMessages = document.getElementById("help-messages");
+const helpReset = document.getElementById("help-reset");
+const helpQuestionButtons = document.querySelectorAll("[data-help-question]");
+const currentTheme = document.getElementById("current-theme");
+const accountThemeToggle = document.getElementById("theme-toggle");
+const clearSettingButtons = document.querySelectorAll("[data-clear-setting]");
+const cartStorageKey = "ggbox-demo-cart";
+const favoriteStorageKey = "ggbox-demo-favorites";
 const legacyOrderStorageKey = "ggbox-demo-order";
 const orderHistoryStorageKey = "ggbox-demo-orders";
 
@@ -157,6 +169,12 @@ function showNotice(message) {
   }, 3000);
 }
 
+function updateCurrentTheme() {
+  currentTheme.textContent = document.body.classList.contains("dark-mode")
+    ? "Mørk modus"
+    : "Lys modus";
+}
+
 document.querySelectorAll("[data-coming-soon]").forEach((button) => {
   button.addEventListener("click", () => {
     showNotice(button.dataset.comingSoon);
@@ -173,3 +191,107 @@ ordersToggle.addEventListener("click", () => {
     renderOrders();
   }
 });
+
+settingsToggle.addEventListener("click", () => {
+  const isOpen = settingsToggle.getAttribute("aria-expanded") === "true";
+
+  settingsToggle.setAttribute("aria-expanded", String(!isOpen));
+  settingsPanel.hidden = isOpen;
+
+  if (!isOpen) {
+    updateCurrentTheme();
+  }
+});
+
+const helpAnswers = {
+  about:
+    "GG-BOX er en kodet porteføljedemonstrasjon basert på et studentkonsept fra 2024. Dette er ikke en ekte nettbutikk.",
+  orders:
+    "Du kan gjennomføre en simulert bestilling og følge statusen på kontosiden. Ingen betaling, adresse eller personopplysninger sendes.",
+  storage:
+    "Handlekurven lagres lokalt i nettleseren din. Den sendes ikke til en server eller kobles til en ekte konto.",
+  delete:
+    "Åpne Innstillinger på denne siden. Der kan du fjerne handlekurv, favoritter og bestillingshistorikk hver for seg.",
+  payment:
+    "Nei. Betalingsvalgene er bare en del av demonstrasjonen, og ingen ekte betaling kan gjennomføres."
+};
+
+function addHelpMessage(message, sender) {
+  const messageElement = document.createElement("div");
+  messageElement.className = `help-message help-message-${sender}`;
+  messageElement.textContent = message;
+  helpMessages.appendChild(messageElement);
+  helpMessages.scrollTop = helpMessages.scrollHeight;
+}
+
+function resetHelpMessages() {
+  helpMessages.innerHTML = "";
+  addHelpMessage(
+    "Hei! Velg et spørsmål, så viser jeg et kort svar om demoen.",
+    "bot"
+  );
+}
+
+helpToggle.addEventListener("click", () => {
+  const isOpen = helpToggle.getAttribute("aria-expanded") === "true";
+
+  helpToggle.setAttribute("aria-expanded", String(!isOpen));
+  helpPanel.hidden = isOpen;
+});
+
+helpQuestionButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const answer = helpAnswers[button.dataset.helpQuestion];
+
+    if (!answer) {
+      return;
+    }
+
+    addHelpMessage(button.textContent.trim(), "user");
+    addHelpMessage(answer, "bot");
+  });
+});
+
+helpReset.addEventListener("click", resetHelpMessages);
+
+accountThemeToggle.addEventListener("click", () => {
+  window.requestAnimationFrame(updateCurrentTheme);
+});
+
+const clearSettings = {
+  cart: {
+    confirmation: "Vil du tømme handlekurven i denne demoen?",
+    success: "Handlekurven er tømt.",
+    keys: [cartStorageKey]
+  },
+  favorites: {
+    confirmation: "Vil du fjerne alle favoritter i denne demoen?",
+    success: "Favorittene er fjernet.",
+    keys: [favoriteStorageKey]
+  },
+  orders: {
+    confirmation: "Vil du fjerne hele bestillingshistorikken i denne demoen?",
+    success: "Bestillingshistorikken er fjernet.",
+    keys: [orderHistoryStorageKey, legacyOrderStorageKey]
+  }
+};
+
+clearSettingButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const settingName = button.dataset.clearSetting;
+    const setting = clearSettings[settingName];
+
+    if (!setting || !window.confirm(setting.confirmation)) {
+      return;
+    }
+
+    setting.keys.forEach((key) => localStorage.removeItem(key));
+    showNotice(setting.success);
+
+    if (settingName === "orders" && !ordersPanel.hidden) {
+      renderOrders();
+    }
+  });
+});
+
+updateCurrentTheme();

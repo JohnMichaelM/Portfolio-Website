@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="gg-box-demo.css">
   <link rel="stylesheet" href="gg-box-favorites.css">
+  <link rel="stylesheet" href="gg-box-header.css">
 </head>
 
 <body>
@@ -15,9 +16,26 @@
     <a class="shop-logo" href="gg-box-demo.html">GG-BOX</a>
 
     <div class="shop-actions">
-      <button id="theme-toggle" type="button">Mørk modus</button>
-      <a class="text-button" href="gg-box-demo.html">Til butikk</a>
-      <a class="text-button" href="gg-box-account.html">Konto</a>
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        type="button"
+        aria-pressed="false"
+        aria-label="Bytt til mørk modus"
+        title="Lys eller mørk modus"
+      >Mørk modus</button>
+      <a
+        class="header-icon icon-shop"
+        href="gg-box-demo.html"
+        aria-label="Til butikk"
+        title="Til butikk"
+      >Til butikk</a>
+      <a
+        class="header-icon icon-account"
+        href="gg-box-account.html"
+        aria-label="Åpne konto"
+        title="Konto"
+      >Konto</a>
     </div>
   </header>
 
@@ -33,7 +51,7 @@
     <a class="back-link" href="gg-box-demo.html">← Tilbake til butikken</a>
   </main>
   </div>
-+
+
   <footer class="demo-footer">
     <div class="footer-main">
       <div class="footer-about">

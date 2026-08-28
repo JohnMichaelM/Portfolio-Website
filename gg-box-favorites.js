@@ -155,17 +155,27 @@ function renderFavorites() {
   });
 }
 
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark-mode");
-  themeToggle.textContent = "Lys modus";
+function setFavoritesTheme(isDarkMode) {
+  document.body.classList.toggle("dark-mode", isDarkMode);
+  themeToggle.textContent = isDarkMode ? "Lys modus" : "Mørk modus";
+  themeToggle.setAttribute("aria-pressed", String(isDarkMode));
+  themeToggle.setAttribute(
+    "aria-label",
+    isDarkMode ? "Bytt til lys modus" : "Bytt til mørk modus"
+  );
 }
 
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
+const savedTheme = localStorage.getItem("portfolio-theme");
+setFavoritesTheme(
+  savedTheme
+    ? savedTheme === "dark"
+    : window.matchMedia("(prefers-color-scheme: dark)").matches
+);
 
-  const isDarkMode = document.body.classList.contains("dark-mode");
-  localStorage.setItem("theme", isDarkMode ? "dark" : "light");
-  themeToggle.textContent = isDarkMode ? "Lys modus" : "Mørk modus";
+themeToggle.addEventListener("click", () => {
+  const isDarkMode = !document.body.classList.contains("dark-mode");
+  setFavoritesTheme(isDarkMode);
+  localStorage.setItem("portfolio-theme", isDarkMode ? "dark" : "light");
 });
 
 renderFavorites();

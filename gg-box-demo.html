@@ -10,6 +10,7 @@
   <title>GG-BOX | Kodet demonstrasjon</title>
 
   <link rel="stylesheet" href="gg-box-demo.css">
+  <link rel="stylesheet" href="gg-box-header.css">
 </head>
 
 <body>
@@ -29,18 +30,23 @@
           Mørk modus
         </button>
 
-        <a class="text-button shop-link" href="gg-box-account.html">
-  Logg inn
-</a>
+        <a
+          class="header-icon icon-account"
+          href="gg-box-account.html"
+          aria-label="Åpne konto"
+          title="Konto"
+        >Konto</a>
 
         <button
           id="cart-toggle"
-          class="cart-toggle"
+          class="cart-toggle header-icon icon-cart"
           type="button"
           aria-expanded="false"
           aria-controls="cart-drawer"
+          aria-label="Åpne handlekurv"
+          title="Handlekurv"
         >
-          Kurv <span id="cart-count">0</span>
+          <span id="cart-count">0</span>
         </button>
       </div>
     </div>
