@@ -24,7 +24,15 @@
   const savedEmpty = document.getElementById("saved-empty");
   const savedCount = document.getElementById("saved-count");
   const savedFeedback = document.getElementById("saved-feedback");
+  const profileSavedCount = document.getElementById("profile-saved-count");
+  const profileSavedLabel = document.getElementById("profile-saved-label");
+  const profileThemeValue = document.getElementById("profile-theme-value");
+  const textSizeToggle = document.getElementById("text-size-toggle");
+  const textSizeValue = document.getElementById("text-size-value");
+  const demoNotifications = document.getElementById("demo-notifications");
   const savedTheme = localStorage.getItem("communigreen-theme");
+  const savedTextSize = localStorage.getItem("communigreen-text-size");
+  const savedNotificationSetting = localStorage.getItem("communigreen-demo-notifications");
   const savedActivitiesKey = "communigreen-saved-activities";
   let currentActivityId = null;
   let previousView = "explore";
@@ -175,6 +183,14 @@
     savedCount.textContent = `${savedActivityList.length} ${savedActivityList.length === 1 ? "lagret" : "lagrede"}`;
   }
 
+  function renderProfileState() {
+    const savedActivityIds = readSavedActivities();
+    const savedActivityCount = activities.filter((activity) => savedActivityIds.includes(activity.id)).length;
+
+    profileSavedCount.textContent = String(savedActivityCount);
+    profileSavedLabel.textContent = savedActivityCount === 1 ? "Lagret aktivitet" : "Lagrede aktiviteter";
+  }
+
   function updateSaveButton(activityId) {
     const isSaved = readSavedActivities().includes(activityId);
     saveActivityButton.setAttribute("aria-pressed", String(isSaved));
@@ -207,7 +223,8 @@
     body.classList.toggle("dark-mode", isDark);
     themeToggle.setAttribute("aria-pressed", String(isDark));
     themeToggle.setAttribute("aria-label", isDark ? "Bytt til lys modus" : "Bytt til mørk modus");
-    profileThemeToggle.textContent = isDark ? "Bytt til lys modus" : "Bytt til mørk modus";
+    profileThemeToggle.setAttribute("aria-pressed", String(isDark));
+    profileThemeValue.textContent = isDark ? "Mørk" : "Lys";
   }
 
   function toggleTheme() {
@@ -216,10 +233,26 @@
     localStorage.setItem("communigreen-theme", isDark ? "dark" : "light");
   }
 
+  function setTextSize(isLarge) {
+    body.classList.toggle("large-text", isLarge);
+    textSizeToggle.setAttribute("aria-pressed", String(isLarge));
+    textSizeValue.textContent = isLarge ? "Større" : "Normal";
+  }
+
+  function toggleTextSize() {
+    const isLarge = !body.classList.contains("large-text");
+    setTextSize(isLarge);
+    localStorage.setItem("communigreen-text-size", isLarge ? "large" : "normal");
+  }
+
   function showView(viewName) {
     if (viewName === "saved") {
       savedFeedback.hidden = true;
       renderSavedActivities();
+    }
+
+    if (viewName === "profile") {
+      renderProfileState();
     }
 
     views.forEach((view) => {
@@ -236,11 +269,18 @@
   }
 
   setTheme(savedTheme === "dark");
+  setTextSize(savedTextSize === "large");
+  demoNotifications.checked = savedNotificationSetting === "on";
   renderActivities(homeActivities, activities.filter((activity) => activity.featured));
   setFilter("all");
   renderSavedActivities();
+  renderProfileState();
   themeToggle.addEventListener("click", toggleTheme);
   profileThemeToggle.addEventListener("click", toggleTheme);
+  textSizeToggle.addEventListener("click", toggleTextSize);
+  demoNotifications.addEventListener("change", () => {
+    localStorage.setItem("communigreen-demo-notifications", demoNotifications.checked ? "on" : "off");
+  });
 
   viewButtons.forEach((button) => {
     button.addEventListener("click", () => showView(button.dataset.viewTarget));
@@ -264,6 +304,7 @@
     writeSavedActivities(updatedActivities);
     updateSaveButton(currentActivityId);
     renderSavedActivities();
+    renderProfileState();
     saveStatus.textContent = isSaved ? "Aktiviteten er fjernet fra lagrede." : "Aktiviteten er lagret på denne enheten.";
     saveStatus.hidden = false;
   });
@@ -277,6 +318,7 @@
 
       writeSavedActivities(updatedActivities);
       renderSavedActivities();
+      renderProfileState();
       savedFeedback.textContent = `${activity?.title || "Aktiviteten"} er fjernet fra lagrede.`;
       savedFeedback.hidden = false;
       return;

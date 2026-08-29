@@ -131,11 +131,60 @@
           <div class="activity-list" id="saved-activities" hidden></div>
         </section>
 
-        <section class="app-view placeholder-view" id="profile-view" data-view="profile" aria-labelledby="profile-title" hidden>
-          <p class="brand-label">CommuniGreen</p>
-          <h1 id="profile-title">Anna Marie</h1>
-          <p>Profil, innstillinger og lagrede aktiviteter bygges videre i et senere trinn.</p>
-          <button class="secondary-button" id="profile-theme-toggle" type="button">Bytt til mørk modus</button>
+        <section class="app-view profile-view" id="profile-view" data-view="profile" aria-labelledby="profile-title" hidden>
+          <header class="profile-card">
+            <div class="profile-avatar" aria-hidden="true">AM</div>
+            <div>
+              <p class="brand-label">Fiktiv demoprofil</p>
+              <h1 id="profile-title">Anna Marie</h1>
+              <p class="profile-intro">Utforsk aktiviteter og samle det du vil delta på.</p>
+            </div>
+          </header>
+
+          <div class="profile-stats">
+            <div>
+              <strong id="profile-saved-count">0</strong>
+              <span id="profile-saved-label">Lagrede aktiviteter</span>
+            </div>
+            <div>
+              <strong>Oslo</strong>
+              <span>Valgt område</span>
+            </div>
+          </div>
+
+          <button class="secondary-button" type="button" data-view-target="saved">Se lagrede aktiviteter</button>
+
+          <section class="settings-section" aria-labelledby="settings-title">
+            <h2 id="settings-title">Innstillinger</h2>
+
+            <div class="settings-list">
+              <button class="setting-button" id="profile-theme-toggle" type="button" aria-pressed="false">
+                <span>
+                  <strong>Utseende</strong>
+                  <small>Bytt mellom lys og mørk modus</small>
+                </span>
+                <span class="setting-value" id="profile-theme-value">Lys</span>
+              </button>
+
+              <button class="setting-button" id="text-size-toggle" type="button" aria-pressed="false">
+                <span>
+                  <strong>Tekststørrelse</strong>
+                  <small>Gjør hovedinnholdet lettere å lese</small>
+                </span>
+                <span class="setting-value" id="text-size-value">Normal</span>
+              </button>
+
+              <label class="setting-row" for="demo-notifications">
+                <span>
+                  <strong>Demovarsler</strong>
+                  <small>Visuell innstilling uten ekte varsler</small>
+                </span>
+                <input id="demo-notifications" type="checkbox">
+              </label>
+            </div>
+
+            <p class="demo-disclaimer">Innstillingene gjelder bare denne lokale porteføljedemoen.</p>
+          </section>
         </section>
       </div>
 
