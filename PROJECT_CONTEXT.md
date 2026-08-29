@@ -248,7 +248,7 @@ CommuniGreen er et student-/Figma-konsept fra 2023.
 
 Brukeren hadde ansvar for planlegging, brukertesting og det skriftlige arbeidet utenfor Figma. Den opprinnelige Figma-prototypen ble utformet av en medstudent, og brukeren har fått tillatelse til å videreutvikle konseptet.
 
-Den tekniske videreutviklingen er planlagt etter at GG-BOX er på et godt ferdighetsnivå.
+Den tekniske videreutviklingen ble startet i 2026. Et responsivt mobilgrunnlag med lys/mørk modus og grunnnavigasjon er bygget. Demoen har nå rekonstruerte aktivitetsdata, filtrering, detaljvisning og lokal lagring. Visningen for lagrede aktiviteter og profilområdet bygges videre i senere trinn.
 
 Planlagt retning:
 
@@ -278,7 +278,9 @@ fellesskap/community-tenkning
 
 mobil UX
 
-Ikke påstå at den tekniske 2026-versjonen er bygget før den faktisk er det.
+Frivillig.no kan brukes som inspirasjon for aktivitetstyper, men innhold fra tjenesten skal ikke kopieres eller kobles inn uten avklart tillatelse og bruksvilkår. Demoen bruker derfor rekonstruerte og fiktive aktiviteter. Når hovedflyten er presentabel, kan brukeren vurdere en profesjonell henvendelse til Frivillig.no ved prosjektleder Vanja Konradsen eller kontakt@frivillig.no for tilbakemelding, avklaring om databruk og mulig samarbeid. Henvendelsen skal tydelig beskrive løsningen som en porteføljedemo.
+
+Ikke påstå at deler av den tekniske 2026-versjonen er ferdige før de faktisk er bygget.
 
 Andre porteføljecaser
 
