@@ -77,6 +77,117 @@
           <p class="empty-state" id="filter-empty" hidden>Ingen aktiviteter passer dette filteret ennå.</p>
         </section>
 
+        <section class="app-view forum-view" id="forum-view" data-view="forum" aria-labelledby="forum-title" hidden>
+          <header class="forum-header">
+            <div>
+              <p class="brand-label">Fiktivt lokalmiljø</p>
+              <h1 id="forum-title">Forum</h1>
+            </div>
+            <span class="result-count" id="forum-count">0 innlegg</span>
+          </header>
+
+          <p class="forum-intro">Finn ting som gis bort, lokale spørsmål og små initiativer i nærmiljøet.</p>
+
+          <button class="secondary-button" id="new-forum-post" type="button">Nytt lokalt innlegg</button>
+
+          <p class="save-status forum-feedback" id="forum-feedback" aria-live="polite" hidden></p>
+
+          <label class="forum-search" for="forum-search">
+            <span>Søk i forumet</span>
+            <input id="forum-search" type="search" placeholder="Søk etter innlegg" autocomplete="off">
+          </label>
+
+          <div class="filter-list" role="group" aria-label="Filtrer foruminnlegg">
+            <button class="filter-button is-active" type="button" data-forum-filter="all" aria-pressed="true">Alle</button>
+            <button class="filter-button" type="button" data-forum-filter="gjenbruk" aria-pressed="false">Gjenbruk</button>
+            <button class="filter-button" type="button" data-forum-filter="matdeling" aria-pressed="false">Matdeling</button>
+            <button class="filter-button" type="button" data-forum-filter="nabolag" aria-pressed="false">Nabolag</button>
+          </div>
+
+          <div class="forum-list" id="forum-posts"></div>
+          <p class="empty-state" id="forum-empty" hidden>Ingen foruminnlegg passer dette søket.</p>
+          <p class="demo-disclaimer">Alle navn og innlegg i forumet er fiktive.</p>
+        </section>
+
+        <section class="app-view forum-compose-view" id="forum-compose-view" data-view="forum-compose" aria-labelledby="forum-compose-title" hidden>
+          <button class="back-button" id="forum-compose-back" type="button">← Tilbake til forumet</button>
+
+          <header class="detail-header">
+            <p class="brand-label">Lokal demofunksjon</p>
+            <h1 id="forum-compose-title">Nytt innlegg</h1>
+            <p class="detail-lead">Innlegget lagres bare i denne nettleseren og blir ikke publisert.</p>
+          </header>
+
+          <form class="demo-form" id="forum-post-form">
+            <label>
+              <span>Tittel</span>
+              <input id="forum-post-title" name="title" type="text" maxlength="80" required>
+            </label>
+
+            <label>
+              <span>Kategori</span>
+              <select id="forum-post-category" name="category" required>
+                <option value="Gjenbruk">Gjenbruk</option>
+                <option value="Matdeling">Matdeling</option>
+                <option value="Nabolag">Nabolag</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Innlegg</span>
+              <textarea id="forum-post-body" name="body" rows="7" maxlength="500" required></textarea>
+            </label>
+
+            <button class="primary-button" type="submit">Legg til lokalt innlegg</button>
+          </form>
+
+          <p class="demo-disclaimer">Unngå ekte personopplysninger. Innholdet forlater ikke denne enheten.</p>
+        </section>
+
+        <section class="app-view forum-detail-view" id="forum-detail-view" data-view="forum-detail" aria-labelledby="forum-detail-title" hidden>
+          <button class="back-button" id="forum-detail-back" type="button">← Tilbake til forumet</button>
+
+          <header class="forum-detail-header">
+            <p class="brand-label" id="forum-detail-category"></p>
+            <h1 id="forum-detail-title"></h1>
+            <div class="forum-author">
+              <span class="forum-avatar" id="forum-detail-initials" aria-hidden="true"></span>
+              <span>
+                <strong id="forum-detail-author"></strong>
+                <small id="forum-detail-time"></small>
+              </span>
+            </div>
+          </header>
+
+          <p class="forum-detail-body" id="forum-detail-body"></p>
+
+          <div class="forum-stats" aria-label="Aktivitet på innlegget">
+            <span id="forum-detail-replies"></span>
+            <span id="forum-detail-reactions"></span>
+          </div>
+
+          <div class="forum-detail-actions">
+            <button class="secondary-button forum-reaction-button" id="forum-react" type="button" aria-pressed="false">Lik innlegg</button>
+            <button class="secondary-button danger-button" id="delete-forum-post" type="button" hidden>Slett innlegg</button>
+          </div>
+
+          <section class="detail-copy" aria-labelledby="forum-discussion-title">
+            <h2 id="forum-discussion-title">Samtale</h2>
+            <div class="comment-list" id="forum-comments"></div>
+            <p class="empty-state comment-empty" id="forum-comments-empty" hidden>Ingen svar er lagt til ennå.</p>
+
+            <form class="comment-form" id="forum-comment-form">
+              <label for="forum-comment-text">Skriv et lokalt svar</label>
+              <textarea id="forum-comment-text" rows="3" maxlength="240" required></textarea>
+              <button class="secondary-button" type="submit">Legg til svar</button>
+            </form>
+
+            <p class="save-status comment-status" id="forum-comment-status" aria-live="polite" hidden></p>
+          </section>
+
+          <p class="demo-disclaimer">Dette er et fiktivt foruminnlegg som bare vises lokalt i porteføljedemoen.</p>
+        </section>
+
         <section class="app-view detail-view" id="detail-view" data-view="detail" aria-labelledby="detail-title" hidden>
           <button class="back-button" id="detail-back" type="button">← Tilbake til aktiviteter</button>
 
@@ -197,9 +308,9 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15 9-2 4-4 2 2-4Z"/></svg>
           <span>Utforsk</span>
         </button>
-        <button class="nav-button" type="button" data-view-target="saved" aria-pressed="false">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17l-6-4-6 4Z"/></svg>
-          <span>Lagret</span>
+        <button class="nav-button" type="button" data-view-target="forum" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/><path d="M17 9h3a2 2 0 0 1 2 2v7l-3-2h-4"/></svg>
+          <span>Forum</span>
         </button>
         <button class="nav-button" type="button" data-view-target="profile" aria-pressed="false">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>

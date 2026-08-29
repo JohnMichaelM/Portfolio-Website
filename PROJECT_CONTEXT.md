@@ -250,7 +250,9 @@ Brukeren hadde ansvar for planlegging, brukertesting og det skriftlige arbeidet 
 
 Den tekniske videreutviklingen ble startet i 2026. Et responsivt mobilgrunnlag med lys/mørk modus og grunnnavigasjon er bygget. Demoen har nå rekonstruerte aktivitetsdata, filtrering, detaljvisning, lokal lagring, en fungerende oversikt over lagrede aktiviteter og en fiktiv profil med lokale innstillinger.
 
-CommuniGreen-demoen regnes som en første komplett versjon før brukertesting. Hovedflyten, tomtilstander, lys/mørk modus, større tekst, smale mobilbredder og tastaturfokus er kontrollert. Et lokalt og tydelig fiktivt forum kan vurderes som en senere videreutvikling, men er ikke del av første versjon.
+CommuniGreen-demoens grunnversjon er komplett før brukertesting. Hovedflyten, tomtilstander, lys/mørk modus, større tekst, smale mobilbredder og tastaturfokus er kontrollert. Versjon 1.1 fyller nå ut appen med flere av de fiktive funksjonene fra den opprinnelige prototypen.
+
+Versjon 1.1 er startet uten endring av den etablerte visuelle stilen. Forum har erstattet Lagret i hovednavigasjonen, mens lagrede aktiviteter fortsatt åpnes fra Profil. Forumet har fiktive eksempelinnlegg, søk, kategorifiltre, tomtilstand og detaljvisning. Brukeren kan også legge til og slette egne lokale demoinnlegg og kommentarer samt bruke reaksjoner; alt lagres bare i nettleseren og publiseres ikke. De faste eksempelinnleggene kan ikke slettes.
 
 Planlagt retning:
 

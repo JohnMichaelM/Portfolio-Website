@@ -30,12 +30,42 @@
   const textSizeToggle = document.getElementById("text-size-toggle");
   const textSizeValue = document.getElementById("text-size-value");
   const demoNotifications = document.getElementById("demo-notifications");
+  const forumSearch = document.getElementById("forum-search");
+  const forumFilterButtons = document.querySelectorAll("[data-forum-filter]");
+  const forumPostsContainer = document.getElementById("forum-posts");
+  const forumCount = document.getElementById("forum-count");
+  const forumEmpty = document.getElementById("forum-empty");
+  const forumFeedback = document.getElementById("forum-feedback");
+  const newForumPostButton = document.getElementById("new-forum-post");
+  const forumComposeBack = document.getElementById("forum-compose-back");
+  const forumPostForm = document.getElementById("forum-post-form");
+  const forumDetailBack = document.getElementById("forum-detail-back");
+  const forumDetailCategory = document.getElementById("forum-detail-category");
+  const forumDetailTitle = document.getElementById("forum-detail-title");
+  const forumDetailInitials = document.getElementById("forum-detail-initials");
+  const forumDetailAuthor = document.getElementById("forum-detail-author");
+  const forumDetailTime = document.getElementById("forum-detail-time");
+  const forumDetailBody = document.getElementById("forum-detail-body");
+  const forumDetailReplies = document.getElementById("forum-detail-replies");
+  const forumDetailReactions = document.getElementById("forum-detail-reactions");
+  const forumReactButton = document.getElementById("forum-react");
+  const deleteForumPostButton = document.getElementById("delete-forum-post");
+  const forumComments = document.getElementById("forum-comments");
+  const forumCommentsEmpty = document.getElementById("forum-comments-empty");
+  const forumCommentForm = document.getElementById("forum-comment-form");
+  const forumCommentText = document.getElementById("forum-comment-text");
+  const forumCommentStatus = document.getElementById("forum-comment-status");
   const savedTheme = localStorage.getItem("communigreen-theme");
   const savedTextSize = localStorage.getItem("communigreen-text-size");
   const savedNotificationSetting = localStorage.getItem("communigreen-demo-notifications");
   const savedActivitiesKey = "communigreen-saved-activities";
+  const localForumPostsKey = "communigreen-local-forum-posts";
+  const localForumCommentsKey = "communigreen-local-forum-comments";
+  const forumReactionsKey = "communigreen-forum-reactions";
   let currentActivityId = null;
+  let currentForumPostId = null;
   let previousView = "explore";
+  let activeForumFilter = "all";
 
   // Rekonstruert demoinnhold. Aktivitetene er ikke hentet fra eksterne tjenester.
   const activities = [
@@ -112,6 +142,212 @@
       featured: false
     }
   ];
+
+  // Alle navn, innlegg og tall i forumet er fiktive og laget for demoen.
+  const presetForumPosts = [
+    {
+      id: "sykkel-gis-bort",
+      author: "Lars C.",
+      initials: "LC",
+      time: "2 timer siden",
+      category: "Gjenbruk",
+      title: "Sykkel gis bort til noen som trenger den",
+      excerpt: "En brukt barnesykkel trenger et nytt hjem.",
+      body: "Vi har en brukt barnesykkel som ikke lenger blir brukt. Den trenger litt enkelt vedlikehold, men kan fortsatt få mange fine turer.\n\nGi gjerne beskjed dersom du kjenner noen i nærmiljøet som kan ha glede av den.",
+      reactions: 6,
+      comments: [
+        { author: "Nora P.", initials: "NP", time: "1 time siden", text: "Dette kan være aktuelt for noen i nabolaget vårt." }
+      ]
+    },
+    {
+      id: "epler-fra-hagen",
+      author: "Mina H.",
+      initials: "MH",
+      time: "6 timer siden",
+      category: "Matdeling",
+      title: "Epler fra hagen kan hentes",
+      excerpt: "Vi har flere epler enn vi rekker å bruke denne høsten.",
+      body: "Epletreet vårt har gitt mye frukt i år. I stedet for at resten blir liggende, vil vi gjerne dele med andre i området.\n\nTa med en pose og hent en passende mengde. Innlegget er selvfølgelig bare en del av denne lokale demoen.",
+      reactions: 9,
+      comments: [
+        { author: "Elias R.", initials: "ER", time: "4 timer siden", text: "Flott initiativ. Jeg kjenner noen som gjerne henter litt." }
+      ]
+    },
+    {
+      id: "male-nabolagsbenk",
+      author: "Omar N.",
+      initials: "ON",
+      time: "1 dag siden",
+      category: "Nabolag",
+      title: "Noen som vil hjelpe til med nabolagsbenken?",
+      excerpt: "Vi ønsker å gi den gamle benken ved møteplassen et nytt strøk maling.",
+      body: "Den lille benken ved møteplassen trenger litt omsorg. Jeg har maling og enkelt utstyr, men hadde satt pris på litt hjelp og selskap.\n\nTanken er en kort og uformell innsats for et hyggeligere fellesområde.",
+      reactions: 5,
+      comments: [
+        { author: "Sara V.", initials: "SV", time: "20 timer siden", text: "Jeg kan hjelpe til en liten stund på ettermiddagen." }
+      ]
+    }
+  ];
+
+  function escapeHtml(value) {
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function readLocalForumPosts() {
+    try {
+      const posts = JSON.parse(localStorage.getItem(localForumPostsKey) || "[]");
+      return Array.isArray(posts) ? posts : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function writeLocalForumPosts(posts) {
+    localStorage.setItem(localForumPostsKey, JSON.stringify(posts));
+  }
+
+  function readLocalForumComments() {
+    try {
+      const comments = JSON.parse(localStorage.getItem(localForumCommentsKey) || "{}");
+      return comments && typeof comments === "object" && !Array.isArray(comments) ? comments : {};
+    } catch {
+      return {};
+    }
+  }
+
+  function writeLocalForumComments(comments) {
+    localStorage.setItem(localForumCommentsKey, JSON.stringify(comments));
+  }
+
+  function readForumReactions() {
+    try {
+      const reactions = JSON.parse(localStorage.getItem(forumReactionsKey) || "[]");
+      return Array.isArray(reactions) ? reactions : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function writeForumReactions(reactions) {
+    localStorage.setItem(forumReactionsKey, JSON.stringify(reactions));
+  }
+
+  function getAllForumPosts() {
+    return [...readLocalForumPosts(), ...presetForumPosts];
+  }
+
+  function isLocalForumPost(post) {
+    return post.local === true || post.id.startsWith("local-");
+  }
+
+  function getForumPostComments(post) {
+    const savedComments = readLocalForumComments()[post.id];
+    const localComments = Array.isArray(savedComments) ? savedComments : [];
+    const presetComments = (post.comments || []).map((comment) => ({ ...comment, isLocal: false }));
+    const editableComments = localComments.map((comment, localIndex) => ({ ...comment, isLocal: true, localIndex }));
+    return [...presetComments, ...editableComments];
+  }
+
+  function getForumReactionCount(post) {
+    return post.reactions + (readForumReactions().includes(post.id) ? 1 : 0);
+  }
+
+  function createForumCard(post) {
+    const replyCount = getForumPostComments(post).length;
+    const reactionCount = getForumReactionCount(post);
+
+    return `
+      <article class="forum-card">
+        <div class="forum-author">
+          <span class="forum-avatar" aria-hidden="true">${escapeHtml(post.initials)}</span>
+          <span><strong>${escapeHtml(post.author)}</strong><small>${escapeHtml(post.time)}</small></span>
+        </div>
+        <p class="forum-category">${escapeHtml(post.category)}</p>
+        <h3>${escapeHtml(post.title)}</h3>
+        <p>${escapeHtml(post.excerpt)}</p>
+        <div class="forum-card-footer">
+          <div class="forum-stats"><span>${replyCount} svar</span><span>${reactionCount} ${reactionCount === 1 ? "reaksjon" : "reaksjoner"}</span></div>
+          <button type="button" data-forum-post="${escapeHtml(post.id)}">Se innlegg</button>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderForumPosts() {
+    const searchTerm = forumSearch.value.trim().toLowerCase();
+    const filteredPosts = getAllForumPosts().filter((post) => {
+      const matchesCategory = activeForumFilter === "all" || post.category.toLowerCase() === activeForumFilter;
+      const searchableText = `${post.author} ${post.category} ${post.title} ${post.excerpt}`.toLowerCase();
+      return matchesCategory && searchableText.includes(searchTerm);
+    });
+
+    forumPostsContainer.innerHTML = filteredPosts.map(createForumCard).join("");
+    forumCount.textContent = `${filteredPosts.length} innlegg`;
+    forumEmpty.hidden = filteredPosts.length !== 0;
+  }
+
+  function setForumFilter(filter) {
+    activeForumFilter = filter;
+    forumFilterButtons.forEach((button) => {
+      const isActive = button.dataset.forumFilter === filter;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+    renderForumPosts();
+  }
+
+  function renderForumComments(post) {
+    const comments = getForumPostComments(post);
+    forumComments.innerHTML = comments.map((comment) => `
+      <article class="comment-card">
+        <div class="forum-author">
+          <span class="forum-avatar" aria-hidden="true">${escapeHtml(comment.initials)}</span>
+          <span><strong>${escapeHtml(comment.author)}</strong><small>${escapeHtml(comment.time)}</small></span>
+        </div>
+        <p>${escapeHtml(comment.text)}</p>
+        ${comment.isLocal ? `
+          <div class="comment-card-footer">
+            <button class="delete-comment-button" type="button" data-delete-comment="${comment.localIndex}" aria-label="Slett kommentaren fra ${escapeHtml(comment.author)}">Slett kommentar</button>
+          </div>
+        ` : ""}
+      </article>
+    `).join("");
+    forumCommentsEmpty.hidden = comments.length !== 0;
+  }
+
+  function updateForumDetailStats(post) {
+    const replyCount = getForumPostComments(post).length;
+    const hasReacted = readForumReactions().includes(post.id);
+    forumDetailReplies.textContent = `${replyCount} svar`;
+    const reactionCount = getForumReactionCount(post);
+    forumDetailReactions.textContent = `${reactionCount} ${reactionCount === 1 ? "reaksjon" : "reaksjoner"}`;
+    forumReactButton.setAttribute("aria-pressed", String(hasReacted));
+    forumReactButton.textContent = hasReacted ? "Fjern reaksjon" : "Lik innlegg";
+  }
+
+  function openForumPost(postId) {
+    const post = getAllForumPosts().find((item) => item.id === postId);
+    if (!post) return;
+
+    currentForumPostId = post.id;
+    forumDetailCategory.textContent = post.category;
+    forumDetailTitle.textContent = post.title;
+    forumDetailInitials.textContent = post.initials;
+    forumDetailAuthor.textContent = post.author;
+    forumDetailTime.textContent = post.time;
+    forumDetailBody.textContent = post.body;
+    forumCommentForm.reset();
+    forumCommentStatus.hidden = true;
+    deleteForumPostButton.hidden = !isLocalForumPost(post);
+    renderForumComments(post);
+    updateForumDetailStats(post);
+    showView("forum-detail");
+  }
 
   function createActivityCard(activity, canRemove = false) {
     const tags = activity.categories.map((category) => `<span>${category}</span>`).join("");
@@ -255,14 +491,26 @@
       renderProfileState();
     }
 
+    if (viewName === "forum") {
+      renderForumPosts();
+    }
+
     views.forEach((view) => {
       view.hidden = view.dataset.view !== viewName;
     });
 
     viewContainer.scrollTop = 0;
 
+    const navViewName = viewName === "saved"
+      ? "profile"
+      : ["forum-detail", "forum-compose"].includes(viewName)
+        ? "forum"
+        : viewName === "detail"
+          ? (previousView === "saved" ? "profile" : previousView)
+          : viewName;
+
     document.querySelectorAll(".nav-button").forEach((button) => {
-      const isActive = button.dataset.viewTarget === viewName;
+      const isActive = button.dataset.viewTarget === navViewName;
       button.classList.toggle("is-active", isActive);
       button.setAttribute("aria-pressed", String(isActive));
     });
@@ -273,6 +521,7 @@
   demoNotifications.checked = savedNotificationSetting === "on";
   renderActivities(homeActivities, activities.filter((activity) => activity.featured));
   setFilter("all");
+  setForumFilter("all");
   renderSavedActivities();
   renderProfileState();
   themeToggle.addEventListener("click", toggleTheme);
@@ -288,6 +537,103 @@
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => setFilter(button.dataset.filter));
+  });
+
+  forumFilterButtons.forEach((button) => {
+    button.addEventListener("click", () => setForumFilter(button.dataset.forumFilter));
+  });
+
+  forumSearch.addEventListener("input", renderForumPosts);
+  forumDetailBack.addEventListener("click", () => showView("forum"));
+  newForumPostButton.addEventListener("click", () => {
+    forumPostForm.reset();
+    showView("forum-compose");
+  });
+  forumComposeBack.addEventListener("click", () => showView("forum"));
+
+  forumPostForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const title = document.getElementById("forum-post-title").value.trim();
+    const category = document.getElementById("forum-post-category").value;
+    const bodyText = document.getElementById("forum-post-body").value.trim();
+    if (!title || !category || !bodyText) return;
+
+    const localPost = {
+      id: `local-${Date.now()}`,
+      author: "Anna Marie",
+      initials: "AM",
+      time: "Nå",
+      category,
+      title,
+      excerpt: bodyText.length > 100 ? `${bodyText.slice(0, 97)}…` : bodyText,
+      body: bodyText,
+      reactions: 0,
+      comments: [],
+      local: true
+    };
+
+    writeLocalForumPosts([localPost, ...readLocalForumPosts()]);
+    forumPostForm.reset();
+    forumSearch.value = "";
+    setForumFilter("all");
+    showView("forum");
+    forumFeedback.textContent = "Innlegget er lagt til lokalt på denne enheten.";
+    forumFeedback.hidden = false;
+  });
+
+  forumCommentForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const commentText = forumCommentText.value.trim();
+    if (!currentForumPostId || !commentText) return;
+
+    const comments = readLocalForumComments();
+    const postComments = Array.isArray(comments[currentForumPostId]) ? comments[currentForumPostId] : [];
+    comments[currentForumPostId] = [
+      ...postComments,
+      { author: "Anna Marie", initials: "AM", time: "Nå", text: commentText }
+    ];
+    writeLocalForumComments(comments);
+    forumCommentForm.reset();
+
+    const post = getAllForumPosts().find((item) => item.id === currentForumPostId);
+    if (!post) return;
+    renderForumComments(post);
+    updateForumDetailStats(post);
+    renderForumPosts();
+    forumCommentStatus.textContent = "Kommentaren er lagt til lokalt.";
+    forumCommentStatus.hidden = false;
+  });
+
+  forumReactButton.addEventListener("click", () => {
+    if (!currentForumPostId) return;
+    const reactions = readForumReactions();
+    const updatedReactions = reactions.includes(currentForumPostId)
+      ? reactions.filter((postId) => postId !== currentForumPostId)
+      : [...reactions, currentForumPostId];
+    writeForumReactions(updatedReactions);
+
+    const post = getAllForumPosts().find((item) => item.id === currentForumPostId);
+    if (!post) return;
+    updateForumDetailStats(post);
+    renderForumPosts();
+  });
+
+  deleteForumPostButton.addEventListener("click", () => {
+    const post = getAllForumPosts().find((item) => item.id === currentForumPostId);
+    if (!post || !isLocalForumPost(post)) return;
+    if (!window.confirm("Slette dette lokale innlegget og alle lokale kommentarer til det?")) return;
+
+    writeLocalForumPosts(readLocalForumPosts().filter((item) => item.id !== post.id));
+
+    const comments = readLocalForumComments();
+    delete comments[post.id];
+    writeLocalForumComments(comments);
+    writeForumReactions(readForumReactions().filter((postId) => postId !== post.id));
+
+    currentForumPostId = null;
+    showView("forum");
+    forumFeedback.textContent = "Innlegget og tilhørende lokale kommentarer er slettet.";
+    forumFeedback.hidden = false;
   });
 
   detailBack.addEventListener("click", () => showView(previousView));
@@ -310,6 +656,40 @@
   });
 
   document.addEventListener("click", (event) => {
+    const deleteCommentButton = event.target.closest("[data-delete-comment]");
+    if (deleteCommentButton) {
+      if (!currentForumPostId) return;
+      if (!window.confirm("Slette denne lokale kommentaren?")) return;
+
+      const commentIndex = Number(deleteCommentButton.dataset.deleteComment);
+      const comments = readLocalForumComments();
+      const postComments = Array.isArray(comments[currentForumPostId]) ? comments[currentForumPostId] : [];
+      if (!Number.isInteger(commentIndex) || !postComments[commentIndex]) return;
+
+      postComments.splice(commentIndex, 1);
+      if (postComments.length === 0) {
+        delete comments[currentForumPostId];
+      } else {
+        comments[currentForumPostId] = postComments;
+      }
+      writeLocalForumComments(comments);
+
+      const post = getAllForumPosts().find((item) => item.id === currentForumPostId);
+      if (!post) return;
+      renderForumComments(post);
+      updateForumDetailStats(post);
+      renderForumPosts();
+      forumCommentStatus.textContent = "Kommentaren er slettet.";
+      forumCommentStatus.hidden = false;
+      return;
+    }
+
+    const forumPostButton = event.target.closest("[data-forum-post]");
+    if (forumPostButton) {
+      openForumPost(forumPostButton.dataset.forumPost);
+      return;
+    }
+
     const removeButton = event.target.closest("[data-remove-activity]");
     if (removeButton) {
       const activityId = removeButton.dataset.removeActivity;
