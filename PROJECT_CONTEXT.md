@@ -260,6 +260,8 @@ Profilen har en egen utmerkelsesvisning med fire tydelig fiktive demoutmerkelser
 
 Profilen har også en personvern- og demodatavisning. Den viser hvor mye data demoen lagrer, kan generere en lesbar lokal dataoversikt uten utsending og kan nullstille bare CommuniGreen-relaterte localStorage-nøkler. Demoen bruker fortsatt ingen konto, database, e-postutsending eller ekte persondata.
 
+Profilen har et lite statisk hjelpesenter med ofte stilte spørsmål om lagring av aktiviteter, kalenderkobling, lokale data og fiktivt demoinnhold.
+
 Planlagt retning:
 
 mobilorientert webdemo, ikke native app

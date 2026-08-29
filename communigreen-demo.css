@@ -199,8 +199,8 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-lineca
 .saved-empty p { color: var(--muted); line-height: 1.5; }
 .saved-empty .secondary-button { margin-top: 4px; }
 
-.profile-view, .awards-view, .privacy-view { display: grid; align-content: start; gap: 20px; }
-.profile-view[hidden], .awards-view[hidden], .privacy-view[hidden] { display: none; }
+.profile-view, .awards-view, .privacy-view, .help-view { display: grid; align-content: start; gap: 20px; }
+.profile-view[hidden], .awards-view[hidden], .privacy-view[hidden], .help-view[hidden] { display: none; }
 .profile-card { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 16px; border-radius: 18px; background: var(--surface-soft); padding: 18px; }
 .profile-avatar { display: grid; width: 68px; height: 68px; place-items: center; border-radius: 50%; background: var(--green-dark); color: var(--on-green); font-size: 21px; font-weight: bold; }
 .profile-card .brand-label { margin-bottom: 5px; }
@@ -238,6 +238,11 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-lineca
 .data-report pre { margin: 0; overflow-wrap: anywhere; color: var(--text); font: inherit; line-height: 1.55; white-space: pre-wrap; }
 .danger-zone { border-color: color-mix(in srgb, var(--danger) 45%, var(--line)); }
 .danger-zone .save-status { color: var(--text); }
+.faq-list { display: grid; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+.faq-list details + details { border-top: 1px solid var(--line); }
+.faq-list summary { min-height: 56px; padding: 17px 42px 17px 16px; color: var(--text); font-weight: bold; cursor: pointer; }
+.faq-list details[open] summary { color: var(--green-dark); }
+.faq-list p { margin: 0; padding: 0 16px 17px; color: var(--muted); line-height: 1.55; }
 .settings-section { display: grid; gap: 14px; margin-top: 6px; }
 .settings-list { overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
 .setting-button, .setting-row { display: flex; width: 100%; min-height: 70px; align-items: center; justify-content: space-between; gap: 14px; border: 0; background: transparent; color: var(--text); padding: 14px 16px; text-align: left; }

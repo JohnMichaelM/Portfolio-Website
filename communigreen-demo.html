@@ -341,6 +341,37 @@
           <p class="demo-disclaimer">Nullstillingen påvirker ikke andre prosjekter eller filer i porteføljen.</p>
         </section>
 
+        <section class="app-view help-view" id="help-view" data-view="help" aria-labelledby="help-title" hidden>
+          <button class="back-button" id="help-back" type="button">← Tilbake til Profil</button>
+
+          <header class="detail-header">
+            <p class="brand-label">Hjelpesenter</p>
+            <h1 id="help-title">Ofte stilte spørsmål</h1>
+            <p class="detail-lead">Korte svar om hvordan den lokale CommuniGreen-demoen fungerer.</p>
+          </header>
+
+          <div class="faq-list">
+            <details>
+              <summary>Hvordan lagrer jeg en aktivitet?</summary>
+              <p>Åpne aktiviteten fra Hjem, Utforsk eller Kalender og velg «Lagre aktivitet». Du finner den igjen under Profil.</p>
+            </details>
+            <details>
+              <summary>Hvordan legger jeg noe i kalenderen?</summary>
+              <p>Opprett et lokalt foruminnlegg, aktiver «Legg til i kalenderen» og velg dato. Innlegget vises da automatisk i kalenderen.</p>
+            </details>
+            <details>
+              <summary>Hvor lagres opplysningene mine?</summary>
+              <p>Valgene lagres bare i nettleserens lokale lagring. Demoen bruker ingen konto, database eller e-postutsending.</p>
+            </details>
+            <details>
+              <summary>Er aktivitetene og foruminnleggene ekte?</summary>
+              <p>Nei. Aktivitetene, navnene og eksempelinnleggene er fiktivt innhold laget for porteføljedemoen.</p>
+            </details>
+          </div>
+
+          <p class="demo-disclaimer">Hjelpesenteret beskriver bare funksjonene i denne lokale demoen.</p>
+        </section>
+
         <section class="app-view profile-view" id="profile-view" data-view="profile" aria-labelledby="profile-title" hidden>
           <header class="profile-card">
             <div class="profile-avatar" aria-hidden="true">AM</div>
@@ -403,6 +434,14 @@
                 <span>
                   <strong>Personvern og demodata</strong>
                   <small>Se, simuler og nullstill lokale data</small>
+                </span>
+                <span class="setting-value">Åpne →</span>
+              </button>
+
+              <button class="setting-button" type="button" data-view-target="help">
+                <span>
+                  <strong>Hjelpesenter</strong>
+                  <small>Ofte stilte spørsmål om demoen</small>
                 </span>
                 <span class="setting-value">Åpne →</span>
               </button>

@@ -49,6 +49,7 @@
   const dataReportContent = document.getElementById("data-report-content");
   const resetDemoDataButton = document.getElementById("reset-demo-data");
   const privacyStatus = document.getElementById("privacy-status");
+  const helpBack = document.getElementById("help-back");
   const profileThemeValue = document.getElementById("profile-theme-value");
   const textSizeToggle = document.getElementById("text-size-toggle");
   const textSizeValue = document.getElementById("text-size-value");
@@ -794,7 +795,7 @@
 
     viewContainer.scrollTop = 0;
 
-    const navViewName = ["saved", "awards", "privacy"].includes(viewName)
+    const navViewName = ["saved", "awards", "privacy", "help"].includes(viewName)
       ? "profile"
       : viewName === "calendar"
         ? "home"
@@ -846,6 +847,7 @@
   calendarBack.addEventListener("click", () => showView("home"));
   awardsBack.addEventListener("click", () => showView("profile"));
   privacyBack.addEventListener("click", () => showView("profile"));
+  helpBack.addEventListener("click", () => showView("profile"));
   generateDataReportButton.addEventListener("click", generateLocalDataReport);
   resetDemoDataButton.addEventListener("click", () => {
     if (!window.confirm("Nullstille alle lokale data og innstillinger for CommuniGreen-demoen?")) return;
