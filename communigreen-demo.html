@@ -39,12 +39,16 @@
           </header>
 
           <div class="week-strip" aria-label="Denne uken">
-            <span class="day is-current"><strong>Ma</strong><span>25</span></span>
-            <span class="day"><strong>Ti</strong><span>26</span></span>
-            <span class="day"><strong>On</strong><span>27</span></span>
-            <span class="day"><strong>To</strong><span>28</span></span>
-            <span class="day"><strong>Fr</strong><span>29</span></span>
+            <button class="day" type="button" data-calendar-date="2026-09-21"><strong>Ma</strong><span>21</span></button>
+            <button class="day" type="button" data-calendar-date="2026-09-22"><strong>Ti</strong><span>22</span></button>
+            <button class="day" type="button" data-calendar-date="2026-09-23"><strong>On</strong><span>23</span></button>
+            <button class="day" type="button" data-calendar-date="2026-09-24"><strong>To</strong><span>24</span></button>
+            <button class="day is-current" type="button" data-calendar-date="2026-09-25"><strong>Fr</strong><span>25</span></button>
+            <button class="day has-items" type="button" data-calendar-date="2026-09-26" aria-label="Lørdag 26. september, 1 aktivitet"><strong>Lø</strong><span>26</span></button>
+            <button class="day" type="button" data-calendar-date="2026-09-27"><strong>Sø</strong><span>27</span></button>
           </div>
+
+          <button class="calendar-open-button" id="open-calendar" type="button">Se hele aktivitetskalenderen →</button>
 
           <div class="section-heading">
             <h2>Dette skjer snart</h2>
@@ -52,6 +56,34 @@
           </div>
 
           <div class="activity-list" id="home-activities"></div>
+        </section>
+
+        <section class="app-view calendar-view" id="calendar-view" data-view="calendar" aria-labelledby="calendar-title" hidden>
+          <button class="back-button" id="calendar-back" type="button">← Tilbake til Hjem</button>
+
+          <header class="calendar-header">
+            <div>
+              <p class="brand-label">Aktivitetskalender</p>
+              <h1 id="calendar-title">September 2026</h1>
+            </div>
+            <div class="calendar-controls" aria-label="Bytt måned">
+              <button class="icon-button" id="calendar-previous" type="button" aria-label="Forrige måned">←</button>
+              <button class="icon-button" id="calendar-next" type="button" aria-label="Neste måned">→</button>
+            </div>
+          </header>
+
+          <div class="calendar-weekdays" aria-hidden="true">
+            <span>Ma</span><span>Ti</span><span>On</span><span>To</span><span>Fr</span><span>Lø</span><span>Sø</span>
+          </div>
+          <div class="calendar-grid" id="calendar-grid" aria-label="Velg dato"></div>
+
+          <section class="calendar-selection" aria-labelledby="calendar-selection-title">
+            <h2 id="calendar-selection-title">Aktiviteter 26. september</h2>
+            <div class="calendar-items" id="calendar-items"></div>
+            <p class="empty-state" id="calendar-empty" hidden>Ingen aktiviteter eller daterte foruminnlegg denne dagen.</p>
+          </section>
+
+          <p class="demo-disclaimer">Kalenderen viser fiktive demoaktiviteter og lokale foruminnlegg som er lagt til i kalenderen.</p>
         </section>
 
         <section class="app-view" id="explore-view" data-view="explore" aria-labelledby="explore-title" hidden>
@@ -137,6 +169,21 @@
               <span>Innlegg</span>
               <textarea id="forum-post-body" name="body" rows="7" maxlength="500" required></textarea>
             </label>
+
+            <label class="calendar-option">
+              <input id="forum-add-calendar" type="checkbox">
+              <span>
+                <strong>Legg til i kalenderen</strong>
+                <small>Bruk dette når innlegget gjelder noe som skjer på en bestemt dato.</small>
+              </span>
+            </label>
+
+            <div class="forum-calendar-fields" id="forum-calendar-fields" hidden>
+              <label>
+                <span>Dato</span>
+                <input id="forum-calendar-date" type="date">
+              </label>
+            </div>
 
             <button class="primary-button" type="submit">Legg til lokalt innlegg</button>
           </form>

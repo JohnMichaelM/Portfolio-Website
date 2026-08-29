@@ -254,6 +254,8 @@ CommuniGreen-demoens grunnversjon er komplett før brukertesting. Hovedflyten, t
 
 Versjon 1.1 er startet uten endring av den etablerte visuelle stilen. Forum har erstattet Lagret i hovednavigasjonen, mens lagrede aktiviteter fortsatt åpnes fra Profil. Forumet har fiktive eksempelinnlegg, søk, kategorifiltre, tomtilstand og detaljvisning. Brukeren kan også legge til og slette egne lokale demoinnlegg og kommentarer samt bruke reaksjoner; alt lagres bare i nettleseren og publiseres ikke. De faste eksempelinnleggene kan ikke slettes.
 
+Demoen har også en funksjonell aktivitetskalender som åpnes fra Hjem. Kalenderen viser de samme fiktive aktivitetene som resten av appen, støtter datovalg og månedsbytte og kan åpne eksisterende aktivitetsdetaljer. Nye lokale foruminnlegg kan valgfritt få en dato og vises da automatisk i kalenderen. Kalenderoppføringen fjernes sammen med foruminnlegget.
+
 Planlagt retning:
 
 mobilorientert webdemo, ikke native app

@@ -6,6 +6,15 @@
   const views = document.querySelectorAll("[data-view]");
   const viewContainer = document.querySelector(".view-container");
   const homeActivities = document.getElementById("home-activities");
+  const openCalendarButton = document.getElementById("open-calendar");
+  const calendarBack = document.getElementById("calendar-back");
+  const calendarTitle = document.getElementById("calendar-title");
+  const calendarPrevious = document.getElementById("calendar-previous");
+  const calendarNext = document.getElementById("calendar-next");
+  const calendarGrid = document.getElementById("calendar-grid");
+  const calendarSelectionTitle = document.getElementById("calendar-selection-title");
+  const calendarItems = document.getElementById("calendar-items");
+  const calendarEmpty = document.getElementById("calendar-empty");
   const exploreActivities = document.getElementById("explore-activities");
   const filterButtons = document.querySelectorAll("[data-filter]");
   const resultCount = document.getElementById("result-count");
@@ -39,6 +48,9 @@
   const newForumPostButton = document.getElementById("new-forum-post");
   const forumComposeBack = document.getElementById("forum-compose-back");
   const forumPostForm = document.getElementById("forum-post-form");
+  const forumAddCalendar = document.getElementById("forum-add-calendar");
+  const forumCalendarFields = document.getElementById("forum-calendar-fields");
+  const forumCalendarDate = document.getElementById("forum-calendar-date");
   const forumDetailBack = document.getElementById("forum-detail-back");
   const forumDetailCategory = document.getElementById("forum-detail-category");
   const forumDetailTitle = document.getElementById("forum-detail-title");
@@ -65,7 +77,10 @@
   let currentActivityId = null;
   let currentForumPostId = null;
   let previousView = "explore";
+  let previousForumView = "forum";
   let activeForumFilter = "all";
+  let calendarCursor = new Date(2026, 8, 1);
+  let selectedCalendarDate = "2026-09-26";
 
   // Rekonstruert demoinnhold. Aktivitetene er ikke hentet fra eksterne tjenester.
   const activities = [
@@ -73,6 +88,7 @@
       id: "sognsvann-rydderunde",
       title: "Søppelplukking rundt Sognsvann",
       date: "26. september",
+      dateValue: "2026-09-26",
       location: "Sognsvann, Oslo",
       distance: 2.4,
       categories: ["Natur", "Miljø"],
@@ -85,6 +101,7 @@
       id: "gamle-plagg",
       title: "Gi gamle plagg nytt liv",
       date: "28. september",
+      dateValue: "2026-09-28",
       location: "Sagene, Oslo",
       distance: 3.8,
       categories: ["Gjenbruk", "Fellesskap"],
@@ -97,6 +114,7 @@
       id: "parsell-dag",
       title: "Felles plantedag i parsellhagen",
       date: "3. oktober",
+      dateValue: "2026-10-03",
       location: "Tøyen, Oslo",
       distance: 5.2,
       categories: ["Natur", "Fellesskap"],
@@ -109,6 +127,7 @@
       id: "sykkelverksted",
       title: "Åpent sykkelverksted",
       date: "7. oktober",
+      dateValue: "2026-10-07",
       location: "Grünerløkka, Oslo",
       distance: 1.7,
       categories: ["Gjenbruk", "Miljø"],
@@ -121,6 +140,7 @@
       id: "byttedag",
       title: "Byttedag i nabolaget",
       date: "11. oktober",
+      dateValue: "2026-10-11",
       location: "Bøler, Oslo",
       distance: 6.1,
       categories: ["Gjenbruk", "Fellesskap"],
@@ -133,6 +153,7 @@
       id: "kveldstur",
       title: "Kveldstur og lokal natur",
       date: "15. oktober",
+      dateValue: "2026-10-15",
       location: "Akerselva, Oslo",
       distance: 2.9,
       categories: ["Natur", "Fellesskap"],
@@ -270,6 +291,7 @@
         <p class="forum-category">${escapeHtml(post.category)}</p>
         <h3>${escapeHtml(post.title)}</h3>
         <p>${escapeHtml(post.excerpt)}</p>
+        ${post.calendarDate ? `<p class="forum-calendar-date">Kalender · ${escapeHtml(formatCalendarDate(post.calendarDate, true))}</p>` : ""}
         <div class="forum-card-footer">
           <div class="forum-stats"><span>${replyCount} svar</span><span>${reactionCount} ${reactionCount === 1 ? "reaksjon" : "reaksjoner"}</span></div>
           <button type="button" data-forum-post="${escapeHtml(post.id)}">Se innlegg</button>
@@ -334,6 +356,8 @@
     const post = getAllForumPosts().find((item) => item.id === postId);
     if (!post) return;
 
+    const activeView = document.querySelector("[data-view]:not([hidden])");
+    previousForumView = activeView?.dataset.view === "calendar" ? "calendar" : "forum";
     currentForumPostId = post.id;
     forumDetailCategory.textContent = post.category;
     forumDetailTitle.textContent = post.title;
@@ -347,6 +371,114 @@
     renderForumComments(post);
     updateForumDetailStats(post);
     showView("forum-detail");
+  }
+
+  function parseCalendarDate(dateValue) {
+    return new Date(`${dateValue}T12:00:00`);
+  }
+
+  function toCalendarDateValue(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  function formatCalendarDate(dateValue, includeYear = false) {
+    return new Intl.DateTimeFormat("no-NO", {
+      day: "numeric",
+      month: "long",
+      ...(includeYear ? { year: "numeric" } : {})
+    }).format(parseCalendarDate(dateValue));
+  }
+
+  function getCalendarEntries(dateValue) {
+    const activityEntries = activities
+      .filter((activity) => activity.dateValue === dateValue)
+      .map((activity) => ({ type: "activity", item: activity }));
+    const forumEntries = readLocalForumPosts()
+      .filter((post) => post.calendarDate === dateValue)
+      .map((post) => ({ type: "forum", item: post }));
+    return [...activityEntries, ...forumEntries];
+  }
+
+  function renderHomeWeekIndicators() {
+    document.querySelectorAll(".week-strip [data-calendar-date]").forEach((button) => {
+      const entryCount = getCalendarEntries(button.dataset.calendarDate).length;
+      button.classList.toggle("has-items", entryCount > 0);
+      const dateLabel = formatCalendarDate(button.dataset.calendarDate);
+      const entryLabel = entryCount === 1 ? "1 oppføring" : `${entryCount} oppføringer`;
+      button.setAttribute("aria-label", `${dateLabel}, ${entryLabel}`);
+    });
+  }
+
+  function renderCalendarSelection() {
+    const entries = getCalendarEntries(selectedCalendarDate);
+    calendarSelectionTitle.textContent = `Aktiviteter ${formatCalendarDate(selectedCalendarDate)}`;
+    calendarItems.innerHTML = entries.map(({ type, item }) => {
+      if (type === "activity") {
+        return `
+          <article class="calendar-entry">
+            <p class="brand-label">Demoaktivitet</p>
+            <h3>${escapeHtml(item.title)}</h3>
+            <p>${escapeHtml(item.location)} · ${escapeHtml(item.description)}</p>
+            <button type="button" data-activity-id="${escapeHtml(item.id)}">Se aktivitet</button>
+          </article>
+        `;
+      }
+
+      return `
+        <article class="calendar-entry">
+          <p class="brand-label">Fra forum · ${escapeHtml(item.category)}</p>
+          <h3>${escapeHtml(item.title)}</h3>
+          <p>${escapeHtml(item.excerpt)}</p>
+          <button type="button" data-forum-post="${escapeHtml(item.id)}">Se foruminnlegg</button>
+        </article>
+      `;
+    }).join("");
+    calendarEmpty.hidden = entries.length !== 0;
+  }
+
+  function renderCalendar() {
+    const year = calendarCursor.getFullYear();
+    const month = calendarCursor.getMonth();
+    const monthName = new Intl.DateTimeFormat("no-NO", { month: "long", year: "numeric" })
+      .format(calendarCursor);
+    calendarTitle.textContent = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+
+    const firstWeekday = (new Date(year, month, 1).getDay() + 6) % 7;
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const emptyCells = Array.from({ length: firstWeekday }, () => '<span class="calendar-spacer" aria-hidden="true"></span>');
+    const dayButtons = Array.from({ length: daysInMonth }, (_, index) => {
+      const day = index + 1;
+      const dateValue = toCalendarDateValue(new Date(year, month, day));
+      const entryCount = getCalendarEntries(dateValue).length;
+      const isSelected = dateValue === selectedCalendarDate;
+      const fullDate = new Intl.DateTimeFormat("no-NO", {
+        weekday: "long",
+        day: "numeric",
+        month: "long"
+      }).format(parseCalendarDate(dateValue));
+      const entryLabel = entryCount === 1 ? "1 oppføring" : `${entryCount} oppføringer`;
+      return `<button class="calendar-day${entryCount ? " has-items" : ""}${isSelected ? " is-selected" : ""}" type="button" data-calendar-date="${dateValue}" aria-pressed="${isSelected}" aria-label="${escapeHtml(fullDate)}, ${entryLabel}">${day}</button>`;
+    });
+
+    calendarGrid.innerHTML = [...emptyCells, ...dayButtons].join("");
+    renderCalendarSelection();
+  }
+
+  function selectCalendarDate(dateValue) {
+    selectedCalendarDate = dateValue;
+    const selectedDate = parseCalendarDate(dateValue);
+    calendarCursor = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
+    renderCalendar();
+    showView("calendar");
+  }
+
+  function changeCalendarMonth(monthOffset) {
+    calendarCursor = new Date(calendarCursor.getFullYear(), calendarCursor.getMonth() + monthOffset, 1);
+    selectedCalendarDate = toCalendarDateValue(calendarCursor);
+    renderCalendar();
   }
 
   function createActivityCard(activity, canRemove = false) {
@@ -438,7 +570,7 @@
     if (!activity) return;
 
     const activeView = document.querySelector("[data-view]:not([hidden])");
-    if (["home", "explore", "saved"].includes(activeView?.dataset.view)) {
+    if (["home", "explore", "saved", "calendar"].includes(activeView?.dataset.view)) {
       previousView = activeView.dataset.view;
     }
 
@@ -495,6 +627,10 @@
       renderForumPosts();
     }
 
+    if (viewName === "calendar") {
+      renderCalendar();
+    }
+
     views.forEach((view) => {
       view.hidden = view.dataset.view !== viewName;
     });
@@ -503,10 +639,14 @@
 
     const navViewName = viewName === "saved"
       ? "profile"
-      : ["forum-detail", "forum-compose"].includes(viewName)
+      : viewName === "calendar"
+        ? "home"
+      : viewName === "forum-detail"
+        ? (previousForumView === "calendar" ? "home" : "forum")
+      : viewName === "forum-compose"
         ? "forum"
         : viewName === "detail"
-          ? (previousView === "saved" ? "profile" : previousView)
+          ? (previousView === "saved" ? "profile" : previousView === "calendar" ? "home" : previousView)
           : viewName;
 
     document.querySelectorAll(".nav-button").forEach((button) => {
@@ -520,6 +660,7 @@
   setTextSize(savedTextSize === "large");
   demoNotifications.checked = savedNotificationSetting === "on";
   renderActivities(homeActivities, activities.filter((activity) => activity.featured));
+  renderHomeWeekIndicators();
   setFilter("all");
   setForumFilter("all");
   renderSavedActivities();
@@ -544,12 +685,30 @@
   });
 
   forumSearch.addEventListener("input", renderForumPosts);
-  forumDetailBack.addEventListener("click", () => showView("forum"));
+  openCalendarButton.addEventListener("click", () => showView("calendar"));
+  calendarBack.addEventListener("click", () => showView("home"));
+  calendarPrevious.addEventListener("click", () => changeCalendarMonth(-1));
+  calendarNext.addEventListener("click", () => changeCalendarMonth(1));
+  calendarGrid.addEventListener("click", (event) => {
+    const dateButton = event.target.closest("[data-calendar-date]");
+    if (!dateButton) return;
+    selectedCalendarDate = dateButton.dataset.calendarDate;
+    renderCalendar();
+  });
+
+  forumDetailBack.addEventListener("click", () => showView(previousForumView));
   newForumPostButton.addEventListener("click", () => {
     forumPostForm.reset();
+    forumCalendarFields.hidden = true;
+    forumCalendarDate.required = false;
     showView("forum-compose");
   });
   forumComposeBack.addEventListener("click", () => showView("forum"));
+  forumAddCalendar.addEventListener("change", () => {
+    forumCalendarFields.hidden = !forumAddCalendar.checked;
+    forumCalendarDate.required = forumAddCalendar.checked;
+    if (!forumAddCalendar.checked) forumCalendarDate.value = "";
+  });
 
   forumPostForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -569,15 +728,21 @@
       body: bodyText,
       reactions: 0,
       comments: [],
-      local: true
+      local: true,
+      calendarDate: forumAddCalendar.checked ? forumCalendarDate.value : ""
     };
 
     writeLocalForumPosts([localPost, ...readLocalForumPosts()]);
+    renderHomeWeekIndicators();
     forumPostForm.reset();
+    forumCalendarFields.hidden = true;
+    forumCalendarDate.required = false;
     forumSearch.value = "";
     setForumFilter("all");
     showView("forum");
-    forumFeedback.textContent = "Innlegget er lagt til lokalt på denne enheten.";
+    forumFeedback.textContent = localPost.calendarDate
+      ? `Innlegget er lagt til lokalt og vises i kalenderen ${formatCalendarDate(localPost.calendarDate)}.`
+      : "Innlegget er lagt til lokalt på denne enheten.";
     forumFeedback.hidden = false;
   });
 
@@ -629,6 +794,7 @@
     delete comments[post.id];
     writeLocalForumComments(comments);
     writeForumReactions(readForumReactions().filter((postId) => postId !== post.id));
+    renderHomeWeekIndicators();
 
     currentForumPostId = null;
     showView("forum");
@@ -656,6 +822,12 @@
   });
 
   document.addEventListener("click", (event) => {
+    const weekDateButton = event.target.closest(".week-strip [data-calendar-date]");
+    if (weekDateButton) {
+      selectCalendarDate(weekDateButton.dataset.calendarDate);
+      return;
+    }
+
     const deleteCommentButton = event.target.closest("[data-delete-comment]");
     if (deleteCommentButton) {
       if (!currentForumPostId) return;

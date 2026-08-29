@@ -78,9 +78,12 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-lineca
 .dark-mode .theme-moon { display: none; }
 .dark-mode .theme-sun { display: block; }
 
-.week-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 25px; border-radius: 18px; background: var(--surface-soft); padding: 8px; }
-.day { display: grid; justify-items: center; gap: 5px; border-radius: 13px; padding: 10px 3px; color: var(--muted); }
+.week-strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 10px; border-radius: 18px; background: var(--surface-soft); padding: 8px; }
+.day { position: relative; display: grid; min-width: 0; justify-items: center; gap: 5px; border: 0; border-radius: 13px; background: transparent; padding: 9px 2px 12px; color: var(--muted); font-size: 12px; }
 .day.is-current { background: var(--text); color: var(--app-background); }
+.day.has-items::after { position: absolute; bottom: 5px; width: 5px; height: 5px; border-radius: 50%; background: var(--green); content: ""; }
+.day.is-current.has-items::after { background: var(--app-background); }
+.calendar-open-button { min-height: 44px; margin: 0 0 24px; border: 0; background: transparent; color: var(--green-dark); padding: 5px 0; font-weight: bold; text-decoration: underline; text-underline-offset: 5px; }
 .section-heading { margin-bottom: 15px; }
 .section-heading span { color: var(--muted); font-size: 13px; }
 .activity-list { display: grid; gap: 12px; }
@@ -103,7 +106,7 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-lineca
 .empty-state { border: 1px dashed var(--line); border-radius: 14px; color: var(--muted); padding: 18px; line-height: 1.5; }
 
 .forum-view { display: grid; align-content: start; gap: 18px; }
-.forum-view[hidden], .forum-detail-view[hidden], .forum-compose-view[hidden] { display: none; }
+.forum-view[hidden], .forum-detail-view[hidden], .forum-compose-view[hidden], .calendar-view[hidden] { display: none; }
 .forum-header { align-items: end; }
 .forum-intro { margin: -6px 0 0; color: var(--muted); line-height: 1.5; }
 .forum-search { display: grid; gap: 7px; color: var(--muted); font-size: 13px; font-weight: bold; }
@@ -113,6 +116,7 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-lineca
 .forum-card { display: grid; gap: 12px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); padding: 16px; box-shadow: 0 4px 12px var(--shadow); }
 .forum-card h3, .forum-card p { margin: 0; }
 .forum-card > p { color: var(--muted); line-height: 1.45; }
+.forum-card .forum-calendar-date { color: var(--green-dark); font-size: 13px; font-weight: bold; }
 .forum-author { display: flex; align-items: center; gap: 10px; }
 .forum-author > span:last-child { display: grid; gap: 3px; }
 .forum-author small { color: var(--muted); font-size: 12px; }
@@ -133,6 +137,12 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-lineca
 .demo-form { gap: 18px; }
 .demo-form label > span, .comment-form label { color: var(--muted); font-size: 13px; font-weight: bold; }
 .demo-form input, .demo-form select, .demo-form textarea, .comment-form textarea { width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--text); padding: 11px 13px; resize: vertical; }
+.calendar-option { display: grid !important; grid-template-columns: auto 1fr; align-items: start; gap: 11px !important; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-soft); padding: 13px; }
+.calendar-option input { width: 21px; min-height: 21px; margin: 1px 0 0; accent-color: var(--green-dark); }
+.calendar-option > span { display: grid; gap: 4px; color: var(--text); }
+.calendar-option small { color: var(--muted); font-weight: normal; line-height: 1.4; }
+.forum-calendar-fields { display: grid; }
+.forum-calendar-fields[hidden] { display: none; }
 .forum-reaction-button[aria-pressed="true"] { border-color: var(--green-dark); background: var(--surface-soft); color: var(--green-dark); }
 .comment-list { display: grid; gap: 10px; }
 .comment-card { display: grid; gap: 8px; border-left: 3px solid var(--green); border-radius: 0 12px 12px 0; background: var(--surface); padding: 13px 14px; }
@@ -144,6 +154,25 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-lineca
 .comment-form .secondary-button { margin-top: 2px; }
 .comment-empty { margin: 0; }
 .comment-status { margin: 0; }
+
+.calendar-view { display: grid; align-content: start; gap: 20px; }
+.calendar-header { display: flex; align-items: end; justify-content: space-between; gap: 14px; }
+.calendar-controls { display: flex; gap: 7px; }
+.calendar-controls .icon-button { font-size: 20px; font-weight: bold; }
+.calendar-weekdays, .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.calendar-weekdays { color: var(--muted); font-size: 11px; font-weight: bold; text-align: center; }
+.calendar-grid { border: 1px solid var(--line); border-radius: 16px; background: var(--surface); padding: 8px; }
+.calendar-day { position: relative; display: grid; min-width: 0; min-height: 42px; place-items: center; border: 1px solid transparent; border-radius: 10px; background: transparent; padding: 4px 2px 9px; }
+.calendar-day:hover { background: var(--surface-soft); }
+.calendar-day.has-items::after { position: absolute; bottom: 5px; width: 5px; height: 5px; border-radius: 50%; background: var(--green); content: ""; }
+.calendar-day.is-selected { border-color: var(--green-dark); background: var(--green-dark); color: var(--on-green); font-weight: bold; }
+.calendar-day.is-selected::after { background: var(--on-green); }
+.calendar-selection { display: grid; gap: 12px; }
+.calendar-items { display: grid; gap: 10px; }
+.calendar-entry { display: grid; gap: 8px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: 14px; }
+.calendar-entry p, .calendar-entry h3 { margin: 0; }
+.calendar-entry > p:not(.brand-label) { color: var(--muted); line-height: 1.45; }
+.calendar-entry button { width: fit-content; min-height: 42px; border: 1px solid var(--line); border-radius: 10px; background: var(--button-background); padding: 9px 12px; font-weight: bold; }
 
 .detail-view { display: grid; align-content: start; gap: 24px; }
 .detail-view[hidden] { display: none; }
