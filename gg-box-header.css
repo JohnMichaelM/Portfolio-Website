@@ -118,12 +118,29 @@
   display: inline-flex;
   min-height: auto;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   border: 0;
-  border-bottom: 1px solid currentColor;
-  padding: 5px 1px;
+  padding: 6px 1px;
   font-size: 13px;
   font-weight: bold;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.shop-actions .shop-return-icon {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.shop-actions .shop-return-label {
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 3px;
 }
 
 .shop-actions .theme-toggle:hover,

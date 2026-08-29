@@ -324,6 +324,10 @@ Bruk visuelle bevis fra prosjektene fremfor tilfeldig pynt.
 
 GG-BOX og CommuniGreen kan beholde tydelige egne fargeidentiteter.
 
+Forsiden og de to hovedcasene er typografisk og språklig samordnet. Prosjektlisten bruker stabile rader uten layoutendring ved hover. CommuniGreen har vanlig tekstfarge i hvile, mens bare «Green» får profilfargen `#2f7049` ved hover eller tastaturfokus. Forsiden har bredde- og høydebaserte tilpasninger for store skjermer, 1080p-vinduer, nettbrett og mobil. Synlige bindestreker unngås utenfor prosjektnavnet GG-BOX.
+
+Alle ti HTML-sider er responsivitetskontrollert fra 320 til 2560 piksler i Chromium, med lys/mørk modus og sentrale mobilpaneler. Representative mobil- og desktopvisninger er også kontrollert i installert Firefox. CSS-en har Safari-/iOS-tilpasning for tekstskalering og reserveverdier for dynamisk visningshøyde, men en fysisk sluttkontroll i Safari på Mac eller iPhone gjenstår fordi Safari ikke kan kjøres på Windows.
+
 Lys/mørk modus skal føles som samme design, ikke to forskjellige nettsider.
 
 Mobilvisning er viktig.

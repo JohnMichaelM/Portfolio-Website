@@ -31,7 +31,7 @@ body.dark-mode {
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 body {
   margin: 0;
@@ -44,13 +44,14 @@ button, a { color: inherit; font: inherit; }
 button { cursor: pointer; }
 button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
 
-.demo-page { width: min(100% - 32px, 520px); margin: 0 auto; padding: 20px 0 36px; }
+.demo-page { width: min(520px, calc(100% - 32px)); margin: 0 auto; padding: 20px 0 36px; }
 .demo-meta { display: flex; justify-content: space-between; gap: 20px; padding: 0 4px 16px; color: var(--muted); font-size: 13px; }
 .demo-meta a { display: inline-flex; min-height: 32px; align-items: center; font-weight: bold; text-underline-offset: 5px; }
 
 .app-shell {
   display: grid;
   grid-template-rows: auto 1fr auto;
+  height: calc(100vh - 92px);
   height: calc(100dvh - 92px);
   min-height: 640px;
   overflow: hidden;
@@ -266,7 +267,7 @@ body.large-text .app-view h3 { font-size: 20px; }
 @media (max-width: 520px) {
   .demo-page { width: 100%; padding: 0; }
   .demo-meta { padding: 13px 16px; }
-  .app-shell { height: calc(100dvh - 45px); min-height: 0; border-width: 1px 0 0; border-radius: 0; box-shadow: none; }
+  .app-shell { height: calc(100vh - 45px); height: calc(100dvh - 45px); min-height: 0; border-width: 1px 0 0; border-radius: 0; box-shadow: none; }
 }
 
 @media (max-width: 360px) {

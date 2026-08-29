@@ -16,6 +16,11 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -384,7 +389,7 @@ body.dark-mode .text-link {
   }
 
   .order-page {
-    width: min(100% - 32px, 1120px);
+    width: min(1120px, calc(100% - 32px));
     padding: 48px 0 72px;
   }
 

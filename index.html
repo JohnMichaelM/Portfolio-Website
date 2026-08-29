@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio for John Michael Mauseth, digital markedsfører med interesse for prosjektledelse, analyse og produktutvikling.">
-  <title>John Michael Mauseth | Portfolio</title>
+  <meta name="description" content="Portefølje for John Michael Mauseth, digital markedsfører med interesse for prosjektledelse, analyse og produktutvikling.">
+  <title>John Michael Mauseth | Portefølje</title>
   <style>
     :root {
       --background: #f4f1ea;
@@ -15,12 +15,12 @@
       --blue: #18243a;
       --blue-highlight: #315ca8;
       --orange: #c85b34;
-      --green: #2f7049;
+      --communigreen-green: #2f7049;
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     body { margin: 0; background: var(--background); color: var(--text); font-family: Arial, Helvetica, sans-serif; }
-    body.dark-mode { --background: #151414; --surface: #1c1a19; --text: #f4efeb; --muted: #c7bab2; --line: #4a4440; --blue-highlight: #9bb5ff; --orange: #ed794e; --green: #72c696; }
+    body.dark-mode { --background: #151414; --surface: #1c1a19; --text: #f4efeb; --muted: #c7bab2; --line: #4a4440; --blue-highlight: #9bb5ff; --orange: #ed794e; }
     a, button { color: inherit; font: inherit; }
     button { cursor: pointer; }
 
@@ -43,16 +43,24 @@
     .eyebrow { margin: 0 0 13px; color: var(--muted); font-size: 12px; font-weight: bold; letter-spacing: .12em; text-transform: uppercase; }
     .projects-heading { margin: 0 0 32px; font-size: clamp(42px, 7vw, 82px); letter-spacing: -.06em; line-height: .92; }
     .project-list { border-top: 1px solid var(--line); }
-    .project-row { display: grid; grid-template-columns: 56px minmax(280px, 1fr) minmax(240px, 1.15fr) 72px minmax(150px, .65fr); gap: clamp(14px, 2vw, 26px); align-items: center; min-height: 128px; border-bottom: 1px solid var(--line); padding: 24px 0; text-decoration: none; }
-    .project-row[href] { transition: padding 180ms ease, color 180ms ease; }
-    .project-row[href]:hover, .project-row[href]:focus-visible { padding-right: 16px; padding-left: 16px; outline: 0; }
+    .project-row { display: grid; grid-template-columns: 56px minmax(230px, .9fr) minmax(320px, 1.35fr) 78px minmax(180px, .75fr); gap: clamp(14px, 2vw, 26px); align-items: center; min-height: 128px; border-bottom: 1px solid var(--line); padding: 24px 0; text-decoration: none; }
+    .project-row[href] { transition: background-color 180ms ease, color 180ms ease; }
+    .project-row[href]:focus-visible { background: var(--surface); outline: 2px solid var(--blue-highlight); outline-offset: -2px; }
+    .project-row > * { min-width: 0; }
     .project-number, .project-description, .project-period, .project-status { color: var(--muted); }
     .project-title { margin: 0; font-size: clamp(29px, 3.4vw, 42px); letter-spacing: -.045em; line-height: 1; }
-    .project-description { margin: 0; line-height: 1.5; }
-    .project-period { font-weight: bold; }
-    .project-status { font-size: 11px; font-weight: bold; letter-spacing: .09em; text-align: right; text-transform: uppercase; }
-    .ggbox-row:hover .project-title, .ggbox-row:focus-visible .project-title { color: var(--orange); }
-    .communigreen-row:hover .project-title, .communigreen-row:focus-visible .project-title { color: var(--green); }
+    .project-description { margin: 0; font-size: 15px; line-height: 1.5; white-space: nowrap; }
+    .project-period { font-weight: bold; white-space: nowrap; }
+    .project-status { font-size: 11px; font-weight: bold; letter-spacing: .09em; text-align: right; text-transform: uppercase; white-space: nowrap; }
+    .ggbox-row:focus-visible .project-title { color: var(--orange); }
+    .communigreen-title-accent { color: inherit; transition: color 180ms ease; }
+    .communigreen-row:focus-visible .communigreen-title-accent { color: var(--communigreen-green); }
+
+    @media (hover: hover) and (pointer: fine) {
+      .project-row[href]:hover { background: var(--surface); }
+      .ggbox-row:hover .project-title { color: var(--orange); }
+      .communigreen-row:hover .communigreen-title-accent { color: var(--communigreen-green); }
+    }
 
     .contact-banner { padding: clamp(34px, 5vw, 58px) 24px; background: var(--blue); color: white; }
     .contact-content { width: min(760px, 100%); margin: 0 auto; text-align: center; }
@@ -63,17 +71,27 @@
     .site-footer { display: flex; justify-content: space-between; gap: 20px; width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: 22px 0; font-size: 13px; }
     .site-footer p { margin: 0; }
 
-    @media (max-width: 800px) {
+    @media (min-width: 1101px) and (max-height: 1000px) {
+      .hero { min-height: 360px; padding: 44px 0; }
+      .hero h1 { font-size: clamp(58px, 7.5vw, 96px); }
+      .projects { padding: 46px 0; }
+      .projects-heading { margin-bottom: 25px; font-size: clamp(44px, 5.4vw, 68px); }
+      .project-row { min-height: 108px; padding: 20px 0; }
+    }
+    @media (max-width: 1100px) {
       .site-header { padding: 18px 0; }
       .project-row { grid-template-columns: 48px 1fr; }
-      .project-description, .project-period, .project-status { grid-column: 2; text-align: left; }
+      .project-description, .project-period, .project-status { grid-column: 2; text-align: left; white-space: normal; }
     }
     @media (max-width: 580px) {
-      .site-header, .page-shell, .site-footer { width: min(100% - 32px, 1180px); }
+      .site-header, .page-shell, .site-footer { width: min(1180px, calc(100% - 32px)); }
       .hero { min-height: 340px; padding: 48px 0; }
       .hero h1 { font-size: clamp(40px, 11.5vw, 46px); }
       .project-row { min-height: 0; padding: 25px 0; }
       .site-footer { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 340px) {
+      .hero h1 { font-size: 34px; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -106,16 +124,16 @@
           <a class="project-row ggbox-row" href="gg-box.html">
             <span class="project-number">01</span>
             <h3 class="project-title">GG-BOX</h3>
-            <p class="project-description">Studentkonsept, Figma prototype og selvstendig kodet videreutvikling.</p>
+            <p class="project-description">Studentkonsept, prototype i Figma og egen kodet demo.</p>
             <span class="project-period">2024/26</span>
             <span class="project-status">Case og fungerende demo ↗</span>
           </a>
           <a class="project-row communigreen-row" href="communigreen.html">
             <span class="project-number">02</span>
-            <h3 class="project-title">CommuniGreen</h3>
-            <p class="project-description">Studentkonsept og mobil Figma prototype.</p>
+            <h3 class="project-title">Communi<span class="communigreen-title-accent">Green</span></h3>
+            <p class="project-description">Studentkonsept, mobil prototype og egen kodet demo.</p>
             <span class="project-period">2023/26</span>
-            <span class="project-status">Case og prototype ↗</span>
+            <span class="project-status">Case og fungerende demo ↗</span>
           </a>
           <article class="project-row">
             <span class="project-number">03</span>

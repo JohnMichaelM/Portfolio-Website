@@ -21,10 +21,11 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
-  min-width: 320px;
   margin: 0;
   font-family: Arial, sans-serif;
   color: var(--text);
@@ -266,6 +267,7 @@ button {
   display: flex;
   flex-direction: column;
   width: min(100%, 420px);
+  height: 100vh;
   height: 100dvh;
   padding: 24px;
   background: var(--surface);
@@ -486,7 +488,7 @@ body.dark-mode .quantity-button {
   }
 
   .gg-demo {
-    width: min(100% - 32px, 1120px);
+    width: min(1120px, calc(100% - 32px));
     padding: 38px 0 56px;
   }
 
@@ -741,13 +743,13 @@ body.dark-mode .newsletter-status.is-error {
   .footer-main {
     grid-template-columns: 1fr;
     gap: 32px;
-    width: min(100% - 32px, 1120px);
+    width: min(1120px, calc(100% - 32px));
   }
 
   .footer-bottom {
     align-items: flex-start;
     flex-direction: column;
-    width: min(100% - 32px, 1120px);
+    width: min(1120px, calc(100% - 32px));
   }
 }
 

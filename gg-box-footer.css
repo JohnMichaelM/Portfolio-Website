@@ -108,12 +108,12 @@ body.dark-mode .footer-contact a {
   .footer-main {
     grid-template-columns: 1fr;
     gap: 32px;
-    width: min(100% - 32px, 1120px);
+    width: min(1120px, calc(100% - 32px));
   }
 
   .footer-bottom {
     align-items: flex-start;
     flex-direction: column;
-    width: min(100% - 32px, 1120px);
+    width: min(1120px, calc(100% - 32px));
   }
 }

@@ -18,6 +18,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -349,7 +351,7 @@ body.dark-mode .site-notice {
   }
 
   .checkout-page {
-    width: min(100% - 32px, 1120px);
+    width: min(1120px, calc(100% - 32px));
     padding: 48px 0 72px;
   }
 

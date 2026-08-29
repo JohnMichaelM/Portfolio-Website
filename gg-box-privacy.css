@@ -260,7 +260,7 @@ body.dark-mode .demo-disclosure {
 
 @media (max-width: 700px) {
   .privacy-main {
-    width: min(100% - 32px, 760px);
+    width: min(760px, calc(100% - 32px));
     padding: 38px 0 56px;
   }
 
@@ -273,4 +273,12 @@ body.dark-mode .demo-disclosure {
     flex-direction: row;
     align-items: center;
   }
+}
+
+@media (max-width: 360px) {
+  .privacy-intro h1 { font-size: 30px; }
+}
+
+@media (max-width: 340px) {
+  .privacy-intro h1 { font-size: 27px; }
 }
