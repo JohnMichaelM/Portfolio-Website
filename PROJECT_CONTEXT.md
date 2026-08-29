@@ -262,6 +262,8 @@ Profilen har også en personvern- og demodatavisning. Den viser hvor mye data de
 
 Profilen har et lite statisk hjelpesenter med ofte stilte spørsmål om lagring av aktiviteter, kalenderkobling, lokale data og fiktivt demoinnhold.
 
+CommuniGreen v1.1 er sluttkontrollert før brukertesting. Hovedflytene for aktiviteter, lagring, kalender, forum, kommentarer, reaksjoner, utmerkelser, lokal dataoversikt og hjelpesenter er testet ved 390 og 320 piksler, med omlasting, mørk modus og større tekst. Ingen JavaScript-feil ble funnet. Den bekreftede nullstillingen av lokale data skal fortsatt prøves manuelt av brukeren via Live Server.
+
 Planlagt retning:
 
 mobilorientert webdemo, ikke native app
