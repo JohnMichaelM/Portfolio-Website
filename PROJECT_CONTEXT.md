@@ -256,6 +256,10 @@ Versjon 1.1 er startet uten endring av den etablerte visuelle stilen. Forum har 
 
 Demoen har også en funksjonell aktivitetskalender som åpnes fra Hjem. Kalenderen viser de samme fiktive aktivitetene som resten av appen, støtter datovalg og månedsbytte og kan åpne eksisterende aktivitetsdetaljer. Nye lokale foruminnlegg kan valgfritt få en dato og vises da automatisk i kalenderen. Kalenderoppføringen fjernes sammen med foruminnlegget.
 
+Profilen har en egen utmerkelsesvisning med fire tydelig fiktive demoutmerkelser. De låses opp og huskes lokalt når brukeren lagrer aktiviteter, oppretter et foruminnlegg eller legger et foruminnlegg i kalenderen. Utmerkelsene er knyttet til faktiske handlinger i demoen og omtales ikke som ekte eller verifiserte resultater.
+
+Profilen har også en personvern- og demodatavisning. Den viser hvor mye data demoen lagrer, kan generere en lesbar lokal dataoversikt uten utsending og kan nullstille bare CommuniGreen-relaterte localStorage-nøkler. Demoen bruker fortsatt ingen konto, database, e-postutsending eller ekte persondata.
+
 Planlagt retning:
 
 mobilorientert webdemo, ikke native app

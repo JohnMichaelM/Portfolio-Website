@@ -35,6 +35,20 @@
   const savedFeedback = document.getElementById("saved-feedback");
   const profileSavedCount = document.getElementById("profile-saved-count");
   const profileSavedLabel = document.getElementById("profile-saved-label");
+  const profileAwardsCount = document.getElementById("profile-awards-count");
+  const awardsBack = document.getElementById("awards-back");
+  const awardsCount = document.getElementById("awards-count");
+  const awardsList = document.getElementById("awards-list");
+  const privacyBack = document.getElementById("privacy-back");
+  const privacySavedCount = document.getElementById("privacy-saved-count");
+  const privacyPostCount = document.getElementById("privacy-post-count");
+  const privacyCommentCount = document.getElementById("privacy-comment-count");
+  const privacyAwardCount = document.getElementById("privacy-award-count");
+  const generateDataReportButton = document.getElementById("generate-data-report");
+  const dataReport = document.getElementById("data-report");
+  const dataReportContent = document.getElementById("data-report-content");
+  const resetDemoDataButton = document.getElementById("reset-demo-data");
+  const privacyStatus = document.getElementById("privacy-status");
   const profileThemeValue = document.getElementById("profile-theme-value");
   const textSizeToggle = document.getElementById("text-size-toggle");
   const textSizeValue = document.getElementById("text-size-value");
@@ -74,6 +88,17 @@
   const localForumPostsKey = "communigreen-local-forum-posts";
   const localForumCommentsKey = "communigreen-local-forum-comments";
   const forumReactionsKey = "communigreen-forum-reactions";
+  const unlockedAwardsKey = "communigreen-unlocked-awards";
+  const communigreenStorageKeys = [
+    "communigreen-theme",
+    "communigreen-text-size",
+    "communigreen-demo-notifications",
+    savedActivitiesKey,
+    localForumPostsKey,
+    localForumCommentsKey,
+    forumReactionsKey,
+    unlockedAwardsKey
+  ];
   let currentActivityId = null;
   let currentForumPostId = null;
   let previousView = "explore";
@@ -207,6 +232,41 @@
       comments: [
         { author: "Sara V.", initials: "SV", time: "20 timer siden", text: "Jeg kan hjelpe til en liten stund på ettermiddagen." }
       ]
+    }
+  ];
+
+  const awardDefinitions = [
+    {
+      id: "first-save",
+      number: "01",
+      title: "Første steg",
+      description: "Lagre din første aktivitet i demoen.",
+      target: 1,
+      getProgress: () => readSavedActivities().length
+    },
+    {
+      id: "neighborhood-voice",
+      number: "02",
+      title: "Nabolagsstemme",
+      description: "Opprett ditt første lokale foruminnlegg.",
+      target: 1,
+      getProgress: () => readLocalForumPosts().length
+    },
+    {
+      id: "calendar-contributor",
+      number: "03",
+      title: "Kalenderbidrag",
+      description: "Legg et lokalt foruminnlegg til i kalenderen.",
+      target: 1,
+      getProgress: () => readLocalForumPosts().filter((post) => post.calendarDate).length
+    },
+    {
+      id: "active-collection",
+      number: "04",
+      title: "Aktiv samling",
+      description: "Bygg en samling med tre lagrede aktiviteter.",
+      target: 3,
+      getProgress: () => readSavedActivities().length
     }
   ];
 
@@ -540,6 +600,94 @@
     localStorage.setItem(savedActivitiesKey, JSON.stringify(savedActivities));
   }
 
+  function readUnlockedAwards() {
+    try {
+      const unlockedAwards = JSON.parse(localStorage.getItem(unlockedAwardsKey) || "[]");
+      return Array.isArray(unlockedAwards) ? unlockedAwards : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function syncUnlockedAwards() {
+    const validAwardIds = new Set(awardDefinitions.map((award) => award.id));
+    const unlockedAwards = new Set(readUnlockedAwards().filter((awardId) => validAwardIds.has(awardId)));
+    awardDefinitions.forEach((award) => {
+      if (award.getProgress() >= award.target) unlockedAwards.add(award.id);
+    });
+    const updatedAwards = [...unlockedAwards];
+    localStorage.setItem(unlockedAwardsKey, JSON.stringify(updatedAwards));
+    return updatedAwards;
+  }
+
+  function renderAwards() {
+    const unlockedAwards = syncUnlockedAwards();
+    awardsCount.textContent = `${unlockedAwards.length} av ${awardDefinitions.length}`;
+    awardsList.innerHTML = awardDefinitions.map((award) => {
+      const progress = Math.min(award.getProgress(), award.target);
+      const isUnlocked = unlockedAwards.includes(award.id);
+      const status = isUnlocked ? "Låst opp i denne demoen" : `${progress} av ${award.target}`;
+      return `
+        <article class="award-card${isUnlocked ? " is-unlocked" : ""}">
+          <span class="award-index" aria-hidden="true">${award.number}</span>
+          <div class="award-content">
+            <h2>${escapeHtml(award.title)}</h2>
+            <p>${escapeHtml(award.description)}</p>
+            <strong class="award-status">${status}</strong>
+            <progress value="${isUnlocked ? award.target : progress}" max="${award.target}" aria-label="Fremdrift for ${escapeHtml(award.title)}"></progress>
+          </div>
+        </article>
+      `;
+    }).join("");
+  }
+
+  function getLocalCommentCount() {
+    return Object.values(readLocalForumComments())
+      .reduce((total, comments) => total + (Array.isArray(comments) ? comments.length : 0), 0);
+  }
+
+  function renderPrivacyState() {
+    privacySavedCount.textContent = String(readSavedActivities().length);
+    privacyPostCount.textContent = String(readLocalForumPosts().length);
+    privacyCommentCount.textContent = String(getLocalCommentCount());
+    privacyAwardCount.textContent = String(syncUnlockedAwards().length);
+  }
+
+  function generateLocalDataReport() {
+    const savedTitles = activities
+      .filter((activity) => readSavedActivities().includes(activity.id))
+      .map((activity) => `– ${activity.title}`);
+    const localPosts = readLocalForumPosts();
+    const postLines = localPosts.map((post) => `– ${post.title}${post.calendarDate ? ` (${formatCalendarDate(post.calendarDate, true)})` : ""}`);
+    const commentLines = Object.values(readLocalForumComments())
+      .flatMap((comments) => Array.isArray(comments) ? comments.map((comment) => `– ${comment.text}`) : []);
+    const unlockedIds = syncUnlockedAwards();
+    const awardLines = awardDefinitions
+      .filter((award) => unlockedIds.includes(award.id))
+      .map((award) => `– ${award.title}`);
+
+    dataReportContent.textContent = [
+      `Tema: ${body.classList.contains("dark-mode") ? "Mørk" : "Lys"}`,
+      `Tekststørrelse: ${body.classList.contains("large-text") ? "Større" : "Normal"}`,
+      `Demovarsler: ${demoNotifications.checked ? "På" : "Av"}`,
+      "",
+      "Lagrede aktiviteter:",
+      ...(savedTitles.length ? savedTitles : ["– Ingen"]),
+      "",
+      "Lokale foruminnlegg:",
+      ...(postLines.length ? postLines : ["– Ingen"]),
+      "",
+      "Lokale kommentarer:",
+      ...(commentLines.length ? commentLines : ["– Ingen"]),
+      "",
+      `Lokale reaksjoner: ${readForumReactions().length}`,
+      "",
+      "Opplåste utmerkelser:",
+      ...(awardLines.length ? awardLines : ["– Ingen"])
+    ].join("\n");
+    dataReport.hidden = false;
+  }
+
   function renderSavedActivities() {
     const savedActivityIds = readSavedActivities();
     const savedActivityList = activities.filter((activity) => savedActivityIds.includes(activity.id));
@@ -557,6 +705,7 @@
 
     profileSavedCount.textContent = String(savedActivityCount);
     profileSavedLabel.textContent = savedActivityCount === 1 ? "Lagret aktivitet" : "Lagrede aktiviteter";
+    profileAwardsCount.textContent = String(syncUnlockedAwards().length);
   }
 
   function updateSaveButton(activityId) {
@@ -631,13 +780,21 @@
       renderCalendar();
     }
 
+    if (viewName === "awards") {
+      renderAwards();
+    }
+
+    if (viewName === "privacy") {
+      renderPrivacyState();
+    }
+
     views.forEach((view) => {
       view.hidden = view.dataset.view !== viewName;
     });
 
     viewContainer.scrollTop = 0;
 
-    const navViewName = viewName === "saved"
+    const navViewName = ["saved", "awards", "privacy"].includes(viewName)
       ? "profile"
       : viewName === "calendar"
         ? "home"
@@ -687,6 +844,28 @@
   forumSearch.addEventListener("input", renderForumPosts);
   openCalendarButton.addEventListener("click", () => showView("calendar"));
   calendarBack.addEventListener("click", () => showView("home"));
+  awardsBack.addEventListener("click", () => showView("profile"));
+  privacyBack.addEventListener("click", () => showView("profile"));
+  generateDataReportButton.addEventListener("click", generateLocalDataReport);
+  resetDemoDataButton.addEventListener("click", () => {
+    if (!window.confirm("Nullstille alle lokale data og innstillinger for CommuniGreen-demoen?")) return;
+
+    communigreenStorageKeys.forEach((storageKey) => localStorage.removeItem(storageKey));
+    setTheme(false);
+    setTextSize(false);
+    demoNotifications.checked = false;
+    currentActivityId = null;
+    currentForumPostId = null;
+    forumSearch.value = "";
+    setForumFilter("all");
+    renderSavedActivities();
+    renderProfileState();
+    renderHomeWeekIndicators();
+    renderPrivacyState();
+    dataReport.hidden = true;
+    privacyStatus.textContent = "CommuniGreen-demoen er nullstilt. Andre porteføljedata er ikke berørt.";
+    privacyStatus.hidden = false;
+  });
   calendarPrevious.addEventListener("click", () => changeCalendarMonth(-1));
   calendarNext.addEventListener("click", () => changeCalendarMonth(1));
   calendarGrid.addEventListener("click", (event) => {

@@ -289,6 +289,58 @@
           <div class="activity-list" id="saved-activities" hidden></div>
         </section>
 
+        <section class="app-view awards-view" id="awards-view" data-view="awards" aria-labelledby="awards-title" hidden>
+          <button class="back-button" id="awards-back" type="button">← Tilbake til Profil</button>
+
+          <header class="awards-header">
+            <div>
+              <p class="brand-label">Lokal demosimulering</p>
+              <h1 id="awards-title">Utmerkelser</h1>
+            </div>
+            <span class="result-count" id="awards-count">0 av 4</span>
+          </header>
+
+          <p class="awards-intro">Utmerkelser låses opp av handlinger du utfører i denne lokale demoen.</p>
+          <div class="awards-list" id="awards-list"></div>
+          <p class="demo-disclaimer">Utmerkelsene er fiktive og representerer ikke ekte deltakelse eller verifiserte resultater.</p>
+        </section>
+
+        <section class="app-view privacy-view" id="privacy-view" data-view="privacy" aria-labelledby="privacy-title" hidden>
+          <button class="back-button" id="privacy-back" type="button">← Tilbake til Profil</button>
+
+          <header class="detail-header">
+            <p class="brand-label">Personvern og demodata</p>
+            <h1 id="privacy-title">Dine lokale data</h1>
+            <p class="detail-lead">CommuniGreen-demoen bruker ingen konto, database eller ekte utsending. Valgene dine lagres bare lokalt i denne nettleseren.</p>
+          </header>
+
+          <dl class="data-summary">
+            <div><dt>Lagrede aktiviteter</dt><dd id="privacy-saved-count">0</dd></div>
+            <div><dt>Lokale foruminnlegg</dt><dd id="privacy-post-count">0</dd></div>
+            <div><dt>Lokale kommentarer</dt><dd id="privacy-comment-count">0</dd></div>
+            <div><dt>Opplåste utmerkelser</dt><dd id="privacy-award-count">0</dd></div>
+          </dl>
+
+          <section class="privacy-section" aria-labelledby="privacy-overview-title">
+            <h2 id="privacy-overview-title">Simulert dataforespørsel</h2>
+            <p>Knappen lager en lesbar oversikt på skjermen. Ingenting sendes på e-post eller til en ekstern tjeneste.</p>
+            <button class="secondary-button" id="generate-data-report" type="button">Lag lokal dataoversikt</button>
+            <div class="data-report" id="data-report" aria-live="polite" hidden>
+              <h3>Din lokale demooversikt</h3>
+              <pre id="data-report-content"></pre>
+            </div>
+          </section>
+
+          <section class="privacy-section danger-zone" aria-labelledby="reset-demo-title">
+            <h2 id="reset-demo-title">Nullstill CommuniGreen</h2>
+            <p>Fjerner lagrede aktiviteter, lokale forumdata, utmerkelser og innstillinger for denne demoen.</p>
+            <button class="secondary-button danger-button" id="reset-demo-data" type="button">Nullstill lokale demodata</button>
+            <p class="save-status" id="privacy-status" aria-live="polite" hidden></p>
+          </section>
+
+          <p class="demo-disclaimer">Nullstillingen påvirker ikke andre prosjekter eller filer i porteføljen.</p>
+        </section>
+
         <section class="app-view profile-view" id="profile-view" data-view="profile" aria-labelledby="profile-title" hidden>
           <header class="profile-card">
             <div class="profile-avatar" aria-hidden="true">AM</div>
@@ -308,9 +360,16 @@
               <strong>Oslo</strong>
               <span>Valgt område</span>
             </div>
+            <div>
+              <strong id="profile-awards-count">0</strong>
+              <span>Utmerkelser</span>
+            </div>
           </div>
 
-          <button class="secondary-button" type="button" data-view-target="saved">Se lagrede aktiviteter</button>
+          <div class="profile-links">
+            <button class="secondary-button" type="button" data-view-target="saved">Se lagrede aktiviteter</button>
+            <button class="secondary-button" type="button" data-view-target="awards">Se utmerkelser</button>
+          </div>
 
           <section class="settings-section" aria-labelledby="settings-title">
             <h2 id="settings-title">Innstillinger</h2>
@@ -339,6 +398,14 @@
                 </span>
                 <input id="demo-notifications" type="checkbox">
               </label>
+
+              <button class="setting-button" type="button" data-view-target="privacy">
+                <span>
+                  <strong>Personvern og demodata</strong>
+                  <small>Se, simuler og nullstill lokale data</small>
+                </span>
+                <span class="setting-value">Åpne →</span>
+              </button>
             </div>
 
             <p class="demo-disclaimer">Innstillingene gjelder bare denne lokale porteføljedemoen.</p>
