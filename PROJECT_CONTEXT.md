@@ -248,7 +248,7 @@ CommuniGreen er et student-/Figma-konsept fra 2023.
 
 Brukeren hadde ansvar for planlegging, brukertesting og det skriftlige arbeidet utenfor Figma. Den opprinnelige Figma-prototypen ble utformet av en medstudent, og brukeren har fått tillatelse til å videreutvikle konseptet.
 
-Den tekniske videreutviklingen ble startet i 2026. Et responsivt mobilgrunnlag med lys/mørk modus og grunnnavigasjon er bygget. Demoen har nå rekonstruerte aktivitetsdata, filtrering, detaljvisning og lokal lagring. Visningen for lagrede aktiviteter og profilområdet bygges videre i senere trinn.
+Den tekniske videreutviklingen ble startet i 2026. Et responsivt mobilgrunnlag med lys/mørk modus og grunnnavigasjon er bygget. Demoen har nå rekonstruerte aktivitetsdata, filtrering, detaljvisning, lokal lagring og en fungerende oversikt over lagrede aktiviteter. Profilområdet bygges videre i et senere trinn.
 
 Planlagt retning:
 

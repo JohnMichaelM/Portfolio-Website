@@ -20,6 +20,10 @@
   const detailAbout = document.getElementById("detail-about");
   const saveActivityButton = document.getElementById("save-activity");
   const saveStatus = document.getElementById("save-status");
+  const savedActivitiesContainer = document.getElementById("saved-activities");
+  const savedEmpty = document.getElementById("saved-empty");
+  const savedCount = document.getElementById("saved-count");
+  const savedFeedback = document.getElementById("saved-feedback");
   const savedTheme = localStorage.getItem("communigreen-theme");
   const savedActivitiesKey = "communigreen-saved-activities";
   let currentActivityId = null;
@@ -101,8 +105,11 @@
     }
   ];
 
-  function createActivityCard(activity) {
+  function createActivityCard(activity, canRemove = false) {
     const tags = activity.categories.map((category) => `<span>${category}</span>`).join("");
+    const removeButton = canRemove
+      ? `<button class="remove-button" type="button" data-remove-activity="${activity.id}" aria-label="Fjern ${activity.title} fra lagrede">Fjern</button>`
+      : "";
 
     return `
       <article class="activity-card">
@@ -111,13 +118,16 @@
         <p>${activity.description}</p>
         <div class="activity-tags">${tags}</div>
         <div class="activity-meta"><span>${String(activity.distance).replace(".", ",")} km unna</span></div>
-        <button type="button" data-activity-id="${activity.id}">Se aktivitet</button>
+        <div class="card-actions">
+          <button type="button" data-activity-id="${activity.id}">Se aktivitet</button>
+          ${removeButton}
+        </div>
       </article>
     `;
   }
 
-  function renderActivities(container, activityList) {
-    container.innerHTML = activityList.map(createActivityCard).join("");
+  function renderActivities(container, activityList, canRemove = false) {
+    container.innerHTML = activityList.map((activity) => createActivityCard(activity, canRemove)).join("");
   }
 
   function matchesFilter(activity, filter) {
@@ -154,6 +164,17 @@
     localStorage.setItem(savedActivitiesKey, JSON.stringify(savedActivities));
   }
 
+  function renderSavedActivities() {
+    const savedActivityIds = readSavedActivities();
+    const savedActivityList = activities.filter((activity) => savedActivityIds.includes(activity.id));
+    const hasSavedActivities = savedActivityList.length > 0;
+
+    renderActivities(savedActivitiesContainer, savedActivityList, true);
+    savedActivitiesContainer.hidden = !hasSavedActivities;
+    savedEmpty.hidden = hasSavedActivities;
+    savedCount.textContent = `${savedActivityList.length} ${savedActivityList.length === 1 ? "lagret" : "lagrede"}`;
+  }
+
   function updateSaveButton(activityId) {
     const isSaved = readSavedActivities().includes(activityId);
     saveActivityButton.setAttribute("aria-pressed", String(isSaved));
@@ -165,7 +186,7 @@
     if (!activity) return;
 
     const activeView = document.querySelector("[data-view]:not([hidden])");
-    if (activeView?.dataset.view === "home" || activeView?.dataset.view === "explore") {
+    if (["home", "explore", "saved"].includes(activeView?.dataset.view)) {
       previousView = activeView.dataset.view;
     }
 
@@ -196,6 +217,11 @@
   }
 
   function showView(viewName) {
+    if (viewName === "saved") {
+      savedFeedback.hidden = true;
+      renderSavedActivities();
+    }
+
     views.forEach((view) => {
       view.hidden = view.dataset.view !== viewName;
     });
@@ -212,6 +238,7 @@
   setTheme(savedTheme === "dark");
   renderActivities(homeActivities, activities.filter((activity) => activity.featured));
   setFilter("all");
+  renderSavedActivities();
   themeToggle.addEventListener("click", toggleTheme);
   profileThemeToggle.addEventListener("click", toggleTheme);
 
@@ -236,11 +263,25 @@
 
     writeSavedActivities(updatedActivities);
     updateSaveButton(currentActivityId);
+    renderSavedActivities();
     saveStatus.textContent = isSaved ? "Aktiviteten er fjernet fra lagrede." : "Aktiviteten er lagret på denne enheten.";
     saveStatus.hidden = false;
   });
 
   document.addEventListener("click", (event) => {
+    const removeButton = event.target.closest("[data-remove-activity]");
+    if (removeButton) {
+      const activityId = removeButton.dataset.removeActivity;
+      const activity = activities.find((item) => item.id === activityId);
+      const updatedActivities = readSavedActivities().filter((savedActivityId) => savedActivityId !== activityId);
+
+      writeSavedActivities(updatedActivities);
+      renderSavedActivities();
+      savedFeedback.textContent = `${activity?.title || "Aktiviteten"} er fjernet fra lagrede.`;
+      savedFeedback.hidden = false;
+      return;
+    }
+
     const activityButton = event.target.closest("[data-activity-id]");
     if (!activityButton) return;
 

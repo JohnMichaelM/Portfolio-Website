@@ -111,10 +111,24 @@
           <p class="demo-disclaimer">Rekonstruert aktivitet laget for denne porteføljedemoen.</p>
         </section>
 
-        <section class="app-view placeholder-view" id="saved-view" data-view="saved" aria-labelledby="saved-title" hidden>
-          <p class="brand-label">Din samling</p>
-          <h1 id="saved-title">Lagrede aktiviteter</h1>
-          <p>Aktiviteter du lagrer vil vises her.</p>
+        <section class="app-view" id="saved-view" data-view="saved" aria-labelledby="saved-title" hidden>
+          <header class="saved-header">
+            <div>
+              <p class="brand-label">Din samling</p>
+              <h1 id="saved-title">Lagrede aktiviteter</h1>
+            </div>
+            <span class="result-count" id="saved-count">0 lagret</span>
+          </header>
+
+          <p class="save-status saved-feedback" id="saved-feedback" aria-live="polite" hidden></p>
+
+          <div class="empty-state saved-empty" id="saved-empty">
+            <h2>Ingen lagrede aktiviteter ennå</h2>
+            <p>Aktiviteter du lagrer vil være tilgjengelige her neste gang du åpner demoen.</p>
+            <button class="secondary-button" type="button" data-view-target="explore">Utforsk aktiviteter</button>
+          </div>
+
+          <div class="activity-list" id="saved-activities" hidden></div>
         </section>
 
         <section class="app-view placeholder-view" id="profile-view" data-view="profile" aria-labelledby="profile-title" hidden>
