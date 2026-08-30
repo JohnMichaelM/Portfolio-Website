@@ -160,6 +160,8 @@ tydelig skille mellom studentprosjektet og den senere kodede videreutviklingen
 
 Casesiden gir tilgang til både den fungerende demoen og den opprinnelige Figma-prototypen.
 
+GG-BOX og CommuniGreen har nå egne læringsseksjoner som skiller erfaringene fra studentprosjektene fra den selvstendige tekniske videreutviklingen i 2026. Seksjonene bruker samme struktur, men prosjektspesifikt innhold og korrekt rollefordeling.
+
 GG-BOX – nåværende demo
 
 Ved overgangen fra den lange Codex-chatten har demoen en sammenhengende kundereise med:
