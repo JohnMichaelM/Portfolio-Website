@@ -53,6 +53,7 @@
     .project-period { font-weight: bold; white-space: nowrap; }
     .project-status { font-size: 11px; font-weight: bold; letter-spacing: .09em; text-align: right; text-transform: uppercase; white-space: nowrap; }
     .ggbox-row:focus-visible .project-title { color: var(--orange); }
+    .analysis-row:focus-visible .project-title { color: var(--blue-highlight); }
     .communigreen-title-accent { color: inherit; transition: color 180ms ease; }
     .communigreen-row:focus-visible .communigreen-title-accent { color: var(--communigreen-green); }
 
@@ -60,6 +61,7 @@
       .project-row[href]:hover { background: var(--surface); }
       .ggbox-row:hover .project-title { color: var(--orange); }
       .communigreen-row:hover .communigreen-title-accent { color: var(--communigreen-green); }
+      .analysis-row:hover .project-title { color: var(--blue-highlight); }
     }
 
     .contact-banner { padding: clamp(34px, 5vw, 58px) 24px; background: var(--blue); color: white; }
@@ -135,13 +137,13 @@
             <span class="project-period">2023/26</span>
             <span class="project-status">Case og fungerende demo ↗</span>
           </a>
-          <article class="project-row">
+          <a class="project-row analysis-row" href="analyse-strategi.html">
             <span class="project-number">03</span>
             <h3 class="project-title">Analyse og strategi</h3>
-            <p class="project-description">Kortere oppsummerte prosjekter legges til senere.</p>
+            <p class="project-description">Kortere arbeider innen analyse, strategi og markedsføring.</p>
             <span class="project-period" aria-hidden="true"></span>
-            <span class="project-status">Kommer senere</span>
-          </article>
+            <span class="project-status">Samleside ↗</span>
+          </a>
         </div>
       </section>
     </div>

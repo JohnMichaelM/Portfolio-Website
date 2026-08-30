@@ -302,6 +302,8 @@ Andre porteføljecaser
 
 Senere kan kortere analyse-/strategicaser legges inn, blant annet tidligere arbeid/prosjekter som SATS, The Broth Company og bachelorarbeid.
 
+En egen responsiv samleside, `analyse-strategi.html`, er opprettet og koblet til prosjekt 03 på forsiden. Siden har foreløpig en nøytral introduksjon og en tom arkivstruktur uten oppdiktede prosjektdetaljer. Den skal fylles ut når brukeren har valgt og dokumentert det første arbeidet.
+
 De trenger ikke samme visuelle eller tekniske dybde som GG-BOX og CommuniGreen. En enkel prosjektarkiv-løsning kan brukes med for eksempel:
 
 år

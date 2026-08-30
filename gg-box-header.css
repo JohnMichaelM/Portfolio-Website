@@ -15,20 +15,47 @@
   margin: 0 auto;
 }
 
-.portfolio-link {
+.shop-return {
+  display: inline-flex;
   grid-column: 1;
   justify-self: start;
+  align-items: center;
+  gap: 7px;
   color: #fff;
   font-size: 13px;
   font-weight: bold;
   letter-spacing: 0.01em;
   text-decoration: none;
+  transition: color 160ms ease;
 }
 
-.portfolio-link:hover,
-.portfolio-link:focus-visible {
-  text-decoration: underline;
-  text-underline-offset: 5px;
+.shop-return:hover,
+.shop-return:focus-visible {
+  color: #fff;
+}
+
+.shop-return-icon {
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border: 1px solid rgb(255 255 255 / 72%);
+  border-radius: 50%;
+  padding: 6px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.shop-return:hover .shop-return-icon,
+.shop-return:focus-visible .shop-return-icon {
+  border-color: #fff;
+  background: rgb(255 255 255 / 14%);
 }
 
 .shop-header .shop-brand,
@@ -37,11 +64,33 @@
   grid-column: 2;
   justify-self: center;
   color: #fff;
-  font-size: clamp(25px, 3vw, 34px);
-  font-weight: bold;
-  letter-spacing: -1px;
+  font-size: clamp(27px, 3vw, 36px);
+  font-weight: 800;
+  line-height: 1;
   text-decoration: none;
   transform: none;
+}
+
+.shop-logo {
+  display: block;
+}
+
+.shop-logo-crop {
+  position: relative;
+  display: block;
+  width: clamp(110px, 11vw, 136px);
+  aspect-ratio: 1697 / 720;
+  overflow: hidden;
+}
+
+.shop-logo-image {
+  position: absolute;
+  top: -15.56%;
+  left: -2.77%;
+  display: block;
+  width: 104.54%;
+  max-width: none;
+  height: auto;
 }
 
 .shop-actions {
@@ -56,8 +105,7 @@
 }
 
 .shop-actions .theme-toggle,
-.shop-actions .header-icon,
-.shop-actions .shop-return {
+.shop-actions .header-icon {
   box-sizing: border-box;
   min-height: 36px;
   border: 1px solid rgb(255 255 255 / 72%);
@@ -100,6 +148,7 @@
   width: 36px;
   height: 36px;
   place-items: center;
+  border-radius: 50%;
   padding: 0;
   font-size: 0;
 }
@@ -114,35 +163,6 @@
   stroke-width: 1.65;
 }
 
-.shop-actions .shop-return {
-  display: inline-flex;
-  min-height: auto;
-  align-items: center;
-  gap: 6px;
-  border: 0;
-  padding: 6px 1px;
-  font-size: 13px;
-  font-weight: bold;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.shop-actions .shop-return-icon {
-  width: 15px;
-  height: 15px;
-  flex: 0 0 15px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.8;
-}
-
-.shop-actions .shop-return-label {
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 3px;
-}
-
 .shop-actions .theme-toggle:hover,
 .shop-actions .theme-toggle:focus-visible,
 .shop-actions .header-icon:hover,
@@ -151,15 +171,9 @@
   background: rgb(255 255 255 / 14%);
 }
 
-.shop-actions .shop-return:hover,
-.shop-actions .shop-return:focus-visible {
-  transform: translateX(-3px);
-}
-
 .shop-actions .theme-toggle:focus-visible,
 .shop-actions .header-icon:focus-visible,
-.shop-actions .shop-return:focus-visible,
-.portfolio-link:focus-visible,
+.shop-return:focus-visible,
 .shop-logo:focus-visible,
 .shop-brand:focus-visible {
   outline: 2px solid #fff;
@@ -207,7 +221,7 @@ body.dark-mode .header-icon #cart-count {
     padding: 15px 0;
   }
 
-  .portfolio-link {
+  .shop-return {
     grid-column: 1;
     grid-row: 1;
   }
@@ -217,7 +231,7 @@ body.dark-mode .header-icon #cart-count {
     grid-column: 2;
     grid-row: 1;
     justify-self: end;
-    font-size: 25px;
+    font-size: 29px;
   }
 
   .shop-actions {
@@ -229,12 +243,11 @@ body.dark-mode .header-icon #cart-count {
 }
 
 @media (max-width: 390px) {
-  .portfolio-link {
+  .shop-return {
     font-size: 12px;
   }
 
-  .shop-actions .theme-toggle,
-  .shop-actions .shop-return {
+  .shop-actions .theme-toggle {
     font-size: 12px;
   }
 }
@@ -242,7 +255,7 @@ body.dark-mode .header-icon #cart-count {
 @media (prefers-reduced-motion: reduce) {
   .shop-actions .theme-toggle,
   .shop-actions .header-icon,
-  .shop-actions .shop-return {
+  .shop-return {
     transition: none;
   }
 }

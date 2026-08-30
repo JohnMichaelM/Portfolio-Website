@@ -641,6 +641,9 @@ body.dark-mode .quantity-button {
   line-height: 1.5;
 }
 
+.footer-about .footer-credit { margin-top: 9px; }
+.footer-credit a { color: var(--text); font-weight: bold; text-underline-offset: 4px; }
+
 .footer-brand {
   color: var(--text);
   font-size: 24px;
@@ -725,6 +728,7 @@ body.dark-mode .newsletter-form input {
 }
 
 body.dark-mode .footer-brand,
+body.dark-mode .footer-credit a,
 body.dark-mode .footer-links a,
 body.dark-mode .footer-contact a,
 body.dark-mode .newsletter-status {

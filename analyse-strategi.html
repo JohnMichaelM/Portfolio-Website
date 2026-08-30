@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Analyse- og strategiarbeider i porteføljen til John Michael Mauseth.">
+  <title>Analyse og strategi | John Michael Mauseth</title>
+  <link rel="stylesheet" href="analyse-strategi.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="site-name" href="index.html#prosjekter">← John Michael Mauseth</a>
+    <nav class="site-nav" aria-label="Meny for analyse og strategi">
+      <a href="#oversikt">Oversikt</a>
+      <a href="#arbeider">Arbeider</a>
+    </nav>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Bytt til mørk modus">
+      <span class="theme-icon" aria-hidden="true"></span>
+      <span id="theme-label">Mørk</span>
+    </button>
+  </header>
+
+  <main>
+    <div class="page-shell">
+      <section class="hero" id="oversikt">
+        <p class="eyebrow">Analyse og strategi</p>
+        <h1>Innsikt før løsning.</h1>
+        <p class="hero-intro">En samling kortere arbeider som viser hvordan jeg undersøker problemstillinger, strukturerer informasjon og utvikler tydelige anbefalinger.</p>
+      </section>
+
+      <section class="archive-section" id="arbeider" aria-labelledby="archive-title">
+        <header class="section-heading">
+          <p class="eyebrow">Arbeider</p>
+          <h2 id="archive-title">Prosjekter legges til her.</h2>
+          <p>Samlingen fylles ut når innhold, offentlig tilgjengelighet og presentasjonsform er avklart.</p>
+        </header>
+
+        <div class="empty-state">
+          <div class="empty-state-copy">
+            <p class="item-number">01</p>
+            <h3>Klar for første case.</h3>
+            <p>Hvert arbeid får en kort og sammenlignbar presentasjon, uten å kreve samme tekniske omfang som GG-BOX og CommuniGreen.</p>
+          </div>
+          <dl class="case-structure">
+            <div><dt>Kontekst</dt><dd>Problemstilling, mål og rammer</dd></div>
+            <div><dt>Mitt bidrag</dt><dd>Metode, analyse og ansvar</dd></div>
+            <div><dt>Resultat</dt><dd>Funn, anbefalinger og læring</dd></div>
+          </dl>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Analyse og strategi · John Michael Mauseth</p>
+    <a href="index.html#prosjekter">Tilbake til porteføljen ↑</a>
+  </footer>
+
+  <script>
+    (() => {
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeLabel = document.getElementById("theme-label");
+      const savedTheme = localStorage.getItem("portfolio-theme");
+
+      function setTheme(isDark) {
+        document.body.classList.toggle("dark-mode", isDark);
+        themeToggle.setAttribute("aria-pressed", String(isDark));
+        themeToggle.setAttribute("aria-label", isDark ? "Bytt til lys modus" : "Bytt til mørk modus");
+        themeLabel.textContent = isDark ? "Lys" : "Mørk";
+      }
+
+      setTheme(savedTheme ? savedTheme === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches);
+      themeToggle.addEventListener("click", () => {
+        const isDark = !document.body.classList.contains("dark-mode");
+        setTheme(isDark);
+        localStorage.setItem("portfolio-theme", isDark ? "dark" : "light");
+      });
+    })();
+  </script>
+</body>
+</html>
