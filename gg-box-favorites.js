@@ -21,6 +21,7 @@ const cartStorageKey = "ggbox-demo-cart";
 
 const favoritesList = document.getElementById("favorites-list");
 const siteNotice = document.getElementById("site-notice");
+const cartCount = document.getElementById("cart-count");
 
 function loadFavorites() {
   try {
@@ -44,6 +45,14 @@ function loadCart() {
 
 function saveCart(cart) {
   localStorage.setItem(cartStorageKey, JSON.stringify(cart));
+}
+
+function updateCartCount() {
+  const itemCount = loadCart().reduce((sum, item) => {
+    return sum + Number(item.quantity || 0);
+  }, 0);
+
+  cartCount.textContent = itemCount;
 }
 
 function formatPrice(price) {
@@ -78,6 +87,7 @@ function addToCart(productId) {
   }
 
   saveCart(cart);
+  updateCartCount();
   showNotice(`${product.name} ble lagt i handlekurven.`);
 }
 
@@ -155,3 +165,4 @@ function renderFavorites() {
 }
 
 renderFavorites();
+updateCartCount();

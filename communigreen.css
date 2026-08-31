@@ -36,9 +36,11 @@ button { cursor: pointer; }
 .hero h1 span { color: var(--green-title); }
 .hero-intro { max-width: 680px; margin: 28px 0; font-size: clamp(20px, 2.6vw, 30px); line-height: 1.35; }
 .project-facts { display: grid; align-content: end; margin: 0; }
-.project-facts div { padding: 17px 0; border-bottom: 1px solid currentColor; }
+.project-facts div { position: relative; min-height: 80px; padding: 17px 0 17px 62px; border-bottom: 1px solid currentColor; }
 .project-facts dt { margin-bottom: 6px; font-size: 12px; font-weight: bold; letter-spacing: .1em; text-transform: uppercase; }
 .project-facts dd { margin: 0; line-height: 1.45; }
+.project-fact-icon { position: absolute; top: 17px; left: 0; display: grid; width: 46px; height: 46px; place-items: center; border: 1px solid var(--green-text); border-radius: 50%; background: #f7fff7; }
+.project-fact-icon svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
 .page-shell { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
 .case-intro, .process-section, .insight-section, .learning-section, .app-section { border-bottom: 1px solid var(--line); padding: clamp(54px, 8vw, 96px) 0; }

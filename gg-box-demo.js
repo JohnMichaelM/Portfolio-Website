@@ -212,6 +212,11 @@ document.addEventListener("keydown", (event) => {
 });
 
 renderCart();
+
+if (window.location.hash === "#handlekurv") {
+  openCart();
+}
+
 const favoriteStorageKey = "ggbox-demo-favorites";
 
 function loadFavorites() {

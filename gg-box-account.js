@@ -15,6 +15,7 @@ const dataRequestStatus = document.getElementById("data-request-status");
 const dataCartCount = document.getElementById("data-cart-count");
 const dataFavoriteCount = document.getElementById("data-favorite-count");
 const dataOrderCount = document.getElementById("data-order-count");
+const headerCartCount = document.getElementById("cart-count");
 const currentTheme = document.getElementById("current-theme");
 const accountThemeToggle = document.getElementById("theme-toggle");
 const clearSettingButtons = document.querySelectorAll("[data-clear-setting]");
@@ -270,6 +271,14 @@ function loadLocalList(storageKey) {
   }
 }
 
+function updateHeaderCartCount() {
+  const cartItems = loadLocalList(cartStorageKey);
+
+  headerCartCount.textContent = cartItems.reduce((sum, item) => {
+    return sum + Number(item.quantity || 0);
+  }, 0);
+}
+
 function updateDataSummary() {
   const cartItems = loadLocalList(cartStorageKey);
   const favorites = loadLocalList(favoriteStorageKey);
@@ -333,6 +342,7 @@ clearSettingButtons.forEach((button) => {
 
     setting.keys.forEach((key) => localStorage.removeItem(key));
     showNotice(setting.success);
+    updateHeaderCartCount();
 
     if (settingName === "orders" && !ordersPanel.hidden) {
       renderOrders();
@@ -341,3 +351,4 @@ clearSettingButtons.forEach((button) => {
 });
 
 updateCurrentTheme();
+updateHeaderCartCount();
