@@ -43,6 +43,8 @@ Hvis PROJECT_CONTEXT.md og koden er uenige, behandle den nåværende koden som s
 
 Ved større milepæler kan PROJECT_CONTEXT.md oppdateres slik at den fortsetter å være kort og korrekt.
 
+Når en oppgave fullfører en større milepæl eller gjør PROJECT_CONTEXT.md utdatert, skal du aktivt minne brukeren på at filen bør oppdateres før neste commit. Forklar kort hva som bør endres. Ikke foreslå oppdatering etter små CSS-justeringer, skrivefeil eller andre endringer som ikke påvirker prosjektets overordnede status, retning eller viktige beslutninger.
+
 Teknisk retning
 
 Prosjektet bruker i hovedsak:
