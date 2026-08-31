@@ -1,3 +1,68 @@
+:root {
+  --surface: #fffdfb;
+  --surface-soft: #fff3ed;
+  --panel-soft: #f3ddd2;
+  --soft: var(--panel-soft);
+  --text: #1f1a18;
+  --muted: #6d5f59;
+  --line: #eadbd4;
+  --orange: #e9784a;
+  --orange-dark: #c85e35;
+  --dark-surface: #171515;
+  --dark-soft: #241e1b;
+  --dark-text: #f7f0ed;
+  --dark-muted: #d7c5bc;
+  --dark-line: #4b4541;
+}
+
+.shop-meta {
+  border-bottom: 1px solid var(--line, #eadbd4);
+  background: var(--panel-soft);
+  color: #1f1a18;
+}
+
+.shop-meta-inner {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  font-size: 13px;
+}
+
+.shop-meta a,
+.shop-meta a:visited {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  color: #1f1a18;
+  font-weight: bold;
+  text-underline-offset: 5px;
+}
+
+.shop-meta a:hover,
+.shop-meta a:focus-visible {
+  color: var(--orange, #e9784a);
+}
+
+body.dark-mode .shop-meta {
+  border-color: #4b4541;
+  background: var(--dark-soft, #241e1b);
+  color: #f7f0ed;
+}
+
+body.dark-mode .shop-meta a,
+body.dark-mode .shop-meta a:visited {
+  color: #fff;
+}
+
+body.dark-mode .shop-meta a:hover,
+body.dark-mode .shop-meta a:focus-visible {
+  color: var(--orange, #e9784a);
+}
+
 .shop-header {
   width: 100%;
   min-height: 0;

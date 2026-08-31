@@ -4,7 +4,7 @@
   gap: 22px;
   padding: 13px 20px;
   border-bottom: 1px solid var(--line);
-  background: var(--surface);
+  background: var(--panel-soft);
 }
 
 .account-nav a {
@@ -92,7 +92,7 @@
 .help-panel {
   padding: 22px;
   border-bottom: 1px solid var(--line);
-  background: var(--surface-soft);
+  background: var(--panel-soft);
 }
 
 .help-panel[hidden] {
@@ -196,7 +196,7 @@
 .settings-panel {
   padding: 22px;
   border-bottom: 1px solid var(--line);
-  background: var(--surface-soft);
+  background: var(--panel-soft);
 }
 
 .settings-panel[hidden] {
@@ -266,7 +266,7 @@
 .orders-empty,
 .orders-summary {
   padding: 22px;
-  background: var(--surface-soft);
+  background: var(--panel-soft);
 }
 
 .orders-group + .orders-group {
@@ -404,7 +404,7 @@
   gap: 24px;
   margin: 4px 0 24px;
   padding: 26px;
-  background: var(--surface-soft);
+  background: var(--panel-soft);
 }
 
 .data-request-panel[hidden] {
@@ -489,6 +489,10 @@ body.dark-mode .account-row,
 body.dark-mode .legal-details summary {
   background: var(--dark-surface);
   color: var(--dark-text);
+}
+
+body.dark-mode .account-nav {
+  background: var(--dark-soft);
 }
 
 body.dark-mode .account-nav,

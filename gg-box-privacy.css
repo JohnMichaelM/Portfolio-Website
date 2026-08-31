@@ -5,7 +5,7 @@
   gap: 18px;
   padding: 13px 20px;
   border-bottom: 1px solid var(--line);
-  background: var(--surface);
+  background: var(--panel-soft);
 }
 
 .privacy-nav a {
@@ -54,7 +54,7 @@
   margin-top: 28px;
   padding: 20px;
   border-left: 4px solid var(--orange);
-  background: var(--surface-soft);
+  background: var(--panel-soft);
 }
 
 .demo-disclosure p {
@@ -223,6 +223,10 @@ body.dark-mode .preference-row,
 body.dark-mode .reset-preferences {
   background: var(--dark-surface);
   color: var(--dark-text);
+}
+
+body.dark-mode .privacy-nav {
+  background: var(--dark-soft);
 }
 
 body.dark-mode .privacy-nav,

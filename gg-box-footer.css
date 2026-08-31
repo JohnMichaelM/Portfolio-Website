@@ -1,7 +1,7 @@
 .demo-footer {
   margin-top: 40px;
   border-top: 1px solid var(--line);
-  background: var(--surface);
+  background: var(--surface-soft);
   color: var(--text);
 }
 

@@ -213,7 +213,7 @@ settingsToggle.addEventListener("click", () => {
 
 const helpAnswers = {
   about:
-    "GG-BOX er en kodet porteføljedemonstrasjon basert på et studentkonsept fra 2024. Dette er ikke en ekte nettbutikk.",
+    "GG-BOX er en kodet demonstrasjon basert på et studentkonsept fra 2024. Dette er ikke en ekte nettbutikk.",
   orders:
     "Du kan gjennomføre en simulert bestilling og følge statusen på kontosiden. Ingen betaling, adresse eller personopplysninger sendes.",
   storage:

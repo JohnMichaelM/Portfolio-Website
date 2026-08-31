@@ -113,7 +113,7 @@ button {
   gap: 4px 18px;
   padding: 13px 20px;
   border-bottom: 1px solid var(--line);
-  background: var(--surface);
+  background: var(--panel-soft);
 }
 
 .country-nav button {
@@ -178,7 +178,7 @@ button {
   place-items: center;
   min-height: 275px;
   padding: 24px;
-  background: var(--surface-soft);
+  background: var(--panel-soft);
 }
 
 .product-media img {
@@ -201,6 +201,7 @@ button {
   flex: 1;
   flex-direction: column;
   padding: 24px;
+  background: #fff;
 }
 
 .product-details h2 {
@@ -270,7 +271,7 @@ button {
   height: 100vh;
   height: 100dvh;
   padding: 24px;
-  background: var(--surface);
+  background: var(--panel-soft);
   box-shadow: -12px 0 40px rgba(0, 0, 0, 0.2);
   transform: translateX(105%);
   transition: transform 220ms ease;
@@ -434,6 +435,10 @@ body.dark-mode .site-notice {
   color: var(--dark-text);
 }
 
+body.dark-mode .country-nav {
+  background: var(--dark-soft);
+}
+
 body.dark-mode .country-nav,
 body.dark-mode .product-card,
 body.dark-mode .cart-header,
@@ -453,6 +458,10 @@ body.dark-mode .product-media {
   background: var(--dark-soft);
 }
 
+body.dark-mode .product-details {
+  background: var(--dark-surface);
+}
+
 body.dark-mode .product-details > p:not(.product-tag),
 body.dark-mode .cart-item p,
 body.dark-mode .empty-cart {
@@ -460,7 +469,7 @@ body.dark-mode .empty-cart {
 }
 
 body.dark-mode .cart-drawer {
-  background: #211d1b;
+  background: var(--dark-soft);
 }
 
 body.dark-mode .quantity-button {
@@ -544,11 +553,12 @@ body.dark-mode .quantity-button {
 .demo-footer {
   margin-top: 40px;
   border-top: 1px solid var(--line);
+  background: var(--surface-soft);
 }
 
 .newsletter-section {
   padding: 54px 20px;
-  background: var(--surface-soft);
+  background: var(--panel-soft);
   text-align: center;
 }
 
@@ -637,7 +647,7 @@ body.dark-mode .quantity-button {
 .footer-about p {
   max-width: 430px;
   margin: 14px 0 0;
-  color: var(--muted);
+  color: var(--text);
   line-height: 1.5;
 }
 
@@ -653,7 +663,7 @@ body.dark-mode .quantity-button {
 
 .footer-heading {
   margin: 0 0 12px;
-  color: var(--muted);
+  color: var(--text);
   font-size: 12px;
   font-weight: bold;
   letter-spacing: 0.1em;
@@ -698,7 +708,7 @@ body.dark-mode .quantity-button {
   margin: 0 auto;
   padding: 20px 0 28px;
   border-top: 1px solid var(--line);
-  color: var(--muted);
+  color: var(--text);
 }
 
 .footer-bottom p {
@@ -708,6 +718,10 @@ body.dark-mode .quantity-button {
 body.dark-mode .demo-footer,
 body.dark-mode .footer-bottom {
   border-color: var(--dark-line);
+}
+
+body.dark-mode .demo-footer {
+  background: var(--dark-surface);
 }
 
 body.dark-mode .newsletter-section {
