@@ -1,401 +1,183 @@
-PROJECT_CONTEXT.md
+# PROJECT_CONTEXT.md
 
-Kort om prosjektet
+## Formål
 
-Dette er en personlig porteføljenettside som skal vise en kombinasjon av:
+Dette er John Michael Mauseths personlige porteføljenettsted. Det skal supplere CV og LinkedIn og vise hvordan han kobler digital markedsføring, analyse, strategi, UX, produktutvikling og grunnleggende webutvikling.
 
-digital markedsføring
+Målet er ikke å fremstille eieren som en erfaren utvikler. Porteføljen skal vise praktisk teknisk forståelse, gode brukerreiser og evne til å videreutvikle konsepter på en troverdig måte.
 
-analyse
+Norsk er hovedspråket. En gjennomarbeidet engelsk versjon kan lages senere når norsk innhold er stabilt.
 
-konsept- og produktutvikling
+## Retning og nåværende portefølje
 
-UX/designforståelse
+Uttrykket er rolig, redaksjonelt, profesjonelt og bevisdrevet. Behold luft når den gir fokus, og prioriter prosjektmateriale og fungerende interaksjoner fremfor dekorasjon.
 
-grunnleggende teknisk webforståelse
+Forsiden `index.html` er responsiv og inneholder:
 
-utvikling i retning prosjektledelse / martech
+- kort introduksjon
+- nummerert prosjektoversikt
+- GG-BOX og CommuniGreen som visuelle hovedcaser
+- lenke til samlesiden Analyse og strategi
+- Om meg og kontakt
+- lys og mørk modus
 
-Målet er ikke å fremstille eieren som en erfaren utvikler. Målet er å vise at vedkommende kan forstå og koble sammen innsikt, markedsføring, design, brukerreise og teknisk produksjon.
+Ikke gjør en større redesign eller erstatt hovedcasene med en ren prosjektliste uten å avklare det først.
 
-Porteføljen skal fungere som et supplement til LinkedIn og CV.
+`analyse-strategi.html` er opprettet og koblet til prosjekt 03. Den har en nøytral, responsiv arkivstruktur, men mangler dokumenterte prosjektdata. Mulige senere arbeider er SATS, The Broth Company og bachelorarbeid. Ikke dikt opp innhold eller publiser konfidensiell informasjon.
 
-Overordnet retning
+## GG-BOX
 
-Nettsiden skal være:
+### Bakgrunn og kreditering
 
-profesjonell
+GG-BOX startet som et studentgruppeprosjekt med to personer i 2024. Brukerens dokumenterte bidrag omfatter analyse, strategi/skriftlig arbeid og brukertesting. Den opprinnelige Figma-prototypen var et samarbeid, og det tekniske/visuelle Figma-arbeidet ble utført av medstudenten. Brukeren har tillatelse til å videreutvikle konseptet.
 
-enkel å navigere
+Den kodede løsningen fra 2026 er brukerens selvstendige tekniske videreutvikling. Den skal omtales som en demo eller demonstrasjon, aldri som en ekte butikk eller virksomhet.
 
-responsiv
+### Case
 
-tydelig i lys og mørk modus
+`gg-box.html` er en ferdig, responsiv caseside med:
 
-relativt minimalistisk
+- bakgrunn, målgruppe og korrekt rollefordeling
+- analyse, strategi, prosess og brukertesting
+- Figma-materiale og lenke til den opprinnelige prototypen
+- egen læringsseksjon som skiller studentprosjektet fra 2026-videreutviklingen
+- lenke til den kodede demoen
+- tre prosjektfakta med tydelige ikoner
 
-bevisdrevet fremfor dekorativ
+Et mer illustrert bakgrunnsdesign for caseheroen ble vurdert, men satt på pause. Ikke gjenoppta dette uten at brukeren ber om det.
 
-Den visuelle retningen har etter hvert beveget seg mot en hybrid inspirert av enkle, redaksjonelle porteføljer:
+### Kodet demo
 
-Kort og tydelig introduksjon.
+GG-BOX-demoen er nå funksjonelt sammenhengende og består av:
 
-2–3 utvalgte, visuelle hovedcaser.
+- `gg-box-demo.html`: produkter, favoritter, handlekurv, mengder og nyhetsbrevdemonstrasjon
+- `gg-box-favorites.html`: lagrede favoritter og legg i kurv
+- `gg-box-account.html`: fiktiv konto, bestillingshistorikk, innstillinger, FAQ/hjelp og lokal dataoversikt
+- `gg-box-checkout.html`: fiktiv levering, betalingsvalg og ordreoversikt
+- `gg-box-order.html`: ordredetaljer og simulert leveringsstatus
+- `gg-box-privacy.html`: vilkår, personvern, informasjonskapsler, rettigheter og lokale preferanser
 
-Senere et roligere prosjektarkiv for analyse-/strategiarbeid.
+Handlekurv, favoritter, bestillinger, status og preferanser lagres bare i `localStorage`. Ingen ekte betaling, innlogging, e-post, kundedata eller serverkommunikasjon brukes.
 
-Om meg og kontakt.
+Alle butikksidene har:
 
-Ikke gjør en full redesign mot en ren prosjektliste uten at dette diskuteres først. De visuelle hovedcasene skal fortsatt få plass.
+- felles «Globale Goodies»-logo fra lokal PNG
+- oransje hovedheader
+- hjemknapp til butikkforsiden
+- relevante konto- og handlekurvikoner
+- en metastripe med tilbake-lenke til GG-BOX-casen og «Demo · 2026»
+- konsistent footer: «Studentkonsept fra 2024, videreutviklet i 2026» og ikke-klikkbar kreditering
 
-Et profesjonelt portrett kan legges til senere. Tomrom/hvitrom skal ikke fylles uten en tydelig grunn.
+Bruk «demo» i korte etiketter og «demonstrasjon» i løpende tekst. Den eldre termen «porteføljedemo» er fjernet fra nettstedet.
 
-Språk
+### Semantisk fargesystem
 
-Norsk er hovedspråket mens innhold og struktur utvikles.
+Fargene skal bestemmes av funksjon, ikke av side. De delte variablene ligger i `gg-box-header.css`, som lastes på alle butikksidene.
 
-En egen engelsk versjon kan lages senere når den norske versjonen er stabil. Unngå automatisk maskinoversettelse som erstatning for en gjennomarbeidet engelsk versjon.
+- hovedbakgrunn: `#FFFDFB` / mørk `#171515`
+- varm krem og footer: `#FFF3ED` / mørk `#171515`
+- metastripe, sekundær navigasjon og informasjonspaneler: fersken `#F3DDD2` / kakao `#241E1B`
+- hovedheader og handlinger: oransje `#E9784A`
+- hovedtekst: `#1F1A18` / mørk `#F7F0ED`
+- kantlinjer: `#EADBD4` / mørk `#4B4541`
 
-Nåværende teknisk grunnlag
+Dette gjelder blant annet landmeny, personvernmeny, produktbilder, favorittpaneler, bestillinger, checkout, ordrestatus og handlekurv. Produktkortene skifter til hvit bakgrunn ved produktteksten. Ikke innfør sidevise avvik uten en tydelig funksjonell grunn.
 
-Prosjektet er bygget med:
+## CommuniGreen
 
-HTML
+### Bakgrunn og kreditering
 
-CSS
+CommuniGreen er et student-/Figma-konsept fra 2023. Brukeren hadde ansvar for idéutvikling, planlegging, testopplegg, brukertesting og skriftlig dokumentasjon. Den opprinnelige Figma-prototypen ble utformet av en medstudent, og brukeren har tillatelse til å videreutvikle konseptet.
 
-vanilla JavaScript
+### Case og demo
 
-VS Code
+`communigreen.html` er en responsiv caseside med korrekt rollefordeling, prosess, innsikt, læring, prosjektfakta med ikoner og lenker til Figma og kodet demo.
 
-Live Server for lokal testing
+`communigreen-demo.html`, `communigreen-demo.css` og `communigreen-demo.js` utgjør en mobilorientert webdemo. Visuell stil er etablert og skal beholdes. Versjon 1.1 er funksjonelt ferdig før ekstern brukertesting og inneholder:
 
-Git / GitHub Desktop for versjonshistorikk
+- fiktive aktiviteter, filtrering og detaljvisning
+- lagring av aktiviteter og tomtilstander
+- funksjonell kalender med datovalg og månedsbytte
+- forum med søk, kategorier, detaljer og reaksjoner
+- oppretting og sletting av egne lokale innlegg og kommentarer
+- valgfri kalenderdato på nye foruminnlegg
+- profil med lagrede aktiviteter og lokale innstillinger
+- fire fiktive, handlingsbaserte utmerkelser
+- lokal personvern-/demodatavisning, lesbar dataoversikt og nullstilling
+- statisk hjelpesenter
+- lys/mørk modus og større tekst
 
-Det er ikke behov for backend, database, ekte autentisering eller moderne JavaScript-rammeverk i nåværende fase.
+Faste eksempelinnlegg kan ikke slettes. Alt innhold er fiktivt, og brukerdata lagres bare lokalt i nettleseren. Det finnes ingen konto, database, e-postutsending eller ekte persondata.
 
-Bruk den faktiske filstrukturen og koden i prosjektmappen som sannhetskilde. Ikke stol på at denne filen inneholder alle filnavn eller alle små implementasjonsdetaljer.
+Hovedflytene er kontrollert ved 320 og 390 piksler, med omlasting, mørk modus, større tekst og tastaturfokus. Ingen JavaScript-feil ble funnet. Den bekreftede fullstendige nullstillingen av CommuniGreen-data bør fortsatt prøves manuelt via Live Server.
 
-Nåværende portefølje
+Frivillig.no kan brukes som inspirasjon for aktivitetstyper, men innhold eller data skal ikke kopieres eller kobles inn uten avklart tillatelse og bruksvilkår.
 
-Følgende grunnlag er allerede etablert:
+## Viktige designbeslutninger
 
-responsiv forside
+- Behold den nåværende visuelle retningen; ingen generell redesign er planlagt.
+- GG-BOX og CommuniGreen beholder egne fargeidentiteter.
+- Lys og mørk modus skal oppleves som samme design.
+- Mobilvisning er viktig; unngå layoutendring ved hover.
+- På forsiden er hele «CommuniGreen» hvit i hvile. Bare «Green» blir `#2F7049` ved hover eller tastaturfokus.
+- Synlige bindestreker unngås i løpende tekst og etiketter, med unntak av prosjektnavnet «GG-BOX».
+- Bruk små, funksjonelle overganger. Unngå overdreven animasjon.
+- Bruk eksisterende lokale bilder og ikoner før nye dekorative elementer opprettes.
 
-prosjektoversikt
+Porteføljesidene er kontrollert i Chromium og representativt i Firefox på mobil og desktop. CSS har tekstskalerings- og visningshøydehensyn for Safari/iOS, men en fysisk sluttkontroll i Safari på Mac eller iPhone gjenstår.
 
-«Om meg»
+## Teknisk struktur
 
-kontaktseksjon
+Prosjektet bruker kun:
 
-lys og mørk modus
+- HTML
+- CSS
+- vanilla JavaScript
+- lokale bilder
+- `localStorage` for avgrenset demotilstand
+- Live Server for lokal testing
+- Git/GitHub Desktop for versjonshistorikk og flytting mellom maskiner
 
-mobiltilpasning
+Viktige filer:
 
-GG-BOX som hovedcase på forsiden med lenker til demo og Figma-prototype
+- `index.html`: forside med intern CSS
+- `script.js`: delt temalogikk for porteføljesidene
+- `gg-box.html` + `gg-box-case.css`: GG-BOX-case
+- `gg-box-*.html/css/js`: GG-BOX-butikk og undersider
+- `gg-box-header.css`: delt header og semantiske butikkfarger
+- `gg-box-footer.css`: delt footer for checkout og ordre
+- `communigreen.html` + `communigreen.css`: CommuniGreen-case
+- `communigreen-demo.html/css/js`: CommuniGreen-demo
+- `analyse-strategi.html/css`: foreløpig samleside
 
-prosjektbilder lagret inne i prosjektmappen
+Ikke introduser rammeverk, npm-pakker, backend, database, ekte autentisering eller eksterne tjenester uten et nytt, uttrykkelig behov.
 
-lokalt Git-repository og commits
+## Reelle neste steg
 
-testing via Live Server
+1. Flytt repositoryet via Git og kontroller Live Server på den andre maskinen.
+2. Gjennomfør fjernbrukertest av GG-BOX og/eller CommuniGreen og dokumenter konkrete funn.
+3. Test CommuniGreen-funksjonen som nullstiller lokale data manuelt.
+4. Gjennomfør fysisk Safari-test når Mac eller iPhone er tilgjengelig.
+5. Fyll `analyse-strategi.html` først når dokumentert prosjektinnhold er valgt.
+6. Gjør senere innholds- og språkvask, og vurder engelsk versjon eller profesjonelt portrett når norsk versjon er stabil.
 
-Den overordnede stilen skal bevares med mindre brukeren uttrykkelig ønsker en redesign.
+GG-BOX og CommuniGreen trenger ikke nye funksjoner bare for å virke mer avanserte. Prioriter brukertesting, dokumentasjon og begrunnede forbedringer.
 
-GG-BOX – prosjektbakgrunn
+## Begrensninger og sannhetskilder
 
-Opprinnelig prosjekt
+Ikke legg inn eller påstå:
 
-GG-BOX startet som et studentgruppeprosjekt i 2024.
+- ekte betaling, abonnement, kontoer eller kundedata
+- backend eller database uten nytt mål
+- udokumenterte resultater, roller, datoer eller eierskap
+- kopiert eller konfidensielt prosjektmateriale
+- at Figma-prototypene ble laget alene av brukeren
 
-Prosjektet var et samarbeid mellom to personer. Brukerens bidrag omfattet blant annet:
+Prioritet ved konflikt:
 
-skriftlig arbeid
+1. Nåværende kode i prosjektmappen.
+2. Brukerens nyeste eksplisitte beslutning.
+3. Denne filen.
+4. Eldre samtalehistorikk.
 
-analyse
-
-strategi
-
-brukertesting
-
-Det opprinnelige Figma-/visuelle arbeidet ble utviklet i samarbeid, med det tekniske/visuelle Figma-arbeidet utført av medstudenten. Brukeren har tillatelse til å videreutvikle konseptet selv.
-
-Dette skillet må være tydelig i porteføljen.
-
-2026-videreutviklingen
-
-I 2026 videreutvikles GG-BOX selvstendig som en kodet porteføljedemonstrasjon.
-
-Den skal ikke presenteres som:
-
-en ekte nettbutikk
-
-en aktiv virksomhet
-
-et system som tar ekte betaling
-
-et system som behandler ekte kundedata
-
-Den tekniske videreutviklingen er ment å demonstrere frontend-logikk, UX, kundereise og teknisk forståelse.
-
-GG-BOX – presentasjon i porteføljen
-
-GG-BOX presenteres på en dedikert caseside som åpnes fra den nummererte prosjektoversikten på forsiden. Casesiden inneholder:
-
-bakgrunn og målgruppe
-
-korrekt rollefordeling og kreditering
-
-analyse og strategi
-
-brukertesting
-
-valgt retning
-
-Figma-materiale som visuell dokumentasjon
-
-lenke til den opprinnelige prototypen
-
-tydelig skille mellom studentprosjektet og den senere kodede videreutviklingen
-
-Casesiden gir tilgang til både den fungerende demoen og den opprinnelige Figma-prototypen.
-
-GG-BOX og CommuniGreen har nå egne læringsseksjoner som skiller erfaringene fra studentprosjektene fra den selvstendige tekniske videreutviklingen i 2026. Seksjonene bruker samme struktur, men prosjektspesifikt innhold og korrekt rollefordeling.
-
-GG-BOX – nåværende demo
-
-Ved overgangen fra den lange Codex-chatten har demoen en sammenhengende kundereise med:
-
-butikk med produkter
-
-lys/mørk modus
-
-favoritter
-
-handlekurv og produktmengder
-
-demo-checkout med ordreoversikt
-
-fiktiv bekreftet bestilling
-
-ordre-/leveringsstatus
-
-demo-konto
-
-personvern/juridisk innhold
-
-fungerende favorittside
-
-Løsningen bruker lokal nettleserlagring der det er hensiktsmessig for demoen.
-
-Det finnes fortsatt små visuelle inkonsekvenser som kan tas i en senere kvalitetssjekk. Ikke gjør en stor opprydding bare for å gjøre koden «penere» dersom funksjonene fungerer.
-
-Neste prioriteringer for GG-BOX
-
-Den siste planlagte retningen var:
-
-Ferdigstille konto-området:
-
-«Dine bestillinger»
-
-enkle innstillinger
-
-hjelpesenter / FAQ
-
-Fullføre den juridiske demoen:
-
-en enkel side for vilkår
-
-«Få tilsendt personopplysninger» som tydelig demo, ikke ekte datainnsamling
-
-Legge til en tydelig bunntekst:
-
-student-/porteføljedemonstrasjon
-
-relevante juridiske lenker
-
-tydelig at dette ikke er en ekte butikk
-
-Små, nyttige interaksjoner:
-
-tydelig favorittstatus
-
-oppdatert kurvantall
-
-leveringsstatus
-
-«kommer snart»-meldinger der det gir mening
-
-senere en enkel forhåndsdefinert FAQ-/chatboks
-
-Kvalitetssikre:
-
-lys og mørk modus
-
-mobil
-
-handlekurv/favoritter på tvers av sider
-
-tom kurv og flere produkter
-
-navigasjon og tilbake-lenker
-
-at alle relevante sider tydelig er merket som demo
-
-Koble GG-BOX-demoen tydelig til prosjektpresentasjonen på forsiden.
-
-CommuniGreen
-
-CommuniGreen er et student-/Figma-konsept fra 2023.
-
-Brukeren hadde ansvar for planlegging, brukertesting og det skriftlige arbeidet utenfor Figma. Den opprinnelige Figma-prototypen ble utformet av en medstudent, og brukeren har fått tillatelse til å videreutvikle konseptet.
-
-Den tekniske videreutviklingen ble startet i 2026. Et responsivt mobilgrunnlag med lys/mørk modus og grunnnavigasjon er bygget. Demoen har nå rekonstruerte aktivitetsdata, filtrering, detaljvisning, lokal lagring, en fungerende oversikt over lagrede aktiviteter og en fiktiv profil med lokale innstillinger.
-
-CommuniGreen-demoens grunnversjon er komplett før brukertesting. Hovedflyten, tomtilstander, lys/mørk modus, større tekst, smale mobilbredder og tastaturfokus er kontrollert. Versjon 1.1 fyller nå ut appen med flere av de fiktive funksjonene fra den opprinnelige prototypen.
-
-Versjon 1.1 er startet uten endring av den etablerte visuelle stilen. Forum har erstattet Lagret i hovednavigasjonen, mens lagrede aktiviteter fortsatt åpnes fra Profil. Forumet har fiktive eksempelinnlegg, søk, kategorifiltre, tomtilstand og detaljvisning. Brukeren kan også legge til og slette egne lokale demoinnlegg og kommentarer samt bruke reaksjoner; alt lagres bare i nettleseren og publiseres ikke. De faste eksempelinnleggene kan ikke slettes.
-
-Demoen har også en funksjonell aktivitetskalender som åpnes fra Hjem. Kalenderen viser de samme fiktive aktivitetene som resten av appen, støtter datovalg og månedsbytte og kan åpne eksisterende aktivitetsdetaljer. Nye lokale foruminnlegg kan valgfritt få en dato og vises da automatisk i kalenderen. Kalenderoppføringen fjernes sammen med foruminnlegget.
-
-Profilen har en egen utmerkelsesvisning med fire tydelig fiktive demoutmerkelser. De låses opp og huskes lokalt når brukeren lagrer aktiviteter, oppretter et foruminnlegg eller legger et foruminnlegg i kalenderen. Utmerkelsene er knyttet til faktiske handlinger i demoen og omtales ikke som ekte eller verifiserte resultater.
-
-Profilen har også en personvern- og demodatavisning. Den viser hvor mye data demoen lagrer, kan generere en lesbar lokal dataoversikt uten utsending og kan nullstille bare CommuniGreen-relaterte localStorage-nøkler. Demoen bruker fortsatt ingen konto, database, e-postutsending eller ekte persondata.
-
-Profilen har et lite statisk hjelpesenter med ofte stilte spørsmål om lagring av aktiviteter, kalenderkobling, lokale data og fiktivt demoinnhold.
-
-CommuniGreen v1.1 er sluttkontrollert før brukertesting. Hovedflytene for aktiviteter, lagring, kalender, forum, kommentarer, reaksjoner, utmerkelser, lokal dataoversikt og hjelpesenter er testet ved 390 og 320 piksler, med omlasting, mørk modus og større tekst. Ingen JavaScript-feil ble funnet. Den bekreftede nullstillingen av lokale data skal fortsatt prøves manuelt av brukeren via Live Server.
-
-Planlagt retning:
-
-mobilorientert webdemo, ikke native app
-
-aktivitetsoversikt
-
-filtrering
-
-enkel detaljside
-
-lagre/favoritt aktivitet
-
-eventuelt enkel profil/innstillinger
-
-app-lignende mobil layout
-
-samme grunnprinsipper for lys/mørk modus, responsivitet, navigasjon og Git-rutine som GG-BOX
-
-CommuniGreen skal demonstrere andre ferdigheter enn GG-BOX, særlig:
-
-informasjonsarkitektur
-
-filtrering
-
-fellesskap/community-tenkning
-
-mobil UX
-
-Frivillig.no kan brukes som inspirasjon for aktivitetstyper, men innhold fra tjenesten skal ikke kopieres eller kobles inn uten avklart tillatelse og bruksvilkår. Demoen bruker derfor rekonstruerte og fiktive aktiviteter. Når hovedflyten er presentabel, kan brukeren vurdere en profesjonell henvendelse til Frivillig.no ved prosjektleder Vanja Konradsen eller kontakt@frivillig.no for tilbakemelding, avklaring om databruk og mulig samarbeid. Henvendelsen skal tydelig beskrive løsningen som en porteføljedemo.
-
-Ikke påstå at deler av den tekniske 2026-versjonen er ferdige før de faktisk er bygget.
-
-Andre porteføljecaser
-
-Senere kan kortere analyse-/strategicaser legges inn, blant annet tidligere arbeid/prosjekter som SATS, The Broth Company og bachelorarbeid.
-
-En egen responsiv samleside, `analyse-strategi.html`, er opprettet og koblet til prosjekt 03 på forsiden. Siden har foreløpig en nøytral introduksjon og en tom arkivstruktur uten oppdiktede prosjektdetaljer. Den skal fylles ut når brukeren har valgt og dokumentert det første arbeidet.
-
-De trenger ikke samme visuelle eller tekniske dybde som GG-BOX og CommuniGreen. En enkel prosjektarkiv-løsning kan brukes med for eksempel:
-
-år
-
-prosjekt
-
-type
-
-eget bidrag
-
-lenke til kort case
-
-Unngå å publisere konfidensiell eller ikke-offentlig informasjon. Bruk anonymiserte eller rekonstruerte visualiseringer når det er nødvendig.
-
-Designprinsipper som allerede er valgt
-
-Behold et rolig og redaksjonelt uttrykk.
-
-Hvitrom er tillatt og ønsket når det gir fokus.
-
-Bruk visuelle bevis fra prosjektene fremfor tilfeldig pynt.
-
-GG-BOX og CommuniGreen kan beholde tydelige egne fargeidentiteter.
-
-Forsiden og de to hovedcasene er typografisk og språklig samordnet. Prosjektlisten bruker stabile rader uten layoutendring ved hover. CommuniGreen har vanlig tekstfarge i hvile, mens bare «Green» får profilfargen `#2f7049` ved hover eller tastaturfokus. Forsiden har bredde- og høydebaserte tilpasninger for store skjermer, 1080p-vinduer, nettbrett og mobil. Synlige bindestreker unngås utenfor prosjektnavnet GG-BOX.
-
-Alle ti HTML-sider er responsivitetskontrollert fra 320 til 2560 piksler i Chromium, med lys/mørk modus og sentrale mobilpaneler. Representative mobil- og desktopvisninger er også kontrollert i installert Firefox. CSS-en har Safari-/iOS-tilpasning for tekstskalering og reserveverdier for dynamisk visningshøyde, men en fysisk sluttkontroll i Safari på Mac eller iPhone gjenstår fordi Safari ikke kan kjøres på Windows.
-
-Lys/mørk modus skal føles som samme design, ikke to forskjellige nettsider.
-
-Mobilvisning er viktig.
-
-Unngå overdreven animasjon.
-
-Funksjonell JavaScript er viktigere enn dekorative effekter.
-
-Små hover-/overgangseffekter er fine når de har en tydelig funksjon.
-
-Arbeidsmåte
-
-Prosjektet skal videreutvikles gradvis:
-
-Én tydelig oppgave om gangen.
-
-Inspiser eksisterende relevant kode.
-
-Gjør en liten endring.
-
-Lagre.
-
-Test via Live Server.
-
-Test relevant lys/mørk/mobil eller funksjonsflyt.
-
-Lag Git-commit ved en naturlig fungerende milepæl.
-
-Brukeren lærer mens prosjektet bygges. Forklar derfor hvordan og hvorfor, ikke bare lever ferdig kode.
-
-Ikke-mål i nåværende fase
-
-Unngå med mindre brukeren senere endrer målet:
-
-ekte betaling
-
-ekte kundekontoer
-
-ekte abonnementer
-
-database
-
-innsamling av persondata
-
-komplisert cookie-system
-
-native mobilapp
-
-stor overgang til React/Next.js
-
-unødvendig avansert arkitektur
-
-omfattende animasjon bare for å se teknisk ut
-
-Sannhetskilder og vedlikehold
-
-Prioritet når informasjon er i konflikt:
-
-Nåværende kode i prosjektmappen.
-
-Brukerens nyeste eksplisitte beslutning.
-
-Denne PROJECT_CONTEXT.md.
-
-Eldre chat-historikk.
-
-Denne filen skal være kort nok til å være nyttig. Oppdater den ved store milepæler, ikke etter hver lille CSS-endring.
+Oppdater denne filen ved større milepæler, ikke etter hver mindre CSS-endring.

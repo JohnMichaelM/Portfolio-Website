@@ -113,11 +113,11 @@ Brukerens dokumenterte bidrag i studentprosjektet omfatter blant annet analyse, 
 
 Den kodede videreutviklingen er brukerens selvstendige tekniske videreutvikling i 2026.
 
-Den kodede løsningen skal omtales som demo/porteføljedemonstrasjon, ikke som en ekte butikk.
+Den kodede løsningen skal omtales som demo eller demonstrasjon, ikke som en ekte butikk.
 
 CommuniGreen
 
-Opprinnelig student-/Figma-konsept: 2023/24.
+Opprinnelig student-/Figma-konsept: 2023.
 
 Teknisk videreutvikling skal bare omtales som ferdig når den faktisk er bygget.
 
