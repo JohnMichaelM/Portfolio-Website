@@ -17,13 +17,13 @@ Forsiden `index.html` er responsiv og inneholder:
 - kort introduksjon
 - nummerert prosjektoversikt
 - GG-BOX og CommuniGreen som visuelle hovedcaser
-- lenke til samlesiden Analyse og strategi
+- en foreløpig, ikke-klikkbar oppføring for Analyse og strategi
 - Om meg og kontakt
 - lys og mørk modus
 
 Ikke gjør en større redesign eller erstatt hovedcasene med en ren prosjektliste uten å avklare det først.
 
-`analyse-strategi.html` er opprettet og koblet til prosjekt 03. Den har en nøytral, responsiv arkivstruktur, men mangler dokumenterte prosjektdata. Mulige senere arbeider er SATS, The Broth Company og bachelorarbeid. Ikke dikt opp innhold eller publiser konfidensiell informasjon.
+`analyse-strategi.html` er opprettet som et internt arbeidsgrunnlag, men er foreløpig ikke tilgjengelig via prosjekt 03 på forsiden. Oppføringen er merket «Kommer senere» frem til dokumenterte prosjektdata er valgt. Mulige senere arbeider er SATS, The Broth Company og bachelorarbeid. Ikke dikt opp innhold eller publiser konfidensiell informasjon.
 
 ## GG-BOX
 
@@ -109,7 +109,7 @@ CommuniGreen er et student-/Figma-konsept fra 2023. Brukeren hadde ansvar for id
 
 Faste eksempelinnlegg kan ikke slettes. Alt innhold er fiktivt, og brukerdata lagres bare lokalt i nettleseren. Det finnes ingen konto, database, e-postutsending eller ekte persondata.
 
-Hovedflytene er kontrollert ved 320 og 390 piksler, med omlasting, mørk modus, større tekst og tastaturfokus. Ingen JavaScript-feil ble funnet. Den bekreftede fullstendige nullstillingen av CommuniGreen-data bør fortsatt prøves manuelt via Live Server.
+Hovedflytene er kontrollert ved 320 og 390 piksler, med omlasting, mørk modus, større tekst og tastaturfokus. Ingen JavaScript-feil ble funnet. Fullstendig nullstilling av CommuniGreen-data er også prøvd manuelt via Live Server.
 
 Frivillig.no kan brukes som inspirasjon for aktivitetstyper, men innhold eller data skal ikke kopieres eller kobles inn uten avklart tillatelse og bruksvilkår.
 
@@ -154,12 +154,11 @@ Ikke introduser rammeverk, npm-pakker, backend, database, ekte autentisering ell
 
 ## Reelle neste steg
 
-1. Flytt repositoryet via Git og kontroller Live Server på den andre maskinen.
-2. Gjennomfør fjernbrukertest av GG-BOX og/eller CommuniGreen og dokumenter konkrete funn.
-3. Test CommuniGreen-funksjonen som nullstiller lokale data manuelt.
-4. Gjennomfør fysisk Safari-test når Mac eller iPhone er tilgjengelig.
-5. Fyll `analyse-strategi.html` først når dokumentert prosjektinnhold er valgt.
-6. Gjør senere innholds- og språkvask, og vurder engelsk versjon eller profesjonelt portrett når norsk versjon er stabil.
+1. Gjennomfør fjernbrukertest av GG-BOX og/eller CommuniGreen og dokumenter konkrete funn.
+2. Gjennomfør fysisk Safari-test når Mac eller iPhone er tilgjengelig.
+3. Fullfør innholds- og lenkekontrollen før publisering.
+4. Koble til og fyll `analyse-strategi.html` først når dokumentert prosjektinnhold er valgt.
+5. Gjør senere språkvask, og vurder engelsk versjon eller profesjonelt portrett når norsk versjon er stabil.
 
 GG-BOX og CommuniGreen trenger ikke nye funksjoner bare for å virke mer avanserte. Prioriter brukertesting, dokumentasjon og begrunnede forbedringer.
 

@@ -53,7 +53,7 @@
     .project-period { font-weight: bold; white-space: nowrap; }
     .project-status { font-size: 11px; font-weight: bold; letter-spacing: .09em; text-align: right; text-transform: uppercase; white-space: nowrap; }
     .ggbox-row:focus-visible .project-title { color: var(--orange); }
-    .analysis-row:focus-visible .project-title { color: var(--blue-highlight); }
+    .analysis-row[href]:focus-visible .project-title { color: var(--blue-highlight); }
     .communigreen-title-accent { color: inherit; transition: color 180ms ease; }
     .communigreen-row:focus-visible .communigreen-title-accent { color: var(--communigreen-green); }
 
@@ -61,7 +61,7 @@
       .project-row[href]:hover { background: var(--surface); }
       .ggbox-row:hover .project-title { color: var(--orange); }
       .communigreen-row:hover .communigreen-title-accent { color: var(--communigreen-green); }
-      .analysis-row:hover .project-title { color: var(--blue-highlight); }
+      .analysis-row[href]:hover .project-title { color: var(--blue-highlight); }
     }
 
     .contact-banner { padding: clamp(34px, 5vw, 58px) 24px; background: var(--blue); color: white; }
@@ -126,24 +126,24 @@
           <a class="project-row ggbox-row" href="gg-box.html">
             <span class="project-number">01</span>
             <h3 class="project-title">GG-BOX</h3>
-            <p class="project-description">Studentkonsept, prototype i Figma og egen kodet demo.</p>
+            <p class="project-description">Studentkonsept, prototype i Figma og kodet demo.</p>
             <span class="project-period">2024/26</span>
             <span class="project-status">Case og fungerende demo ↗</span>
           </a>
           <a class="project-row communigreen-row" href="communigreen.html">
             <span class="project-number">02</span>
             <h3 class="project-title">Communi<span class="communigreen-title-accent">Green</span></h3>
-            <p class="project-description">Studentkonsept, mobil prototype og egen kodet demo.</p>
+            <p class="project-description">Studentkonsept, mobil prototype og kodet demo.</p>
             <span class="project-period">2023/26</span>
             <span class="project-status">Case og fungerende demo ↗</span>
           </a>
-          <a class="project-row analysis-row" href="analyse-strategi.html">
+          <article class="project-row analysis-row">
             <span class="project-number">03</span>
             <h3 class="project-title">Analyse og strategi</h3>
-            <p class="project-description">Kortere arbeider innen analyse, strategi og markedsføring.</p>
+            <p class="project-description">Bacheloroppgave, The Broth Company, SATS prosjekt...</p>
             <span class="project-period" aria-hidden="true"></span>
-            <span class="project-status">Samleside ↗</span>
-          </a>
+            <span class="project-status">Kommer senere</span>
+          </article>
         </div>
       </section>
     </div>
@@ -154,7 +154,6 @@
         <p class="contact-intro">Jeg er åpen for arbeid og prosjekter innen produktutvikling, analyse og digital markedsføring.</p>
         <div class="contact-links">
           <a href="mailto:johnmichael@live.no">johnmichael@live.no <span aria-hidden="true">↗</span></a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
