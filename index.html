@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portefølje for John Michael Mauseth, digital markedsfører med interesse for prosjektledelse, analyse og produktutvikling.">
   <title>John Michael Mauseth | Portefølje</title>
+  <link rel="stylesheet" href="analytics.css">
+  <script src="analytics.js" defer></script>
   <style>
     :root {
       --background: #f4f1ea;
@@ -102,7 +104,7 @@
   </style>
 </head>
 
-<body>
+<body data-analytics-page-type="home" data-analytics-project-id="portfolio">
   <header class="site-header">
     <a class="site-name" href="#topp">John Michael Mauseth</a>
     <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Bytt til mørk modus">
@@ -119,18 +121,18 @@
         <p class="hero-intro">Med interesse for prosjektledelse, analyse og produktutvikling.</p>
       </section>
 
-      <section class="projects" id="prosjekter" aria-labelledby="projects-title">
+      <section class="projects" id="prosjekter" aria-labelledby="projects-title" data-analytics-section="projects">
         <p class="eyebrow">Arbeid</p>
         <h2 class="projects-heading" id="projects-title">Prosjekter</h2>
         <div class="project-list">
-          <a class="project-row ggbox-row" href="gg-box.html">
+          <a class="project-row ggbox-row" href="gg-box.html" data-analytics-event="project_open" data-analytics-project-id="gg_box" data-analytics-link-location="project_list" data-analytics-cta-id="open_case">
             <span class="project-number">01</span>
             <h3 class="project-title">GG-BOX</h3>
             <p class="project-description">Studentkonsept, prototype i Figma og kodet demo.</p>
             <span class="project-period">2024/26</span>
             <span class="project-status">Case og fungerende demo ↗</span>
           </a>
-          <a class="project-row communigreen-row" href="communigreen.html">
+          <a class="project-row communigreen-row" href="communigreen.html" data-analytics-event="project_open" data-analytics-project-id="communigreen" data-analytics-link-location="project_list" data-analytics-cta-id="open_case">
             <span class="project-number">02</span>
             <h3 class="project-title">Communi<span class="communigreen-title-accent">Green</span></h3>
             <p class="project-description">Studentkonsept, mobil prototype og kodet demo.</p>
@@ -148,12 +150,12 @@
       </section>
     </div>
 
-    <section class="contact-banner" id="kontakt">
+    <section class="contact-banner" id="kontakt" data-analytics-section="contact">
       <div class="contact-content">
         <h2>Ta gjerne kontakt</h2>
         <p class="contact-intro">Jeg er åpen for arbeid og prosjekter innen produktutvikling, analyse og digital markedsføring.</p>
         <div class="contact-links">
-          <a href="mailto:johnmichael@live.no">johnmichael@live.no <span aria-hidden="true">↗</span></a>
+          <a href="mailto:johnmichael@live.no" data-analytics-event="contact_intent" data-analytics-project-id="portfolio" data-analytics-link-location="contact_section" data-analytics-contact-method="email">johnmichael@live.no <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
@@ -161,6 +163,8 @@
 
   <footer class="site-footer">
     <p>© John Michael Mauseth 2026</p>
+    <button class="analytics-preferences-button" type="button" data-analytics-preferences>Analysevalg</button>
+    <a href="personvern.html">Personvern</a>
     <a href="#topp">Til toppen ↑</a>
   </footer>
 

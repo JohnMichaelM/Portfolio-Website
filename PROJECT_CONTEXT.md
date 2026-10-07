@@ -149,8 +149,20 @@ Viktige filer:
 - `communigreen.html` + `communigreen.css`: CommuniGreen-case
 - `communigreen-demo.html/css/js`: CommuniGreen-demo
 - `analyse-strategi.html/css`: foreløpig samleside
+- `analytics.js` + `analytics.css`: delt GA4-, samtykke- og eventlogikk
+- `personvern.html/css`: reell informasjon om porteføljens analysebruk
 
 Ikke introduser rammeverk, npm-pakker, backend, database, ekte autentisering eller eksterne tjenester uten et nytt, uttrykkelig behov.
+
+## Analytics – godkjent retning, ikke implementert
+
+Målet er et enkelt og skalerbart analyseoppsett som brukes til å forbedre prosjektinteresse, case-til-demo-flyt, kontaktintensjon, mobilopplevelse og trafikkilder.
+
+Versjon 1 skal bruke GA4 med Basic Consent Mode og en separat `analytics.js`. Events skal være leverandøruavhengige, bruke stabile navn og identifisere prosjekter med parametere som `project_id: gg_box` eller `communigreen`. Første eventsett er `project_open`, `section_view`, `demo_open`, `contact_intent`, `resource_open` og utvalgte `cta_click`.
+
+Ingen analytics skal lastes før samtykke. Ikke send navn, e-postadresser, fritekst, søk, ordrenumre, lokale demoopplysninger eller innhold fra `localStorage`. Google Tag Manager, Looker Studio, eget dashboard, API/database, heatmaps og detaljert sporing inne i demoene utsettes til de gir praktisk verdi.
+
+GA4-property og Measurement ID er opprettet for GitHub Pages-domenet. Forsiden, begge casesidene og begge hoveddemoene bruker nå den delte modulen på `codex/analytics-v1`. En egen personvernside forklarer den reelle sporingen. Resterende GG-BOX-undersider, produksjonstest og GA4-rapportkonfigurasjon gjenstår før løsningen kan flettes inn i `main`.
 
 ## Reelle neste steg
 

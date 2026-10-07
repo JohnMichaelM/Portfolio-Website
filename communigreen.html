@@ -6,9 +6,11 @@
   <meta name="description" content="CommuniGreen, et studentkonsept fra 2023 om lokale miljøaktiviteter, fellesskap og mobil brukeropplevelse.">
   <title>CommuniGreen | John Michael Mauseth</title>
   <link rel="stylesheet" href="communigreen.css">
+  <link rel="stylesheet" href="analytics.css">
+  <script src="analytics.js" defer></script>
 </head>
 
-<body>
+<body data-analytics-page-type="case" data-analytics-project-id="communigreen">
   <header class="site-header">
     <a class="site-name" href="index.html#prosjekter">← John Michael Mauseth</a>
     <nav class="site-nav" aria-label="Meny for CommuniGreen">
@@ -24,12 +26,12 @@
   </header>
 
   <main>
-    <section class="hero" id="prosjekt">
+    <section class="hero" id="prosjekt" data-analytics-section="case_hero">
       <div class="hero-copy">
         <p class="eyebrow">Studentprosjekt · Mobil UX · 2023/26</p>
         <h1>Communi<span>Green</span></h1>
         <p class="hero-intro">Et mobilkonsept som samler lokale miljøaktiviteter, deling og fellesskap på ett sted.</p>
-        <a class="button-link button-light" href="#appen">Se den kodede demoen <span aria-hidden="true">↓</span></a>
+        <a class="button-link button-light" href="#appen" data-analytics-event="cta_click" data-analytics-project-id="communigreen" data-analytics-link-location="case_hero" data-analytics-cta-id="jump_to_demo">Se den kodede demoen <span aria-hidden="true">↓</span></a>
       </div>
 
       <dl class="project-facts">
@@ -75,7 +77,7 @@
         </div>
       </section>
 
-      <section class="process-section" id="prosess" aria-labelledby="process-title">
+      <section class="process-section" id="prosess" aria-labelledby="process-title" data-analytics-section="process">
         <header class="section-heading">
           <p class="eyebrow">Prosess</p>
           <h2 id="process-title">Fra papirskisse til testet prototype.</h2>
@@ -99,7 +101,7 @@
         </div>
       </section>
 
-      <section class="insight-section" aria-labelledby="insight-title">
+      <section class="insight-section" aria-labelledby="insight-title" data-analytics-section="insight">
         <div class="section-heading">
           <p class="eyebrow">Viktigste innsikt</p>
           <h2 id="insight-title">Mindre navigasjon ga mer retning.</h2>
@@ -111,7 +113,7 @@
         </div>
       </section>
 
-      <section class="learning-section" id="laring" aria-labelledby="learning-title">
+      <section class="learning-section" id="laring" aria-labelledby="learning-title" data-analytics-section="learning">
         <header class="section-heading">
           <p class="eyebrow">Læring</p>
           <h2 id="learning-title">Refleksjoner fra 2023 og 2026</h2>
@@ -130,14 +132,14 @@
         </div>
       </section>
 
-      <section class="app-section" id="appen" aria-labelledby="app-title">
+      <section class="app-section" id="appen" aria-labelledby="app-title" data-analytics-section="demo">
         <div class="app-copy">
           <p class="eyebrow">Teknisk videreutvikling · 2026</p>
           <h2 id="app-title">Prøv min utviklet demo</h2>
           <p>Den kodede demoen viser aktiviteter, kalender, lagring, forum, utmerkelser, innstillinger og lokale demodata. Alt innhold er fiktivt og lagres bare i nettleseren.</p>
           <div class="action-links">
-            <a class="button-link" href="communigreen-demo.html" target="_blank" rel="noreferrer">Åpne kodet demo <span aria-hidden="true">↗</span></a>
-            <a class="text-link" href="https://www.figma.com/design/lvuQXDJJQy8pjNZ1voYeGT/CommuniGreen-App?node-id=21-684" target="_blank" rel="noreferrer">Se prototypen i Figma <span aria-hidden="true">↗</span></a>
+            <a class="button-link" href="communigreen-demo.html" target="_blank" rel="noreferrer" data-analytics-event="demo_open" data-analytics-project-id="communigreen" data-analytics-link-location="demo_section" data-analytics-cta-id="open_demo">Åpne kodet demo <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="https://www.figma.com/design/lvuQXDJJQy8pjNZ1voYeGT/CommuniGreen-App?node-id=21-684" target="_blank" rel="noreferrer" data-analytics-event="resource_open" data-analytics-project-id="communigreen" data-analytics-link-location="demo_section" data-analytics-resource-id="figma">Se prototypen i Figma <span aria-hidden="true">↗</span></a>
           </div>
         </div>
 
@@ -159,6 +161,8 @@
 
   <footer class="site-footer">
     <p>CommuniGreen · Studentprosjekt 2023 · Videreutviklet 2026</p>
+    <button class="analytics-preferences-button" type="button" data-analytics-preferences>Analysevalg</button>
+    <a href="personvern.html">Personvern</a>
     <a href="index.html#prosjekter">Tilbake til porteføljen ↑</a>
   </footer>
 
