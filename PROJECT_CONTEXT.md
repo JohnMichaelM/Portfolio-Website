@@ -154,7 +154,7 @@ Viktige filer:
 
 Ikke introduser rammeverk, npm-pakker, backend, database, ekte autentisering eller eksterne tjenester uten et nytt, uttrykkelig behov.
 
-## Analytics – godkjent retning, ikke implementert
+## Analytics – versjon 1 implementert på arbeidsgren
 
 Målet er et enkelt og skalerbart analyseoppsett som brukes til å forbedre prosjektinteresse, case-til-demo-flyt, kontaktintensjon, mobilopplevelse og trafikkilder.
 
@@ -162,7 +162,7 @@ Versjon 1 skal bruke GA4 med Basic Consent Mode og en separat `analytics.js`. Ev
 
 Ingen analytics skal lastes før samtykke. Ikke send navn, e-postadresser, fritekst, søk, ordrenumre, lokale demoopplysninger eller innhold fra `localStorage`. Google Tag Manager, Looker Studio, eget dashboard, API/database, heatmaps og detaljert sporing inne i demoene utsettes til de gir praktisk verdi.
 
-GA4-property og Measurement ID er opprettet for GitHub Pages-domenet. Forsiden, begge casesidene og begge hoveddemoene bruker nå den delte modulen på `codex/analytics-v1`. En egen personvernside forklarer den reelle sporingen. Resterende GG-BOX-undersider, produksjonstest og GA4-rapportkonfigurasjon gjenstår før løsningen kan flettes inn i `main`.
+GA4-property og Measurement ID er opprettet for GitHub Pages-domenet. Forsiden, begge casesidene, begge hoveddemoene og alle GG-BOX-undersidene bruker nå den delte modulen på `codex/analytics-v1`. En egen personvernside forklarer den reelle sporingen. Produksjonstest og GA4-rapportkonfigurasjon gjenstår før løsningen kan flettes inn i `main`. Detaljert sporing av handlinger og demodata inne i demoene er bevisst utsatt.
 
 ## Reelle neste steg
 

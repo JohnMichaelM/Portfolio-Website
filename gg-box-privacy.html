@@ -8,9 +8,11 @@
   <link rel="stylesheet" href="gg-box-demo.css">
   <link rel="stylesheet" href="gg-box-privacy.css">
   <link rel="stylesheet" href="gg-box-header.css">
+  <link rel="stylesheet" href="analytics.css">
+  <script src="analytics.js" defer></script>
 </head>
 
-<body>
+<body data-analytics-page-type="demo" data-analytics-project-id="gg_box">
   <div class="shop-meta">
     <div class="shop-meta-inner">
       <a href="gg-box.html" aria-label="Tilbake til GG-BOX-casen">← Tilbake</a>
@@ -240,7 +242,14 @@
       <div class="footer-contact">
         <p class="footer-heading">Kontakt</p>
         <div class="footer-contact-links">
-          <a href="mailto:johnmichael@live.no" aria-label="Send epost">
+          <a
+            href="mailto:johnmichael@live.no"
+            aria-label="Send epost"
+            data-analytics-event="contact_intent"
+            data-analytics-project-id="gg_box"
+            data-analytics-link-location="demo_footer"
+            data-analytics-contact-method="email"
+          >
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M3 5.5h18v13H3z"></path>
               <path d="m4 7 8 6 8-6"></path>
@@ -254,6 +263,10 @@
 
     <div class="footer-bottom">
       <p>© GG-BOX 2026</p>
+      <button class="analytics-preferences-button" type="button" data-analytics-preferences>
+        Analysevalg
+      </button>
+      <a href="personvern.html">Porteføljens personvern</a>
       <p>Demonstrasjon</p>
     </div>
   </footer>
